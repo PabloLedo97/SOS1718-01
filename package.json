@@ -1,0 +1,16 @@
+{
+  "name": "sos1718-01",
+  "version": "1.0.0",
+  "description": "primer modulo en Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+  },
+  "author": "FranciscoSR",
+  "license": "ISC",
+  "dependencies": {
+    "cool-ascii-faces": "^1.3.4",
+    "express": "^4.16.2"
+  }
+}
