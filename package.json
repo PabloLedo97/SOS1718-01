@@ -1,7 +1,7 @@
 {
   "name": "sos1718-01",
   "version": "1.0.0",
-  "description": "primer modulo en NodeJS",
+  "description": "my first module in NodeJS",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
