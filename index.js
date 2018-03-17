@@ -1,15 +1,21 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var DataStore = require("nedb");
+
 
 var port = (process.env.PORT || 1607);
 var BASE_API_PATH = "/api/v1";
+
+var dbFileName = __dirname + "/tvfees_stats.db";
 
 var app = express();
 
 app.use(bodyParser.json());
 
-
-var teams = [{
+app.get(BASE_API_PATH + "/help", (req, res) => {
+    res.redirect("https://documenter.getpostman.com/view/3897700/sos1718-01-tvfees_stats/RVnZfxiX");
+});
+var initialteams = [{
         "city": "barcelona",
         "year": 2015,
         "team": "fc barcelona",
@@ -28,10 +34,41 @@ var teams = [{
 
     }
 ];
+var db = new DataStore({
+    filename:dbFileName,
+    autoload:true
+
+});
+
+db.find({},(err,teams)=>{
+    if(err){
+        console.error("Error accesing DB");
+        process.exit(1);
+    }
+    if(teams.length == 0){
+        console.log("Empty DB");
+        db.insert(initialteams);
+        
+    }else{
+        console.log("DB initialized with " + teams.length  + " teams ");
+    }
+    
+});
+
+
+
+
 
 app.get(BASE_API_PATH + "/tvfees_stats", (req, res) => {
     console.log(Date() + " - GET /tvfees_stats");
+    db.find({},(err,teams)=>{
+    if(err){
+        console.error("Error accesing DB");
+        res.sendStatus(500);
+    }
     res.send(teams);
+});
+    
 });
 
 app.post(BASE_API_PATH + "/tvfees_stats", (req, res) => {
@@ -49,23 +86,24 @@ app.put(BASE_API_PATH + "/tvfees_stats", (req, res) => {
 app.delete(BASE_API_PATH + "/tvfees_stats", (req, res) => {
     console.log(Date() + " - DELETE /tvfees_stats");
     teams = [];
+    db.remove({});
     res.sendStatus(200);
 });
 
 
-//app.get(BASE_API_PATH + "/tvfees_stats/loadInitialData", (req, res) => {
-   // console.log(Date() + " - GET /tvfees_stats/loadInitialData"+teams);
-   // db.insert(initialteams);
-    // db.find({},(err,teams)=>{
-    //if(err){
-    // console.log("Error acccesing DB");
-    // process.exit(1);
-    //return;
-    //}
-    //res.send(teams);
-//});
+app.get(BASE_API_PATH + "/tvfees_stats/loadInitialData", (req, res) => {
+ console.log(Date() + " - GET /tvfees_stats/loadInitialData"+initialteams);
+ db.insert(initialteams);
+ db.find({},(err,teams)=>{
+if(err){
+ console.log("Error acccesing DB");
+ process.exit(1);
+return;
+}
+res.send(teams);
+});
 
-//});
+});
 
 
 app.get(BASE_API_PATH + "/tvfees_stats/:city", (req, res) => {
@@ -99,20 +137,20 @@ app.put(BASE_API_PATH + "/tvfees_stats/:city", (req, res) => {
     var team = req.body;
 
     console.log(Date() + " - PUT /tvfees_stats/" + city);
+    db.update({"city": team.city},team,(err,numUpdated)=>{
+        console.log("Updated: " + numUpdated);
+        
+    });
 
     if (city != team.city) {
         res.sendStatus(409);
         console.warn(Date() + " - Hacking attempt!");
         return;
     }
-
-    teams = teams.map((t) => {
-        if (t.city == team.city)
-            return city;
-        else
-            return t;
+db.update({"city": team.city},team,(err,numUpdated)=>{
+        console.log("Updated: " + numUpdated);
+        
     });
-
     res.sendStatus(200);
 });
 
