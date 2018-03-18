@@ -483,9 +483,7 @@ app.put(BASE_API_PATH+"/transferincomes_stats/:city",(req,res)=>{
         return;
     }
     
-    db3.update({"city": team.city},team,(err,numUpdated)=>{
-        console.log("Updated: " +numUpdated);
-    });
+    db3.update({"city": team.city},team);
     
     res.sendStatus(200);
 });
