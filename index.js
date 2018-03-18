@@ -226,15 +226,15 @@ res.send(teams);
 });
 
 app.get(BASE_API_PATH+"/goals-stats",(req,res)=>{
-    console.log(Date() + " - GET /teams");
-    res.send(initialteams2);
-    /*db.find({},(err,teams)=>{
+    //console.log(Date() + " - GET /teams");
+    //res.send(initialteams2);
+    db2.find({},(err,teams)=>{
     if(err){
         console.error("Error accesing DB");
         res.sendStatus(500);
     }
-    res.send(teams);
-});*/
+    res.send(initialteams2);
+});
 });
 
 app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
@@ -249,13 +249,12 @@ app.put(BASE_API_PATH+"/goals-stats",(req,res)=>{
     res.sendStatus(405);
 });
 
-app.delete(BASE_API_PATH+"/goals-stats/",(req,res)=>{
+app.delete(BASE_API_PATH+"/goals-stats",(req,res)=>{
     console.log(Date() + " - DELETE /teams");
     initialteams2 = [];
+    db2.remove({});
     res.sendStatus(200);
-    initialteams2 = [];
-    /*db.remove({});
-    res.sendStatus(200);*/
+    
 });
 
 
