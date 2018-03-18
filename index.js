@@ -399,6 +399,25 @@ app.get(BASE_API_PATH+"/transferincomes_stats",(req,res)=>{
     });
 });
 
+//GET de LoadInitialData
+app.get(BASE_API_PATH+"/transferincomes_stats/loadInitialData",(req,res)=>{
+    console.log(Date() + " - GET /transferincomes_stats/loadInitialData"+ myteams);
+    
+    db3.insert(myteams);
+    db3.find({},(err, teams)=>{
+    if(err){
+        console.error("Error accesing DB");
+        process.exit(1);
+        return;
+    }
+    if(teams.length == 0){
+        console.log("Empty DB");
+        db3.insert(myteams)
+    }
+         res.send(myteams);
+    });
+});
+
 //POST a la ruta base
 app.post(BASE_API_PATH+"/transferincomes_stats",(req,res)=>{
     console.log(Date() + " - POST /transferincomes_stats");
