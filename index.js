@@ -483,8 +483,14 @@ app.put(BASE_API_PATH+"/transferincomes_stats/:city",(req,res)=>{
         return;
     }
     
-    db3.update({"city": team.city},team);
+    //db3.update({"city": team.city},team);
     
+    myteams = myteams.map((c)=>{
+        if(c.city == team.city)
+            return team;
+        else
+            return c;
+    });
     res.sendStatus(200);
 });
 

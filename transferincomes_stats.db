@@ -1,7 +1,6 @@
 {"city":"barcelona","year":2015,"team":"fc barcelona","ti-maxexp":34,"ti-lessexp":17,"ti-spa":17,"_id":"FQ88ZuLoncv2dZqb"}
 {"city":"malaga","year":2015,"team":"malaga cf","ti-maxexp":3.5,"ti-lessexp":3.5,"ti-spa":0,"_id":"G8l54ADjD67OXtyX"}
-{"city":"sevilla","year":2015,"team":"sevilla fc","ti-maxexp":9.75,"ti-lessexp":4,"ti-spa":0,"_id":"VwNXLgunIl4oQlKR"}
+{"city":"sevilla","year":2015,"team":"sevilla fc","ti-maxexp":9.75,"ti-lessexp":4,"ti-spa":10,"_id":"VwNXLgunIl4oQlKR"}
 {"city":"vigo","year":2015,"team":"celta de vigo ","ti-maxexp":10,"ti-lessexp":2,"ti-spa":17.3,"_id":"fq7gh3XZZQXS5BA5"}
 {"city":"madrid","year":2015,"team":"real madrid cf","ti-maxexp":31.5,"ti-lessexp":6,"ti-spa":12,"_id":"oXgLu3yF3ZdiCiBU"}
 {"city":"madrid","year":2015,"team":"atletico madrid","ti-maxexp":35,"ti-lessexp":15,"ti-spa":0,"_id":"seZh9np4Mk5ytiAU"}
-{"city":"sevilla","year":2015,"team":"sevilla fc","ti-maxexp":9.75,"ti-lessexp":4,"ti-spa":10,"_id":"VwNXLgunIl4oQlKR"}
