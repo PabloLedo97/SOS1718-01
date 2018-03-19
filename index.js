@@ -6,9 +6,9 @@ var DataStore = require("nedb");
 var port = (process.env.PORT || 1607);
 var BASE_API_PATH = "/api/v1";
 
-var dbFileName = __dirname + "/tvfees_stats.db";
+var dbFileName = __dirname + "/tvfees-stats.db";
 var dbFileName2 = __dirname + "/goals-stats.db";
-var dbFileName3 = __dirname+"/transferincomes_stats.db";
+var dbFileName3 = __dirname+"/transferincomes-stats.db";
 var app = express();
 
 app.use(bodyParser.json());
@@ -62,8 +62,8 @@ db.find({},(err,teams)=>{
 
 
 
-app.get(BASE_API_PATH + "/tvfees_stats", (req, res) => {
-    console.log(Date() + " - GET /tvfees_stats");
+app.get(BASE_API_PATH + "/tvfees-stats", (req, res) => {
+    console.log(Date() + " - GET /tvfees-stats");
     db.find({},(err,teams)=>{
     if(err){
         console.error("Error accesing DB");
@@ -74,28 +74,28 @@ app.get(BASE_API_PATH + "/tvfees_stats", (req, res) => {
     
 });
 
-app.post(BASE_API_PATH + "/tvfees_stats", (req, res) => {
-    console.log(Date() + " - POST /tvfees_stats");
+app.post(BASE_API_PATH + "/tvfees-stats", (req, res) => {
+    console.log(Date() + " - POST /tvfees-stats");
     var team = req.body;
     initialteams.push(team);
     res.sendStatus(201);
 });
 
-app.put(BASE_API_PATH + "/tvfees_stats", (req, res) => {
-    console.log(Date() + " - PUT /tvfees_stats");
+app.put(BASE_API_PATH + "/tvfees-stats", (req, res) => {
+    console.log(Date() + " - PUT /tvfees-stats");
     res.sendStatus(405);
 });
 
-app.delete(BASE_API_PATH + "/tvfees_stats", (req, res) => {
-    console.log(Date() + " - DELETE /tvfees_stats");
+app.delete(BASE_API_PATH + "/tvfees-stats", (req, res) => {
+    console.log(Date() + " - DELETE /tvfees-stats");
     initialteams = [];
     db.remove({});
     res.sendStatus(200);
 });
 
 
-app.get(BASE_API_PATH + "/tvfees_stats/loadInitialData", (req, res) => {
- console.log(Date() + " - GET /tvfees_stats/loadInitialData"+initialteams);
+app.get(BASE_API_PATH + "/tvfees-stats/loadInitialData", (req, res) => {
+ console.log(Date() + " - GET /tvfees-stats/loadInitialData"+initialteams);
  db.insert(initialteams);
  db.find({},(err,teams)=>{
 if(err){
@@ -109,9 +109,9 @@ res.send(initialteams);
 });
 
 
-app.get(BASE_API_PATH + "/tvfees_stats/:city", (req, res) => {
+app.get(BASE_API_PATH + "/tvfees-stats/:city", (req, res) => {
     var city = req.params.city;
-    console.log(Date() + " - GET /tvfees_stats/" + city);
+    console.log(Date() + " - GET /tvfees-stats/" + city);
 
     res.send(initialteams.filter((t) => {
         return (t.city == city);
@@ -119,18 +119,18 @@ app.get(BASE_API_PATH + "/tvfees_stats/:city", (req, res) => {
 });
 
 
-app.get(BASE_API_PATH + "/tvfees_stats/:capacity", (req, res) => {
+app.get(BASE_API_PATH + "/tvfees-stats/:capacity", (req, res) => {
     var capacity = req.params.capacity;
-    console.log(Date() + " - GET /tvfees_stats/" + capacity);
+    console.log(Date() + " - GET /tvfees-stats/" + capacity);
 
     res.send(initialteams.filter((t) => {
         return (t.capacity == capacity);
     })[0]);
 });
 
-app.delete(BASE_API_PATH + "/tvfees_stats/:city", (req, res) => {
+app.delete(BASE_API_PATH + "/tvfees-stats/:city", (req, res) => {
     var city = req.params.city;
-    console.log(Date() + " - DELETE /tvfees_stats/" + city);
+    console.log(Date() + " - DELETE /tvfees-stats/" + city);
 
     initialteams = initialteams.filter((t) => {
         return (t.city != city);
@@ -139,17 +139,17 @@ app.delete(BASE_API_PATH + "/tvfees_stats/:city", (req, res) => {
     res.sendStatus(200);
 });
 
-app.post(BASE_API_PATH + "/tvfees_stats/:city", (req, res) => {
+app.post(BASE_API_PATH + "/tvfees-stats/:city", (req, res) => {
     var city = req.params.city;
-    console.log(Date() + " - POST /tvfees_stats/" + city);
+    console.log(Date() + " - POST /tvfees-stats/" + city);
     res.sendStatus(405);
 });
 
-app.put(BASE_API_PATH + "/tvfees_stats/:city", (req, res) => {
+app.put(BASE_API_PATH + "/tvfees-stats/:city", (req, res) => {
     var city = req.params.city;
     var team = req.body;
 
-    console.log(Date() + " - PUT /tvfees_stats/:city" + city);
+    console.log(Date() + " - PUT /tvfees-stats/:city" + city);
    
 
     if (city != team.city) {
@@ -157,12 +157,7 @@ app.put(BASE_API_PATH + "/tvfees_stats/:city", (req, res) => {
         console.warn(Date() + " - Hacking attempt!");
         return;
     }
-     db.update({"city": team.city},team,(err,numUpdated)=>{
-        console.log("Updated: " + numUpdated);
-      
-    });
-
-    res.sendStatus(200);
+  res.sendStatus(200);
 });
 
 
@@ -384,8 +379,8 @@ db3.find({},(err, teams)=>{
 
 
 // GET a la ruta base
-app.get(BASE_API_PATH+"/transferincomes_stats",(req,res)=>{
-    console.log(Date() + " - GET /transferincomes_stats");
+app.get(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
+    console.log(Date() + " - GET /transferincomes-stats");
     
     db3.find({},(err, teams)=>{
     if(err){
@@ -399,8 +394,8 @@ app.get(BASE_API_PATH+"/transferincomes_stats",(req,res)=>{
 });
 
 //GET de LoadInitialData
-app.get(BASE_API_PATH+"/transferincomes_stats/loadInitialData",(req,res)=>{
-    console.log(Date() + " - GET /transferincomes_stats/loadInitialData"+ myteams);
+app.get(BASE_API_PATH+"/transferincomes-stats/loadInitialData",(req,res)=>{
+    console.log(Date() + " - GET /transferincomes-stats/loadInitialData"+ myteams);
     
     db3.insert(myteams);
     db3.find({},(err, teams)=>{
@@ -418,22 +413,22 @@ app.get(BASE_API_PATH+"/transferincomes_stats/loadInitialData",(req,res)=>{
 });
 
 //POST a la ruta base
-app.post(BASE_API_PATH+"/transferincomes_stats",(req,res)=>{
-    console.log(Date() + " - POST /transferincomes_stats");
+app.post(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
+    console.log(Date() + " - POST /transferincomes-stats");
     var team = req.body;
     myteams.push(team);
     res.sendStatus(201);
 });
 
 //PUT a la ruta base
-app.put(BASE_API_PATH+"/transferincomes_stats",(req,res)=>{
-    console.log(Date() + " - PUT /transferincomes_stats");
+app.put(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
+    console.log(Date() + " - PUT /transferincomes-stats");
     res.sendStatus(405);
 });
 
 //DELETE a la ruta base
-app.delete(BASE_API_PATH+"/transferincomes_stats",(req,res)=>{
-    console.log(Date() + " - DELETE /transferincomes_stats");
+app.delete(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
+    console.log(Date() + " - DELETE /transferincomes-stats");
     myteams = [];
     
     db3.remove({});  
@@ -442,18 +437,18 @@ app.delete(BASE_API_PATH+"/transferincomes_stats",(req,res)=>{
 });
 
 //GET a un recurso concreto
-app.get(BASE_API_PATH+"/transferincomes_stats/:city",(req,res)=>{
+app.get(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     var city = req.params.city;
-    console.log(Date() + " - GET /transferincomes_stats/"+city);
+    console.log(Date() + " - GET /transferincomes-stats/"+city);
     res.send(myteams.filter((c)=>{
         return (c.city == city);
     }));
 });
 
 //DELETE a un recurso concreto
-app.delete(BASE_API_PATH+"/transferincomes_stats/:city",(req,res)=>{
+app.delete(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     var city = req.params.city;
-    console.log(Date() + " - DELETE /transferincomes_stats/"+city);
+    console.log(Date() + " - DELETE /transferincomes-stats/"+city);
     
     myteams = myteams.filter((c)=>{
         return (c.city != city);
@@ -463,18 +458,18 @@ app.delete(BASE_API_PATH+"/transferincomes_stats/:city",(req,res)=>{
 });
 
 //POST a un recurso concreto
-app.post(BASE_API_PATH+"/transferincomes_stats/:city",(req,res)=>{
+app.post(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     var city = req.params.city;
-    console.log(Date() + " - POST /transferincomes_stats/"+city);
+    console.log(Date() + " - POST /transferincomes-stats/"+city);
     res.sendStatus(405);
 });
 
 //PUT a un recurso concreto
-app.put(BASE_API_PATH+"/transferincomes_stats/:city",(req,res)=>{
+app.put(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     var city = req.params.city;
     var team = req.body;
     
-    console.log(Date() + " - PUT /transferincomes_stats/"+city);
+    console.log(Date() + " - PUT /transferincomes-stats/"+city);
 
     if(city != team.city){
         res.sendStatus(409);
