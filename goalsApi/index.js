@@ -9,7 +9,7 @@ goalsApi.register = function (app,db2) {
         { 
             "city" : "malaga",
             "year" : 2015,
-            "team" : "malaga fc",
+            "team" : "malaga-fc",
             "goals rightfoot": 20,
             "goals head" : 7,
             "goals penalty": 2
@@ -17,27 +17,54 @@ goalsApi.register = function (app,db2) {
         { 
             "city" : "sevilla",
             "year" : 2015,
-            "team" : "sevilla",
+            "team" : "sevilla-fc",
             "goals rightfoot": 34,
             "goals head" : 7,
             "goals penalty": 6
+        },
+         { 
+            "city" : "sevilla",
+            "year" : 2015,
+            "team" : "real-betis-balompie",
+            "goals rightfoot": 19,
+            "goals head" : 9,
+            "goals penalty": 3
+        },
+         { 
+            "city" : "bilbao",
+            "year" : 2015,
+            "team" : "athletic-club-bilbao",
+            "goals rightfoot": 31,
+            "goals head" : 17,
+            "goals penalty": 3
+        },
+         { 
+            "city" : "villareal",
+            "year" : 2015,
+            "team" : "villareal-cf",
+            "goals rightfoot": 28,
+            "goals head" : 1,
+            "goals penalty": 3
         }
     ];
     
     app.get(BASE_API_PATH + "/goals-stats/loadInitialData", (req, res) => {
  console.log(Date() + " - GET /tvfees_stats/loadInitialData"+initialteams2);
  //db.insert(initialteams);
- db2.find({},(err,teams)=>{
-if(err){
- console.log("Error acccesing DB");
- process.exit(1);
-return;
-}
-if(teams.length == 0){
+ db2.find({}).toArray((err,teams)=>{
+    if(err){
+        console.log("Error acccesing DB");
+        process.exit(1);
+        return;
+        }
+    if(teams.length == 0){
         console.log("Empty DB");
         db2.insert(initialteams2);
-}
-res.send(teams);
+    }
+    res.send(teams.map((c)=> {
+            delete c._id;
+            return c;
+        }));
 });
 
 });
@@ -45,19 +72,23 @@ res.send(teams);
 app.get(BASE_API_PATH+"/goals-stats",(req,res)=>{
     //console.log(Date() + " - GET /teams");
     //res.send(initialteams2);
-    db2.find({},(err,teams)=>{
+    db2.find({}).toArray((err,teams)=>{
     if(err){
         console.error("Error accesing DB");
         res.sendStatus(500);
+        return;
     }
-    res.send(initialteams2);
+     res.send(teams.map((c)=> {
+            delete c._id;
+            return c;
+        }));
 });
 });
 
 app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
     console.log(Date() + " - POST /teams");
     var team = req.body;
-    initialteams2.push(team);
+    db2.insert(team);
     res.sendStatus(201);
 });
 
@@ -68,7 +99,6 @@ app.put(BASE_API_PATH+"/goals-stats",(req,res)=>{
 
 app.delete(BASE_API_PATH+"/goals-stats",(req,res)=>{
     console.log(Date() + " - DELETE /teams");
-    initialteams2 = [];
     db2.remove({});
     res.sendStatus(200);
     
@@ -79,19 +109,23 @@ app.get(BASE_API_PATH+"/goals-stats/:city",(req,res)=>{
     var city = req.params.city;
     console.log(Date() + " - GET /teams/"+city);
     
-    res.send(initialteams2.filter((c)=>{
-        return (c.city == city);
-    }));
+    db2.find({ "city" : city}).toArray((err,teams)=>{
+    if(err){
+        console.error("Error accesing DB");
+        res.sendStatus(500);
+    }
+    res.send(teams.map((c)=> {
+            delete c._id;
+            return c;
+        }));
+    });
 });
 
 app.delete(BASE_API_PATH+"/goals-stats/:city",(req,res)=>{
     var city = req.params.city;
     console.log(Date() + " - DELETE /teams/"+city);
     
-    initialteams2 = initialteams2.filter((c)=>{
-        return (c.city != city);
-    });
-    
+    db2.remove({"city" : city});
     res.sendStatus(200);
 });
 
@@ -113,14 +147,8 @@ app.put(BASE_API_PATH+"/goals-stats/:city/:team",(req,res)=>{
         console.warn(Date()+" - Hacking attempt!");
         return;
     }
-    
-    initialteams2 = initialteams2.map((c)=>{
-        if(c.city == team.city && c.team == team.team)
-            return team;
-        else
-            return c;
-    });
-    
+   
+    db2.update({"city" : team.city, "team" : team.team},team);
     res.sendStatus(200);
 });
 };

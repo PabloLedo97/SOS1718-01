@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var DataStore = require("nedb");
-
+var MongoClient = require("mongodb").MongoClient;
 
 var port = (process.env.PORT || 1607);
 var BASE_API_PATH = "/api/v1";
@@ -9,8 +9,10 @@ var BASE_API_PATH = "/api/v1";
 var goalsApi = require("./goalsApi");
 
 var dbFileName = __dirname + "/tvfees-stats.db";
-var dbFileName2 = __dirname + "/goals-stats.db";
+
 var dbFileName3 = __dirname+"/transferincomes-stats.db";
+
+var mdbURL = "mongodb://goals-stats:12345@ds161148.mlab.com:61148/sos1718-fsr-sandbox";
 var app = express();
 
 
@@ -169,7 +171,7 @@ var initialteams2 = [
         { 
             "city" : "malaga",
             "year" : 2015,
-            "team" : "malaga fc",
+            "team" : "malaga-fc",
             "goals rightfoot": 20,
             "goals head" : 7,
             "goals penalty": 2
@@ -177,19 +179,73 @@ var initialteams2 = [
         { 
             "city" : "sevilla",
             "year" : 2015,
-            "team" : "sevilla",
+            "team" : "sevilla-fc",
             "goals rightfoot": 34,
             "goals head" : 7,
             "goals penalty": 6
+        },
+         { 
+            "city" : "sevilla",
+            "year" : 2015,
+            "team" : "real-betis-balompie",
+            "goals rightfoot": 19,
+            "goals head" : 9,
+            "goals penalty": 3
+        },
+         { 
+            "city" : "bilbao",
+            "year" : 2015,
+            "team" : "athletic-club-bilbao",
+            "goals rightfoot": 31,
+            "goals head" : 17,
+            "goals penalty": 3
+        },
+         { 
+            "city" : "villareal",
+            "year" : 2015,
+            "team" : "villareal-cf",
+            "goals rightfoot": 28,
+            "goals head" : 1,
+            "goals penalty": 3
         }
     ];
 
-var db2 = new DataStore({
+/*var db2 = new DataStore({
     filename:dbFileName2,
     autoload:true
 
+});*/
+
+MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs) =>{
+    if (err){
+        console.error("Error accesing DB:" + err);
+        process.exit(1);
+    }
+        console.log("connected to DB in mlabs");
+        
+        var database = mlabs.db("sos1718-fsr-sandbox");
+        var db2 = database.collection("goals-stats");
+        
+        db2.find({}).toArray((err,teams)=>{
+            if(err){
+                console.error("Error accesing DB");
+                process.exit(1);
+             }
+            if(teams.length == 0){
+                console.log("Empty DB");
+                db2.insert(initialteams2);
+        
+                }else{
+                    console.log("DB has " + teams.length  + " teams ");
+                }
+    
+        });
+    goalsApi.register(app,db2);
+    
 });
+/*
 goalsApi.register(app,db2);
+
 db2.find({},(err,teams)=>{
     if(err){
         console.error("Error accesing DB");
@@ -205,7 +261,7 @@ db2.find({},(err,teams)=>{
     
 });
 
-
+*/
 
 //MANU
 
