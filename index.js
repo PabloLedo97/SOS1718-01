@@ -148,7 +148,7 @@ tvfeesstats.register(app,db);
 });*/
 
 //PACO
-app.get(BASE_API_PATH + "/goals-stats/help",(req,res) => {
+app.get(BASE_API_PATH + "/goals-stats/docs",(req,res) => {
     res.redirect("https://documenter.getpostman.com/view/3935248/collection/RVtyoryK");
 });
 
