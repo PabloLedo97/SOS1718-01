@@ -1,26 +1,38 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+
 var DataStore = require("nedb");
+
+
 var MongoClient = require("mongodb").MongoClient;
 
 var port = (process.env.PORT || 1607);
 var BASE_API_PATH = "/api/v1";
 
 var goalsApi = require("./goalsApi");
+var tvfeesstats = require("./tvfees-stats");
 
-var dbFileName = __dirname + "/tvfees-stats.db";
+
+//var dbFileName = __dirname + "/tvfees-stats.db";
 
 var dbFileName3 = __dirname+"/transferincomes-stats.db";
 
 var mdbURL = "mongodb://goals-stats:12345@ds161148.mlab.com:61148/sos1718-fsr-sandbox";
+
+//var dbFileName = __dirname + "/tvfees-stats.db";
+var mdbURL1= "mongodb://db01:db01@ds227459.mlab.com:27459/sos1718-01-tvfees-stats";
+//var dbFileName2 = __dirname + "/goals-stats.db";
+//var dbFileName3 = __dirname+"/transferincomes-stats.db";
+
 var app = express();
 
 
 app.use(bodyParser.json());
 
 //PABLO
+
 app.get(BASE_API_PATH + "/help", (req, res) => {
-    res.redirect("https://documenter.getpostman.com/view/3897700/collection/RVnZfxiX");
+    res.redirect("hola");
 });
 var initialteams = [{
         "city": "barcelona",
@@ -39,134 +51,104 @@ var initialteams = [{
         "at-total": 334648,
         "at-average": 41831
 
+    },
+    {
+        "city": "madrid",
+        "year": 2015,
+        "team": "club atlético de madrid",
+        "capacity": 54907,
+        "at-total": 366144,
+        "at-average": 45768
+
+    },
+    {
+        "city": "madrid",
+        "year": 2015,
+        "team": "real madrid cf",
+        "capacity": 81044,
+        "at-total": 546089,
+        "at-average": 68261
+
+    },
+    {
+        "city": "valencia",
+        "year": 2015,
+        "team": "valencia cf",
+        "capacity": 55000,
+        "at-total": 303895,
+        "at-average": 37987
+
     }
 ];
-var db = new DataStore({
-    filename:dbFileName,
-    autoload:true
+//var db = new DataStore({
+//filename:dbFileName,
+// autoload:true
 
-});
+//});
+MongoClient.connect(mdbURL1, { native_parser: true }, (err, mlabs) => {
+if (err) {
+    console.log("Error acccesing DB" + err);
+    process.exit(1);
+}
 
-db.find({},(err,teams)=>{
-    if(err){
+console.log("Connected to DB in mlabs");
+
+
+var database = mlabs.db("sos1718-01-tvfees-stats");
+var db = database.collection("tvfees-stats");
+
+
+
+db.find({}, (err, teams) => {
+    if (err) {
         console.error("Error accesing DB");
         process.exit(1);
     }
-    if(initialteams.length == 0){
+    if (initialteams.length == 0) {
         console.log("Empty DB");
         db.insert(initialteams);
-        
-    }else{
-        console.log("DB initialized with " +initialteams.length  + " teams ");
-        
+
     }
-    
-});
+    else {
+        console.log("DB has  " + initialteams.length + " teams ");
 
-
-
-
-
-app.get(BASE_API_PATH + "/tvfees-stats", (req, res) => {
-    console.log(Date() + " - GET /tvfees-stats");
-    db.find({},(err,teams)=>{
-    if(err){
-        console.error("Error accesing DB");
-        res.sendStatus(500);
     }
-    res.send(initialteams);
-});
-    
-});
 
-app.post(BASE_API_PATH + "/tvfees-stats", (req, res) => {
-    console.log(Date() + " - POST /tvfees-stats");
-    var team = req.body;
-    initialteams.push(team);
-    res.sendStatus(201);
-});
-
-app.put(BASE_API_PATH + "/tvfees-stats", (req, res) => {
-    console.log(Date() + " - PUT /tvfees-stats");
-    res.sendStatus(405);
-});
-
-app.delete(BASE_API_PATH + "/tvfees-stats", (req, res) => {
-    console.log(Date() + " - DELETE /tvfees-stats");
-    initialteams = [];
-    db.remove({});
-    res.sendStatus(200);
-});
-
-
-app.get(BASE_API_PATH + "/tvfees-stats/loadInitialData", (req, res) => {
- console.log(Date() + " - GET /tvfees-stats/loadInitialData"+initialteams);
- db.insert(initialteams);
- db.find({},(err,teams)=>{
-if(err){
- console.log("Error acccesing DB");
- process.exit(1);
-return;
-}
-res.send(initialteams);
-});
 
 });
+tvfeesstats.register(app,db);
 
 
-app.get(BASE_API_PATH + "/tvfees-stats/:city", (req, res) => {
-    var city = req.params.city;
-    console.log(Date() + " - GET /tvfees-stats/" + city);
-
-    res.send(initialteams.filter((t) => {
-        return (t.city == city);
-    })[0]);
-});
-
-
-app.get(BASE_API_PATH + "/tvfees-stats/:capacity", (req, res) => {
-    var capacity = req.params.capacity;
-    console.log(Date() + " - GET /tvfees-stats/" + capacity);
-
-    res.send(initialteams.filter((t) => {
-        return (t.capacity == capacity);
-    })[0]);
-});
-
-app.delete(BASE_API_PATH + "/tvfees-stats/:city", (req, res) => {
-    var city = req.params.city;
-    console.log(Date() + " - DELETE /tvfees-stats/" + city);
-
-    initialteams = initialteams.filter((t) => {
-        return (t.city != city);
+app.listen(port, () => {
+console.log("Server ready on port " + port + "!");
+}).on("error", (e) => {
+console.log("Server NOT READY:" + e);
     });
 
-    res.sendStatus(200);
-});
 
-app.post(BASE_API_PATH + "/tvfees-stats/:city", (req, res) => {
-    var city = req.params.city;
-    console.log(Date() + " - POST /tvfees-stats/" + city);
-    res.sendStatus(405);
-});
 
-app.put(BASE_API_PATH + "/tvfees-stats/:city", (req, res) => {
-    var city = req.params.city;
-    var team = req.body;
 
-    console.log(Date() + " - PUT /tvfees-stats/:city" + city);
-   
-
-    if (city != team.city) {
-        res.sendStatus(409);
-        console.warn(Date() + " - Hacking attempt!");
-        return;
+/*
+db.find({}, (err, teams) => {
+    if (err) {
+        console.error("Error accesing DB");
+        process.exit(1);
     }
-  res.sendStatus(200);
-});
+    if (initialteams.length == 0) {
+        console.log("Empty DB");
+        db.insert(initialteams);
 
+    }
+    else {
+        console.log("DB initialized with " + initialteams.length + " teams ");
+
+    }
+tvfeesstats.register(app,db);
+
+});*/
 
 //PACO
+
 var initialteams2 = [
         { 
             "city" : "malaga",
@@ -445,11 +427,4 @@ app.put(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     });
     res.sendStatus(200);
 });
-
-app.listen(port, () => {
-    console.log("Server ready on port " + port + "!");
-}).on("error", (e) => {
-    console.log("Server NOT READY:" + e);
 });
-
-console.log("Server setting up...");
