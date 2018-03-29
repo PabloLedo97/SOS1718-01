@@ -31,9 +31,9 @@ app.use(bodyParser.json());
 
 //PABLO
 
-app.get(BASE_API_PATH + "/help", (req, res) => {
+/*app.get(BASE_API_PATH + "/tvfees-stats/help", (req, res) => {
     res.redirect("hola");
-});
+});*/
 var initialteams = [{
         "city": "barcelona",
         "year": 2015,
@@ -148,6 +148,9 @@ tvfeesstats.register(app,db);
 });*/
 
 //PACO
+app.get(BASE_API_PATH + "/goals-stats/help",(req,res) => {
+    res.redirect("https://documenter.getpostman.com/view/3935248/collection/RVtyoryK");
+});
 
 var initialteams2 = [
         { 
