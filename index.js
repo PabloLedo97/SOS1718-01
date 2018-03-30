@@ -1,8 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-
 var DataStore = require("nedb");
-
 
 var MongoClient = require("mongodb").MongoClient;
 
@@ -11,7 +9,7 @@ var BASE_API_PATH = "/api/v1";
 
 var goalsApi = require("./goalsApi");
 var tvfeesstats = require("./tvfees-stats");
-
+var transfersApi = require("./transfersApi");
 
 //var dbFileName = __dirname + "/tvfees-stats.db";
 
