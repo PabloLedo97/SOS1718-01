@@ -82,14 +82,14 @@ app.get(BASE_API_PATH+"/transferincomes-stats/loadInitialData",(req,res)=>{
 app.get(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
     console.log(Date() + " - GET /transferincomes-stats");
     //res.send(myteams);
-    db3.find({}),.toArray((err, teams)=>{
+    db3.find({}).toArray((err, teams)=>{
     if(err){
         console.error("Error accesing DB");
         res.sendStatus(500);
         return;
     }
     
-         res.send(teams.map(c)=>{
+         res.send(teams.map((c)=>{
              delete c._id;
              return c;
          }));
@@ -123,12 +123,13 @@ app.delete(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
 app.get(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     var city = req.params.city;
     console.log(Date() + " - GET /transferincomes-stats/"+city);
+    
     db3.find({ "city" : city}).toArray((err,teams)=>{
         if(err){
             console.error("Error accesing DB");
             res.sendStatus(500);
         }
-        res.send(teams.map(c)=>{
+        res.send(teams.map((c)=>{
             delete c._id;
             return c;
         }));
