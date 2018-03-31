@@ -10,7 +10,7 @@ tvfeesstats.register = function(app, db) {
     console.log("Register routes for tvfeesstats API");
 
     app.get(BASE_API_PATH + "/help", (req, res) => {
-        res.redirect("https://documenter.getpostman.com/view/3897700/sos1718-01-tvfees-statsv2/RVu1GWKx");
+        res.redirect("https://documenter.getpostman.com/view/3897700/sos1718-01-tvfees-stats/RVu1Gq87");
     });
     var initialteams = [{
             "city": "barcelona",
