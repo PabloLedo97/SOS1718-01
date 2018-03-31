@@ -60,8 +60,8 @@ transfersApi.register = function (app, db3){
 app.get(BASE_API_PATH+"/transferincomes-stats/loadInitialData",(req,res)=>{
     console.log(Date() + " - GET /transferincomes-stats/loadInitialData"+ myteams);
     
-    db3.insert(myteams);
-    db3.find({},(err, teams)=>{
+    //db3.insert(myteams);
+    db3.find({}).toArray((err, teams)=>{
     if(err){
         console.error("Error accesing DB");
         process.exit(1);
@@ -71,22 +71,28 @@ app.get(BASE_API_PATH+"/transferincomes-stats/loadInitialData",(req,res)=>{
         console.log("Empty DB");
         db3.insert(myteams)
     }
-         res.send(myteams);
+         res.send(teams.map((c)=>{
+             delete c._id;
+             return c;
+         }));
     });
 });
     
     // GET a la ruta base
 app.get(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
     console.log(Date() + " - GET /transferincomes-stats");
-    
-    db3.find({},(err, teams)=>{
+    //res.send(myteams);
+    db3.find({}),.toArray((err, teams)=>{
     if(err){
         console.error("Error accesing DB");
         res.sendStatus(500);
         return;
     }
     
-         res.send(myteams);
+         res.send(teams.map(c)=>{
+             delete c._id;
+             return c;
+         }));
     });
 });
 
@@ -96,7 +102,7 @@ app.get(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
 app.post(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
     console.log(Date() + " - POST /transferincomes-stats");
     var team = req.body;
-    myteams.push(team);
+    db3.insert(team);
     res.sendStatus(201);
 });
 
@@ -109,10 +115,7 @@ app.put(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
 //DELETE a la ruta base
 app.delete(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
     console.log(Date() + " - DELETE /transferincomes-stats");
-    myteams = [];
-    
     db3.remove({});  
-    
     res.sendStatus(200);
 });
 
@@ -120,9 +123,16 @@ app.delete(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
 app.get(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     var city = req.params.city;
     console.log(Date() + " - GET /transferincomes-stats/"+city);
-    res.send(myteams.filter((c)=>{
-        return (c.city == city);
-    }));
+    db3.find({ "city" : city}).toArray((err,teams)=>{
+        if(err){
+            console.error("Error accesing DB");
+            res.sendStatus(500);
+        }
+        res.send(teams.map(c)=>{
+            delete c._id;
+            return c;
+        }));
+    });
 });
 
 //DELETE a un recurso concreto
@@ -130,10 +140,7 @@ app.delete(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     var city = req.params.city;
     console.log(Date() + " - DELETE /transferincomes-stats/"+city);
     
-    myteams = myteams.filter((c)=>{
-        return (c.city != city);
-    });
-    
+    db3.remove({"city" : city});
     res.sendStatus(200);
 });
 
@@ -147,22 +154,18 @@ app.post(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
 //PUT a un recurso concreto
 app.put(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     var city = req.params.city;
+    var nombre = req.params.team;
     var team = req.body;
     
     console.log(Date() + " - PUT /transferincomes-stats/"+city);
 
-    if(city != team.city){
+    if(city != team.city || nombre != team.team){
         res.sendStatus(409);
         console.warn(Date()+" - Hacking attempt!");
         return;
     }
     
-    myteams = myteams.map((c)=>{
-        if(c.city == team.city)
-            return team;
-        else
-            return c;
-    });
+    db3.update({"city" : team.city, "team" : team.team},team);
     res.sendStatus(200);
 });
-}
+};
