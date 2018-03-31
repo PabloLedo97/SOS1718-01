@@ -75,7 +75,7 @@ app.get(BASE_API_PATH+"/transferincomes-stats/loadInitialData",(req,res)=>{
     }
     if(teams.length == 0){
         console.log("Empty DB");
-        db3.insert(myteams)
+        db3.insert(myteams);
     }
          res.send(teams.map((c)=>{
              delete c._id;
