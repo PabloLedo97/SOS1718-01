@@ -107,9 +107,24 @@ app.get(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
 //POST a la ruta base
 app.post(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
     console.log(Date() + " - POST /transferincomes-stats");
-    var team = req.body;
-    db3.insert(team);
-    res.sendStatus(201);
+    var newteam = req.body;
+    if(!newteam){
+        console.log("Warning : new GET request");
+        res.sendStatus(400);
+    }
+    db3.find({ "city" : newteam.city}).toArray((err,filteredTeams)=>{
+        if(err){
+            console.error("Error accesing DB");
+            res.sendStatus(500);
+        }
+        if(filteredTeams.length>0){
+            console.log("WARNING");
+            res.sendStatus(409); //conflict
+        }else{
+            db3.insert(newteam);
+            res.sendStatus(201);
+        }
+    });
 });
 
 //PUT a la ruta base
@@ -129,21 +144,56 @@ app.delete(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
 app.get(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     var city = req.params.city;
     console.log(Date() + " - GET /transferincomes-stats/"+city);
-    
-    db3.find({ "city" : city}).toArray((err,teams)=>{
+    if(!city){
+        console.log("Warning : new GET request");
+        res.sendStatus(400);
+    }
+    db3.find({ "city" : city}).toArray((err,filteredTeams)=>{
         if(err){
             console.error("Error accesing DB");
             res.sendStatus(500);
+        }else{
+            if(filteredTeams.length>0){
+                res.sendStatus(filteredTeams.map((c)=>{
+                    delete c._id;
+                    return c;
+                }));
+            }else{
+                console.log("WARNING");
+                res.sendStatus(404);
+            }
         }
-        res.send(teams.map((c)=>{
-            delete c._id;
-            return c;
-        }));
+        });
+    });
+    
+//GET realizando filtrado
+app.get(BASE_API_PATH+"/transferincomes-stats/:city/:team",(req,res)=>{
+    var city = req.params.city;
+    var team = req.params.team;
+    //var year = req.params.year;
+    console.log(Date() + " - GET /transferincomes-stats/"+city+ "/" + team);
+    if(!city || !team){
+        console.log("Warning : new GET request ");
+        res.sendStatus(400);
+    }
+    db3.find({ "city" : city, "team" : team}).toArray((err,filteredTeams)=>{
+    if(err){
+        console.error("Error accesing DB");
+        res.sendStatus(500);
+    }else{
+        if(filteredTeams.length>0){
+            res.send(filteredTeams.map((c)=> {
+                delete c._id;
+                return c;
+            }));
+        }else{
+            console.log("WARNING");
+            res.sendStatus(404);
+        }
+    }
     });
 });
-
-
-
+    
 //DELETE a un recurso concreto
 app.delete(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     var city = req.params.city;

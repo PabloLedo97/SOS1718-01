@@ -53,7 +53,7 @@ goalsApi.register = function (app,db2) {
 });
     
     app.get(BASE_API_PATH + "/goals-stats/loadInitialData", (req, res) => {
- console.log(Date() + " - GET /tvfees_stats/loadInitialData"+initialteams2);
+ console.log(Date() + " - GET /goals-stats/loadInitialData"+initialteams2);
  //db.insert(initialteams);
  db2.find({}).toArray((err,teams)=>{
     if(err){
@@ -129,7 +129,7 @@ app.get(BASE_API_PATH+"/goals-stats/:city",(req,res)=>{
     var city = req.params.city;
     console.log(Date() + " - GET /teams/"+city);
     if(!city){
-        console.log("Warning : new GET reques ");
+        console.log("Warning : new GET request ");
         res.sendStatus(400);
     }
     db2.find({ "city" : city}).toArray((err,filteredTeams)=>{
@@ -156,7 +156,7 @@ app.get(BASE_API_PATH+"/goals-stats/:city/:team",(req,res)=>{
     //var year = req.params.year;
     console.log(Date() + " - GET /teams/"+city+ "/" + team);
     if(!city || !team){
-        console.log("Warning : new GET reques ");
+        console.log("Warning : new GET request ");
         res.sendStatus(400);
     }
     db2.find({ "city" : city, "team" : team}).toArray((err,filteredTeams)=>{
