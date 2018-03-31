@@ -298,8 +298,6 @@ db3.find({},(err, teams)=>{
         console.log("DB initialized with "+ myteams.length +" teams");
     }
 });
-
-<<<<<<< HEAD
     console.log("Connected to DB");
 
     var database = mlabs.db("sos1718-mls-sandbox");
@@ -324,14 +322,9 @@ db3.find({},(err, teams)=>{
 });
 
 app.listen(port, () => {
-    console.log("Server ready on port " + port + "!");
-}).on("error", (e) => {
-    console.log("Server NOT READY:" + e);
-=======
-app.listen(port, () => {
 console.log("Server ready on port " + port + "!");
 }).on("error", (e) => {
 console.log("Server NOT READY:" + e);
     });
->>>>>>> 9ae7e02e19865acc33f23fcd0546793feaa50fa3
+
 });
