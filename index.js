@@ -5,7 +5,7 @@ var DataStore = require("nedb");
 var MongoClient = require("mongodb").MongoClient;
 
 var goalsApi = require("./goalsApi");
-var tvfeesstats = require("./tvfees-stats");
+var tvfeesstats = require("./tvfeesstatsApi");
 var transfersApi = require("./transfersApi");
 
 var port = (process.env.PORT || 1607);
