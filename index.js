@@ -4,34 +4,26 @@ var DataStore = require("nedb");
 
 var MongoClient = require("mongodb").MongoClient;
 
-var port = (process.env.PORT || 1607);
-var BASE_API_PATH = "/api/v1";
-
 var goalsApi = require("./goalsApi");
 var tvfeesstats = require("./tvfees-stats");
 var transfersApi = require("./transfersApi");
 
-//var dbFileName = __dirname + "/tvfees-stats.db";
+var port = (process.env.PORT || 1607);
 
 var dbFileName3 = __dirname+"/transferincomes-stats.db";
 
+//var dbFileName2 = __dirname + "/goals-stats.db";
 var mdbURL = "mongodb://goals-stats:12345@ds161148.mlab.com:61148/sos1718-fsr-sandbox";
 
 //var dbFileName = __dirname + "/tvfees-stats.db";
 var mdbURL1= "mongodb://db01:db01@ds227459.mlab.com:27459/sos1718-01-tvfees-stats";
-//var dbFileName2 = __dirname + "/goals-stats.db";
-//var dbFileName3 = __dirname+"/transferincomes-stats.db";
+
 
 var app = express();
-
 
 app.use(bodyParser.json());
 
 //PABLO
-
-/*app.get(BASE_API_PATH + "/tvfees-stats/help", (req, res) => {
-    res.redirect("hola");
-});*/
 var initialteams = [{
         "city": "barcelona",
         "year": 2015,
@@ -78,11 +70,12 @@ var initialteams = [{
 
     }
 ];
-//var db = new DataStore({
-//filename:dbFileName,
-// autoload:true
 
-//});
+/*var db = new DataStore({
+filename:dbFileName,
+ autoload:true
+});*/
+
 MongoClient.connect(mdbURL1, { native_parser: true }, (err, mlabs) => {
 if (err) {
     console.log("Error acccesing DB" + err);
@@ -90,7 +83,6 @@ if (err) {
 }
 
 console.log("Connected to DB in mlabs");
-
 
 var database = mlabs.db("sos1718-01-tvfees-stats");
 var db = database.collection("tvfees-stats");
@@ -114,17 +106,8 @@ db.find({}, (err, teams) => {
 
 
 });
+
 tvfeesstats.register(app,db);
-
-
-app.listen(port, () => {
-console.log("Server ready on port " + port + "!");
-}).on("error", (e) => {
-console.log("Server NOT READY:" + e);
-    });
-
-
-
 
 /*
 db.find({}, (err, teams) => {
@@ -146,10 +129,6 @@ tvfeesstats.register(app,db);
 });*/
 
 //PACO
-app.get(BASE_API_PATH + "/goals-stats/docs",(req,res) => {
-    res.redirect("https://documenter.getpostman.com/view/3935248/collection/RVtyoryK");
-});
-
 var initialteams2 = [
         { 
             "city" : "malaga",
@@ -247,7 +226,6 @@ db2.find({},(err,teams)=>{
 */
 
 //MANU
-
 var myteams = [
     {
         "city": "madrid",
@@ -305,6 +283,8 @@ var db3 = new DataStore({
     autoload:true
 });
 
+transfersApi.register(app,db3);
+
 db3.find({},(err, teams)=>{
     if(err){
         console.error("Error accesing DB");
@@ -319,113 +299,9 @@ db3.find({},(err, teams)=>{
     }
 });
 
-
-
-// GET a la ruta base
-app.get(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
-    console.log(Date() + " - GET /transferincomes-stats");
-    
-    db3.find({},(err, teams)=>{
-    if(err){
-        console.error("Error accesing DB");
-        res.sendStatus(500);
-        return;
-    }
-    
-         res.send(myteams);
+app.listen(port, () => {
+console.log("Server ready on port " + port + "!");
+}).on("error", (e) => {
+console.log("Server NOT READY:" + e);
     });
-});
-
-//GET de LoadInitialData
-app.get(BASE_API_PATH+"/transferincomes-stats/loadInitialData",(req,res)=>{
-    console.log(Date() + " - GET /transferincomes-stats/loadInitialData"+ myteams);
-    
-    db3.insert(myteams);
-    db3.find({},(err, teams)=>{
-    if(err){
-        console.error("Error accesing DB");
-        process.exit(1);
-        return;
-    }
-    if(teams.length == 0){
-        console.log("Empty DB");
-        db3.insert(myteams)
-    }
-         res.send(myteams);
-    });
-});
-
-//POST a la ruta base
-app.post(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
-    console.log(Date() + " - POST /transferincomes-stats");
-    var team = req.body;
-    myteams.push(team);
-    res.sendStatus(201);
-});
-
-//PUT a la ruta base
-app.put(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
-    console.log(Date() + " - PUT /transferincomes-stats");
-    res.sendStatus(405);
-});
-
-//DELETE a la ruta base
-app.delete(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
-    console.log(Date() + " - DELETE /transferincomes-stats");
-    myteams = [];
-    
-    db3.remove({});  
-    
-    res.sendStatus(200);
-});
-
-//GET a un recurso concreto
-app.get(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
-    var city = req.params.city;
-    console.log(Date() + " - GET /transferincomes-stats/"+city);
-    res.send(myteams.filter((c)=>{
-        return (c.city == city);
-    }));
-});
-
-//DELETE a un recurso concreto
-app.delete(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
-    var city = req.params.city;
-    console.log(Date() + " - DELETE /transferincomes-stats/"+city);
-    
-    myteams = myteams.filter((c)=>{
-        return (c.city != city);
-    });
-    
-    res.sendStatus(200);
-});
-
-//POST a un recurso concreto
-app.post(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
-    var city = req.params.city;
-    console.log(Date() + " - POST /transferincomes-stats/"+city);
-    res.sendStatus(405);
-});
-
-//PUT a un recurso concreto
-app.put(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
-    var city = req.params.city;
-    var team = req.body;
-    
-    console.log(Date() + " - PUT /transferincomes-stats/"+city);
-
-    if(city != team.city){
-        res.sendStatus(409);
-        console.warn(Date()+" - Hacking attempt!");
-        return;
-    }
-    
-    myteams = myteams.map((c)=>{
-        if(c.city == team.city)
-            return team;
-        else
-            return c;
-    });
-    res.sendStatus(200);
-});
 });

@@ -48,6 +48,10 @@ goalsApi.register = function (app,db2) {
         }
     ];
     
+    app.get(BASE_API_PATH + "/goals-stats/docs",(req,res) => {
+    res.redirect("https://documenter.getpostman.com/view/3935248/collection/RVtyoryK");
+});
+    
     app.get(BASE_API_PATH + "/goals-stats/loadInitialData", (req, res) => {
  console.log(Date() + " - GET /tvfees_stats/loadInitialData"+initialteams2);
  //db.insert(initialteams);

@@ -4,8 +4,9 @@ var BASE_API_PATH = "/api/v1";
 module.exports = transfersApi;
 
 transfersApi.register = function (app, db3){
-    console.log("Registering routes for transfers API");
-    var myteams = [
+    console.log("Registering routes for transfers API...");
+    
+     var myteams = [
     {
         "city": "madrid",
         "year": 2015,
@@ -55,6 +56,11 @@ transfersApi.register = function (app, db3){
         "ti-spa": 0   
     }
     ];
+   
+    
+    app.get(BASE_API_PATH + "/transferincomes-stats/docs",(req,res) => {
+    res.redirect(); 
+});
     
     //GET de LoadInitialData
 app.get(BASE_API_PATH+"/transferincomes-stats/loadInitialData",(req,res)=>{
