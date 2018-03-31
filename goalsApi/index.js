@@ -91,9 +91,22 @@ app.get(BASE_API_PATH+"/goals-stats",(req,res)=>{
 
 app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
     console.log(Date() + " - POST /teams");
-    var team = req.body;
-    db2.insert(team);
-    res.sendStatus(201);
+    var newteam = req.body;
+     if(!newteam){
+        console.log("Warning : new GET request ");
+        res.sendStatus(400);
+    }else{
+        var filteredTeams = initialteams2.filter((c) => {
+            return c.city = newteam.city;
+        });
+        if(filteredTeams.length > 0){
+            console.log("WARNING");
+            res.sendStatus(409); //conflict
+        }else{
+            db2.insert(newteam);
+            res.sendStatus(201);
+        }
+    }
 });
 
 app.put(BASE_API_PATH+"/goals-stats",(req,res)=>{
@@ -112,16 +125,58 @@ app.delete(BASE_API_PATH+"/goals-stats",(req,res)=>{
 app.get(BASE_API_PATH+"/goals-stats/:city",(req,res)=>{
     var city = req.params.city;
     console.log(Date() + " - GET /teams/"+city);
-    
+    if(!city){
+        console.log("Warning : new GET reques ");
+        res.sendStatus(400);
+    }
     db2.find({ "city" : city}).toArray((err,teams)=>{
     if(err){
         console.error("Error accesing DB");
         res.sendStatus(500);
+    }else{
+        var filteredTeams = teams.filter((teams) => {
+            return teams.city = city;
+        });
+        if(filteredTeams.length>0){
+            res.send(teams.map((c)=> {
+                delete c._id;
+                return c;
+            }));
+        }else{
+            console.log("WARNING");
+            res.sendStatus(404);
+        }
     }
-    res.send(teams.map((c)=> {
-            delete c._id;
-            return c;
-        }));
+    });
+});
+
+app.get(BASE_API_PATH+"/goals-stats/:city/:team",(req,res)=>{
+    var city = req.params.city;
+    var team = req.params.team;
+    //var year = req.params.year;
+    console.log(Date() + " - GET /teams/"+city+ "/" + team);
+    if(!city || !team){
+        console.log("Warning : new GET reques ");
+        res.sendStatus(400);
+    }
+    db2.find({ "city" : city, "team" : team}).toArray((err,teams)=>{
+    if(err){
+        console.error("Error accesing DB");
+        res.sendStatus(500);
+    }else{
+        var filteredTeams = teams.filter((teams) => {
+            return teams.city = city;
+        });
+        if(filteredTeams.length>0){
+            res.send(teams.map((c)=> {
+                delete c._id;
+                return c;
+            }));
+        }else{
+            console.log("WARNING");
+            res.sendStatus(404);
+        }
+    }
     });
 });
 

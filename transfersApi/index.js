@@ -142,6 +142,8 @@ app.get(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     });
 });
 
+
+
 //DELETE a un recurso concreto
 app.delete(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
     var city = req.params.city;
