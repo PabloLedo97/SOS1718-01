@@ -95,18 +95,21 @@ app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
      if(!newteam){
         console.log("Warning : new GET request ");
         res.sendStatus(400);
-    }else{
-        var filteredTeams = initialteams2.filter((c) => {
-            return c.city = newteam.city;
-        });
-        if(filteredTeams.length > 0){
+    } 
+    db2.find({ "city" : newteam.city}).toArray((err,filteredTeams)=>{
+    if(err){
+        console.error("Error accesing DB");
+        res.sendStatus(500);
+    }
+    if(filteredTeams.length>0){
             console.log("WARNING");
             res.sendStatus(409); //conflict
         }else{
             db2.insert(newteam);
             res.sendStatus(201);
         }
-    }
+    
+    });
 });
 
 app.put(BASE_API_PATH+"/goals-stats",(req,res)=>{
@@ -129,16 +132,13 @@ app.get(BASE_API_PATH+"/goals-stats/:city",(req,res)=>{
         console.log("Warning : new GET reques ");
         res.sendStatus(400);
     }
-    db2.find({ "city" : city}).toArray((err,teams)=>{
+    db2.find({ "city" : city}).toArray((err,filteredTeams)=>{
     if(err){
         console.error("Error accesing DB");
         res.sendStatus(500);
-    }else{
-        var filteredTeams = teams.filter((teams) => {
-            return teams.city = city;
-        });
-        if(filteredTeams.length>0){
-            res.send(teams.map((c)=> {
+    }else {
+    if(filteredTeams.length>0){
+            res.send(filteredTeams.map((c)=> {
                 delete c._id;
                 return c;
             }));
@@ -146,7 +146,7 @@ app.get(BASE_API_PATH+"/goals-stats/:city",(req,res)=>{
             console.log("WARNING");
             res.sendStatus(404);
         }
-    }
+        }
     });
 });
 
@@ -159,16 +159,14 @@ app.get(BASE_API_PATH+"/goals-stats/:city/:team",(req,res)=>{
         console.log("Warning : new GET reques ");
         res.sendStatus(400);
     }
-    db2.find({ "city" : city, "team" : team}).toArray((err,teams)=>{
+    db2.find({ "city" : city, "team" : team}).toArray((err,filteredTeams)=>{
     if(err){
         console.error("Error accesing DB");
         res.sendStatus(500);
     }else{
-        var filteredTeams = teams.filter((teams) => {
-            return teams.city = city;
-        });
+       
         if(filteredTeams.length>0){
-            res.send(teams.map((c)=> {
+            res.send(filteredTeams.map((c)=> {
                 delete c._id;
                 return c;
             }));
@@ -202,7 +200,7 @@ app.put(BASE_API_PATH+"/goals-stats/:city/:team",(req,res)=>{
     console.log(Date() + " - PUT /teams/"+city);
     
     if(city != team.city || nombre != team.team){
-        res.sendStatus(409);
+        res.sendStatus(400);
         console.warn(Date()+" - Hacking attempt!");
         return;
     }
