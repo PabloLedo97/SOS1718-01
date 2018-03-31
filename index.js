@@ -10,7 +10,8 @@ var transfersApi = require("./transfersApi");
 
 var port = (process.env.PORT || 1607);
 
-var dbFileName3 = __dirname+"/transferincomes-stats.db";
+//var dbFileName3 = __dirname+"/transferincomes-stats.db";
+var mdbURL2 = "mongodb://transfers:sos1718@ds155529.mlab.com:55529/sos1718-mls-sandbox"
 
 //var dbFileName2 = __dirname + "/goals-stats.db";
 var mdbURL = "mongodb://goals-stats:12345@ds161148.mlab.com:61148/sos1718-fsr-sandbox";
@@ -276,30 +277,14 @@ var myteams = [
         "ti-spa": 0   
     }
     ];
-    
-    
-var db3 = new DataStore({
-    filename: dbFileName3,
-    autoload:true
-});
 
-transfersApi.register(app,db3);
 
-db3.find({},(err, teams)=>{
-    if(err){
-        console.error("Error accesing DB");
+    MongoClient.connect(mdbURL2,{native_parser:true},(err,mlabs) =>{
+    if (err){
+        console.error("Error accesing DB:" + err);
         process.exit(1);
     }
-    
-    if(teams.length == 0){
-        console.log("Empty DB");
-        db3.insert(myteams);
-    }else{
-        console.log("DB initialized with "+ myteams.length +" teams");
-    }
-});
-    console.log("Connected to DB");
-
+        console.log("connected to DB in mlabs");
     var database = mlabs.db("sos1718-mls-sandbox");
     var db3 = database.collection("teams");
 
@@ -326,5 +311,4 @@ console.log("Server ready on port " + port + "!");
 }).on("error", (e) => {
 console.log("Server NOT READY:" + e);
     });
-
 });
