@@ -48,7 +48,7 @@ goalsApi.register = function (app,db2) {
         }
     ];
     
-    app.get(BASE_API_PATH + "/goals-stats/paco",(req,res) => {
+    app.get(BASE_API_PATH + "/goals-stats/docs",(req,res) => {
     res.redirect("https://documenter.getpostman.com/view/3935248/RVu1Gqez");
 });
     
