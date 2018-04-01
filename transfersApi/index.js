@@ -59,7 +59,7 @@ transfersApi.register = function (app, db3){
    
     
     app.get(BASE_API_PATH + "/transferincomes-stats/docs",(req,res) => {
-    res.redirect(); 
+    res.redirect("https://documenter.getpostman.com/view/4049934/pruebas-postman/RVu1GqWA"); 
 });
     
     //GET de LoadInitialData
