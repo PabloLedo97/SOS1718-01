@@ -9,7 +9,7 @@ var tvfeesstats = require("./tvfeesstatsApi");
 var transfersApi = require("./transfersApi");
 
 var port = (process.env.PORT || 1607);
-
+app.use("/",express.static(__dirname+"/public"));
 //var dbFileName3 = __dirname+"/transferincomes-stats.db";
 var mdbURL2 = "mongodb://transfers:sos1718@ds155529.mlab.com:55529/sos1718-mls-sandbox"
 
