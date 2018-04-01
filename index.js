@@ -9,9 +9,8 @@ var tvfeesstats = require("./tvfeesstatsApi");
 var transfersApi = require("./transfersApi");
 
 var port = (process.env.PORT || 1607);
-app.use("/",express.static(__dirname+"/public"));
 //var dbFileName3 = __dirname+"/transferincomes-stats.db";
-var mdbURL2 = "mongodb://transfers:sos1718@ds155529.mlab.com:55529/sos1718-mls-sandbox"
+var mdbURL2 = "mongodb://transfers:sos1718@ds155529.mlab.com:55529/sos1718-mls-sandbox";
 
 //var dbFileName2 = __dirname + "/goals-stats.db";
 var mdbURL = "mongodb://goals-stats:12345@ds161148.mlab.com:61148/sos1718-fsr-sandbox";
