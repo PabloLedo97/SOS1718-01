@@ -285,6 +285,7 @@ var myteams = [
         process.exit(1);
     }
         console.log("connected to DB in mlabs");
+        
     var database = mlabs.db("sos1718-mls-sandbox");
     var db3 = database.collection("teams");
 

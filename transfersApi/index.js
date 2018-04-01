@@ -154,7 +154,7 @@ app.get(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
             res.sendStatus(500);
         }else{
             if(filteredTeams.length>0){
-                res.sendStatus(filteredTeams.map((c)=>{
+                res.send(filteredTeams.map((c)=>{
                     delete c._id;
                     return c;
                 }));
@@ -211,7 +211,7 @@ app.post(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
 });
 
 //PUT a un recurso concreto
-app.put(BASE_API_PATH+"/transferincomes-stats/:city",(req,res)=>{
+app.put(BASE_API_PATH+"/transferincomes-stats/:city/:team",(req,res)=>{
     var city = req.params.city;
     var nombre = req.params.team;
     var team = req.body;
