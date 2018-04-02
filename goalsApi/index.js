@@ -92,7 +92,7 @@ app.get(BASE_API_PATH+"/goals-stats",(req,res)=>{
 app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
     console.log(Date() + " - POST /teams");
     var newteam = req.body;
-     if(!newteam){
+     if(!newteam.city || !newteam.year || !newteam.team || !newteam["goals rightfoot"] || !newteam["goals head"] || !newteam["goals penalty"] || !Object.keys(newteam).length != 6){
         console.log("Warning : new GET request ");
         res.sendStatus(400);
     } 

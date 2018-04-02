@@ -78,14 +78,12 @@ tvfeesstats.register = function(app, db) {
 
     app.post(BASE_API_PATH + "/tvfees-stats", (req, res) => {
         console.log(Date() + " - POST /tvfees-stats");
-        var nuevoteam = req.body;
-        initialteams.push(nuevoteam);
-        res.sendStatus(201);
-        if(!nuevoteam){
-            console.log("Bad Request");
-            res.sendStatus(400 );
+        var newteam = req.body;
+      if(!newteam.city|| !newteam.year || !newteam.team || !newteam["capacity"] || !newteam["at-total"] || !newteam["at-average"] || Object.keys(newteam).length != 6){
+            res.sendStatus(400);
+            return;
         }
-        db.find({"city" : nuevoteam.city}).toArray((err,filterTeams)=>{
+        db.find({"city" : newteam.city}).toArray((err,filterTeams)=>{
          if(err){
              console.error("Error accesing DB");
              res.sendStatus(500);
@@ -94,7 +92,7 @@ tvfeesstats.register = function(app, db) {
              console.log("Warning: Conflicto");
              res.sendStatus(409);
          }else{
-             db.insert(nuevoteam);
+             db.insert(newteam);
              res.sendStatus(201);
          }
         });

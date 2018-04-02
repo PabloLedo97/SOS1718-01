@@ -108,11 +108,15 @@ app.get(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
 app.post(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
     console.log(Date() + " - POST /transferincomes-stats");
     var newteam = req.body;
+<<<<<<< HEAD
     if(!newteam){
         console.log("Warning : new GET request");
         res.sendStatus(400);
     }
     if(!newteam.city|| !newteam.year || !newteam.team || !newteam["ti-maxexp"] || !newteam["ti-lessexp"] || !newteam["ti-spa"] || Object.keys(newteam).length != 6){
+=======
+if(!newteam.city|| !newteam.year || !newteam.team || !newteam["ti-maxexp"] || !newteam["ti-lessexp"] || !newteam["ti-spa"] || Object.keys(newteam).length != 6){
+>>>>>>> def4dcc13be89a3f70655dd8980ef6f9f829d634
             res.sendStatus(400);
             return;
         }
@@ -120,9 +124,6 @@ app.post(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
         if(err){
             console.error("Error accesing DB");
             res.sendStatus(500);
-        }if(!newteam.city|| !newteam.year || !newteam.team || !newteam["ti-maxexp"] || !newteam["ti-lessexp"] || !newteam["ti-spa"] || Object.keys(newteam).length != 6){
-            res.sendStatus(400);
-            return;
         }
         if(filteredTeams.length>0){
             console.log("WARNING");
