@@ -219,7 +219,7 @@ app.put(BASE_API_PATH+"/transferincomes-stats/:city/:team",(req,res)=>{
     console.log(Date() + " - PUT /transferincomes-stats/"+city);
 
     if(city != team.city || nombre != team.team){
-        res.sendStatus(409);
+        res.sendStatus(400);
         console.warn(Date()+" - Hacking attempt!");
         return;
     }
