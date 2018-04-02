@@ -112,6 +112,10 @@ app.post(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
         console.log("Warning : new GET request");
         res.sendStatus(400);
     }
+    if(!newteam.city|| !newteam.year || !newteam.team || !newteam["ti-maxexp"] || !newteam["ti-lessexp"] || !newteam["ti-spa"] || Object.keys(newteam).length != 6){
+            res.sendStatus(400);
+            return;
+        }
     db3.find({ "city" : newteam.city}).toArray((err,filteredTeams)=>{
         if(err){
             console.error("Error accesing DB");
