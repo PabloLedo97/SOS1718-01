@@ -108,17 +108,14 @@ app.get(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
 app.post(BASE_API_PATH+"/transferincomes-stats",(req,res)=>{
     console.log(Date() + " - POST /transferincomes-stats");
     var newteam = req.body;
-    if(!newteam){
-        console.log("Warning : new GET request");
-        res.sendStatus(400);
-    }
+if(!newteam.city|| !newteam.year || !newteam.team || !newteam["ti-maxexp"] || !newteam["ti-lessexp"] || !newteam["ti-spa"] || Object.keys(newteam).length != 6){
+            res.sendStatus(400);
+            return;
+        }
     db3.find({ "city" : newteam.city}).toArray((err,filteredTeams)=>{
         if(err){
             console.error("Error accesing DB");
             res.sendStatus(500);
-        }if(!newteam.city|| !newteam.year || !newteam.team || !newteam["ti-maxexp"] || !newteam["ti-lessexp"] || !newteam["ti-spa"] || Object.keys(newteam).length != 6){
-            res.sendStatus(400);
-            return;
         }
         if(filteredTeams.length>0){
             console.log("WARNING");
