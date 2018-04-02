@@ -108,7 +108,7 @@ db.find({}, (err, teams) => {
 });
 
 tvfeesstats.register(app,db);
-
+});
 /*
 db.find({}, (err, teams) => {
     if (err) {
@@ -125,8 +125,8 @@ db.find({}, (err, teams) => {
 
     }
 tvfeesstats.register(app,db);
+*/
 
-});*/
 
 //PACO
 var initialteams2 = [
@@ -310,5 +310,4 @@ app.listen(port, () => {
     console.log("Server ready on port " + port + "!");
 }).on("error", (e) => {
     console.log("Server NOT READY:" + e);
-});
 });
