@@ -5,6 +5,18 @@ module.exports = goalsApi;
 
 goalsApi.register = function (app,db2) {
     console.log("Register routes for goals API");
+    
+    var insertar = function(elementos, array, limit, offset) {
+        var i = offset;
+        var j = limit;
+        while (j > 0) {
+            array.push(elementos[i]);
+            j--;
+            i++;
+        }
+        return elementos;
+    };
+    
     var initialteams2 = [
         { 
             "city" : "malaga",
@@ -96,6 +108,47 @@ app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
         console.log("Warning : new GET request ");
         res.sendStatus(400);
     } 
+   
+    
+        var url = req.query;
+        var city = url.city;
+        var year = url.year;
+        var goalsrightfoot = url["goals rightfoot"];
+        var goalshead = url["goals head"];
+        var goalspenalty = url["goals penalty"];
+
+        //variables de paginación
+        var limit = parseInt(url.limit);
+        var offset = parseInt(url.offset);
+        var elementos = [];
+
+
+        if (limit > 0 && offset >= 0){
+            console.log("INFO: New GET request to /builders");
+            db2.find({}).skip(offset).limit(limit).toArray((err, teams) => {
+                if (err){
+                    console.error("WARNING: Error getting data from DB");
+                    res.sendStatus(500); //Internal server error
+                }else{
+                    var filtered = teams.filter((param) => {
+                        if ((city == undefined || param.country == country) && (year == undefined || param.year == year) && 
+                        (goalsrightfoot == undefined || param["goals rightfoot"] == goalsrightfoot) 
+                        && (goalshead = undefined || param["goals head"] == goalshead) 
+                        && (goalpenalty == undefined || param["goals penalty"] == goalspenalty)) {
+                            return param;
+                        }
+                    });
+                }
+                if (filtered.length > 0) {
+                    elementos = insertar(filtered, elementos, limit, offset);
+                    res.send(elementos);
+                }else{
+                    console.log("WARNING: Error getting data from DB");
+                    res.sendStatus(404); //Not found
+                }
+            });
+          
+}else{
     db2.find({ "city" : newteam.city}).toArray((err,filteredTeams)=>{
     if(err){
         console.error("Error accesing DB");
@@ -110,6 +163,7 @@ app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
         }
     
     });
+}
 });
 
 app.put(BASE_API_PATH+"/goals-stats",(req,res)=>{
