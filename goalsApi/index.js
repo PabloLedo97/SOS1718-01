@@ -153,7 +153,7 @@ app.get(BASE_API_PATH+"/goals-stats/:city",(req,res)=>{
 app.get(BASE_API_PATH+"/goals-stats/:city/:team",(req,res)=>{
     var city = req.params.city;
     var team = req.params.team;
-    //var year = req.params.year;
+    //var year = parseInt(req.params.year);
     console.log(Date() + " - GET /teams/"+city+ "/" + team);
     if(!city || !team){
         console.log("Warning : new GET request ");
