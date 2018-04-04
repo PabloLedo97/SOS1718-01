@@ -131,10 +131,10 @@ app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
                     res.sendStatus(500); //Internal server error
                 }else{
                     var filtered = teams.filter((param) => {
-                        if ((city == undefined || param.country == country) && (year == undefined || param.year == year) && 
+                        if ((city == undefined || param.city == city) && (year == undefined || param.year == year) && 
                         (goalsrightfoot == undefined || param["goals rightfoot"] == goalsrightfoot) 
                         && (goalshead = undefined || param["goals head"] == goalshead) 
-                        && (goalpenalty == undefined || param["goals penalty"] == goalspenalty)) {
+                        && (goalspenalty == undefined || param["goals penalty"] == goalspenalty)) {
                             return param;
                         }
                     });
