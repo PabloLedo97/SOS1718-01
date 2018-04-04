@@ -110,7 +110,7 @@ app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
     } 
    
     
-        var url = req.query;
+      /*  var url = req.query;
         var city = url.city;
         var year = url.year;
         var goalsrightfoot = url["goals rightfoot"];
@@ -148,7 +148,7 @@ app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
                 }
             });
           
-}else{
+}else{*/
     db2.find({ "city" : newteam.city}).toArray((err,filteredTeams)=>{
     if(err){
         console.error("Error accesing DB");
@@ -163,7 +163,7 @@ app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
         }
     
     });
-}
+//}
 });
 
 app.put(BASE_API_PATH+"/goals-stats",(req,res)=>{
