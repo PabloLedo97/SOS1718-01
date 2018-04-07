@@ -134,41 +134,41 @@ var initialteams2 = [
             "city" : "malaga",
             "year" : 2015,
             "team" : "malaga-fc",
-            "goals rightfoot": 20,
-            "goals head" : 7,
-            "goals penalty": 2
+            "goalsrightfoot": 20,
+            "goalshead" : 7,
+            "goalspenalty": 2
         },
         { 
             "city" : "sevilla",
             "year" : 2015,
             "team" : "sevilla-fc",
-            "goals rightfoot": 34,
-            "goals head" : 7,
-            "goals penalty": 6
+            "goalsrightfoot": 34,
+            "goalshead" : 7,
+            "goalspenalty": 6
         },
          { 
             "city" : "sevilla",
             "year" : 2015,
             "team" : "real-betis-balompie",
-            "goals rightfoot": 19,
-            "goals head" : 9,
-            "goals penalty": 3
+            "goalsrightfoot": 19,
+            "goalshead" : 9,
+            "goalspenalty": 3
         },
          { 
             "city" : "bilbao",
             "year" : 2015,
             "team" : "athletic-club-bilbao",
-            "goals rightfoot": 31,
-            "goals head" : 17,
-            "goals penalty": 3
+            "goalsrightfoot": 31,
+            "goalshead" : 17,
+            "goalspenalty": 3
         },
          { 
             "city" : "villareal",
             "year" : 2015,
             "team" : "villareal-cf",
-            "goals rightfoot": 28,
-            "goals head" : 1,
-            "goals penalty": 3
+            "goalsrightfoot": 28,
+            "goalshead" : 1,
+            "goalspenalty": 3
         }
     ];
 
