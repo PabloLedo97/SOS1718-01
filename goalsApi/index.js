@@ -178,10 +178,10 @@ var buscador = function(base, aux_set, param_city, param_year, param_team, param
 app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
     console.log(Date() + " - POST /teams");
     var newteam = req.body;
-     if(!newteam.city || !newteam.year || !newteam.team || !newteam.rightfoot || !newteam.head || !newteam.penalty || !Object.keys(newteam).length != 6){
+    /* if(!newteam.city || !newteam.year || !newteam.team || !newteam.rightfoot || !newteam.head || !newteam.penalty || !Object.keys(newteam).length != 6){
         console.log("Warning : new GET request ");
         res.sendStatus(400);
-    } 
+    } */
    
     
      
