@@ -22,41 +22,41 @@ goalsApi.register = function (app,db2) {
             "city" : "malaga",
             "year" : 2015,
             "team" : "malaga-fc",
-            "goals rightfoot": 20,
-            "goals head" : 7,
-            "goals penalty": 2
+            "rightfoot": 20,
+            "head" : 7,
+            "penalty": 2
         },
         { 
             "city" : "sevilla",
             "year" : 2015,
             "team" : "sevilla-fc",
-            "goals rightfoot": 34,
-            "goals head" : 7,
-            "goals penalty": 6
+            "rightfoot": 34,
+            "head" : 7,
+            "penalty": 6
         },
          { 
             "city" : "sevilla",
             "year" : 2015,
             "team" : "real-betis-balompie",
-            "goals rightfoot": 19,
-            "goals head" : 9,
-            "goals penalty": 3
+            "rightfoot": 19,
+            "head" : 9,
+            "penalty": 3
         },
          { 
             "city" : "bilbao",
             "year" : 2015,
             "team" : "athletic-club-bilbao",
-            "goals rightfoot": 31,
-            "goals head" : 17,
-            "goals penalty": 3
+            "rightfoot": 31,
+            "head" : 17,
+            "penalty": 3
         },
          { 
             "city" : "villareal",
             "year" : 2015,
             "team" : "villareal-cf",
-            "goals rightfoot": 28,
-            "goals head" : 1,
-            "goals penalty": 3
+            "rightfoot": 28,
+            "head" : 1,
+            "penalty": 3
         }
     ];
     
@@ -104,7 +104,7 @@ app.get(BASE_API_PATH+"/goals-stats",(req,res)=>{
 app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
     console.log(Date() + " - POST /teams");
     var newteam = req.body;
-     if(!newteam.city || !newteam.year || !newteam.team || !newteam["goals rightfoot"] || !newteam["goals head"] || !newteam["goals penalty"] || !Object.keys(newteam).length != 6){
+     if(!newteam.city || !newteam.year || !newteam.team || !newteam.rightfoot || !newteam.head || !newteam.penalty || !Object.keys(newteam).length != 6){
         console.log("Warning : new GET request ");
         res.sendStatus(400);
     } 
