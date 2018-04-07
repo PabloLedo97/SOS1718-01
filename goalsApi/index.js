@@ -2,10 +2,7 @@ var goalsApi = {};
 var BASE_API_PATH = "/api/v1";
 
 module.exports = goalsApi;
-
-goalsApi.register = function (app,db2) {
-    console.log("Register routes for goals API");
-     var initialteams2 = [
+var initialteams2 = [
         { 
             "city" : "malaga",
             "year" : 2015,
@@ -47,6 +44,10 @@ goalsApi.register = function (app,db2) {
             "penalty": 3
         }
     ];
+
+goalsApi.register = function (app,db2) {
+    console.log("Register routes for goals API");
+     
     
 var buscador = function(base, aux_set, param_city, param_year, param_team, param_rightfoot, param_head, param_penalty) {
 
@@ -54,7 +55,7 @@ var buscador = function(base, aux_set, param_city, param_year, param_team, param
 
         
 
-        if ( param_city != undefined || param_team == undefined ||  param_rightfoot != undefined || param_head != undefined || param_penalty != undefined || param_year != undefined) {
+        if ( param_city != undefined || param_team != undefined ||  param_rightfoot != undefined || param_head != undefined || param_penalty != undefined || param_year != undefined) {
 
             for (var j = 0; j < base.length; j++) {
 
@@ -66,7 +67,7 @@ var buscador = function(base, aux_set, param_city, param_year, param_team, param
                 var penalty = base[j].penalty;
 
                 // City
-                if ( param_city != undefined || param_team == undefined || param_rightfoot == undefined || param_head == undefined || param_penalty == undefined || param_year == undefined) {
+                if (param_city != undefined && param_team == undefined && param_rightfoot == undefined && param_head == undefined && param_penalty == undefined && param_year == undefined) {
 
                     if ( param_city == city) {
                         aux_set.push(base[j]);
@@ -74,7 +75,7 @@ var buscador = function(base, aux_set, param_city, param_year, param_team, param
 
                     //Team
                 }
-                if ( param_city == undefined || param_team != undefined || param_rightfoot == undefined || param_head == undefined || param_penalty == undefined || param_year == undefined) {
+                if ( param_city == undefined && param_team != undefined && param_rightfoot == undefined && param_head == undefined && param_penalty == undefined && param_year == undefined) {
 
                     if ( param_team == team) {
                         aux_set.push(base[j]);
@@ -83,7 +84,7 @@ var buscador = function(base, aux_set, param_city, param_year, param_team, param
                     
                 }
                   // Rightfoot
-                else if ( param_city == undefined || param_team == undefined || param_rightfoot != undefined || param_head == undefined || param_penalty == undefined || param_year == undefined) {
+                else if ( param_city == undefined && param_team == undefined && param_rightfoot != undefined && param_head == undefined && param_penalty == undefined && param_year == undefined) {
 
                     if (param_rightfoot == rightfoot) {
                         aux_set.push(base[j]);
@@ -91,7 +92,7 @@ var buscador = function(base, aux_set, param_city, param_year, param_team, param
                 }
                   // Head
                 
-                else if (param_city == undefined || param_team == undefined || param_rightfoot == undefined || param_head != undefined || param_penalty == undefined || param_year == undefined) {
+                else if (param_city == undefined && param_team == undefined && param_rightfoot == undefined && param_head != undefined && param_penalty == undefined && param_year == undefined) {
 
                     if (param_head == head) {
                         aux_set.push(base[j]);
@@ -99,7 +100,7 @@ var buscador = function(base, aux_set, param_city, param_year, param_team, param
 
                     //Penalty
                 }
-                else if (param_city == undefined || param_team == undefined || param_rightfoot == undefined || param_head == undefined || param_penalty != undefined || param_year == undefined) {
+                else if (param_city == undefined && param_team == undefined && param_rightfoot == undefined && param_head == undefined && param_penalty != undefined && param_year == undefined) {
 
                     if (param_penalty == penalty) {
                         aux_set.push(base[j]);
@@ -107,7 +108,7 @@ var buscador = function(base, aux_set, param_city, param_year, param_team, param
 
                     // Year
                 }
-                else if (param_city == undefined || param_team == undefined || param_rightfoot == undefined || param_head == undefined || param_penalty == undefined || param_year != undefined) {
+                else if (param_city == undefined && param_team == undefined && param_rightfoot == undefined && param_head == undefined && param_penalty == undefined && param_year != undefined) {
 
                     if (param_year == year ) {
                         aux_set.push(base[j]);
@@ -115,7 +116,7 @@ var buscador = function(base, aux_set, param_city, param_year, param_team, param
 
                     // Rightfoot, head, penalty
                 }
-                else if (param_city == undefined || param_team == undefined || param_rightfoot != undefined || param_head != undefined || param_penalty != undefined || param_year == undefined) {
+                else if (param_city == undefined && param_team == undefined && param_rightfoot != undefined && param_head != undefined && param_penalty != undefined && param_year == undefined) {
 
                     if (param_rightfoot == rightfoot && param_head == head && param_penalty == penalty) {
                         aux_set.push(base[j]);
@@ -300,7 +301,7 @@ app.put(BASE_API_PATH+"/goals-stats/:city/:team",(req,res)=>{
 app.get(BASE_API_PATH + "/goals-stats", function(request, response) {
                 //if (!checkApiKey(request, response)) return;
 
-        console.log("INFO: New GET request to /baseball-stats ");
+        console.log("INFO: New GET request to /goals-stats");
 
         /*PRUEBA DE BUSQUEDA */
         var limit = parseInt(request.query.limit);
@@ -328,7 +329,7 @@ app.get(BASE_API_PATH + "/goals-stats", function(request, response) {
                         response.sendStatus(404); //No content
                         return;
                     }
-                    console.log("INFO: Sending countries:: " + JSON.stringify(filteredTeams, 2, null));
+                    console.log("INFO: Sending teams :: " + JSON.stringify(filteredTeams, 2, null));
                     if ( city || year || team || rightfoot || head || penalty) {
 
                         aux = buscador(filteredTeams, aux, city, year, team , rightfoot, head, penalty);
@@ -365,7 +366,7 @@ app.get(BASE_API_PATH + "/goals-stats", function(request, response) {
                         response.send(filteredTeams);
                         return;
                     }
-                    //console.log("INFO: Sending baseball-stats: " + JSON.stringify(baseballstats, 2, null));
+                    //console.log("INFO: Sending goals-stats: " + JSON.stringify(baseballstats, 2, null));
                     if ( city || year || team|| rightfoot || head || penalty) {
                         aux = buscador(filteredTeams, aux, city, year, team, rightfoot, head, penalty);
                         if (aux.length > 0) {
