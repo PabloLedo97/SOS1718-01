@@ -27,46 +27,46 @@ app.use(bodyParser.json());
 var initialteams = [{
         "city": "barcelona",
         "year": 2015,
-        "team": "fc barcelona",
+        "team": "fc-barcelona",
         "capacity": 99354,
-        "at-total": 590555,
-        "at-average": 73819
+        "attotal": 590555,
+        "ataverage": 73819
 
     },
     {
         "city": "bilbao",
         "year": 2015,
-        "team": "athletic club de bilbao",
+        "team": "athletic-club-de-bilbao",
         "capacity": 53000,
-        "at-total": 334648,
-        "at-average": 41831
+        "attotal": 334648,
+        "ataverage": 41831
 
     },
     {
         "city": "madrid",
         "year": 2015,
-        "team": "club atlético de madrid",
+        "team": "club-atlético-de-madrid",
         "capacity": 54907,
-        "at-total": 366144,
-        "at-average": 45768
+        "attotal": 366144,
+        "ataverage": 45768
 
     },
     {
         "city": "madrid",
         "year": 2015,
-        "team": "real madrid cf",
+        "team": "real-madrid-cf",
         "capacity": 81044,
-        "at-total": 546089,
-        "at-average": 68261
+        "attotal": 546089,
+        "ataverage": 68261
 
     },
     {
         "city": "valencia",
         "year": 2015,
-        "team": "valencia cf",
+        "team": "valencia-cf",
         "capacity": 55000,
-        "at-total": 303895,
-        "at-average": 37987
+        "attotal": 303895,
+        "ataverage": 37987
 
     }
 ];
@@ -94,13 +94,13 @@ db.find({}, (err, teams) => {
         console.error("Error accesing DB");
         process.exit(1);
     }
-    if (initialteams.length == 0) {
+    if (teams.length == 0) {
         console.log("Empty DB");
         db.insert(initialteams);
 
     }
     else {
-        console.log("DB has  " + initialteams.length + " teams ");
+        console.log("DB has  " + teams.length + " teams ");
 
     }
 
