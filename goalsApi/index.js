@@ -54,7 +54,7 @@ var buscador = function(base, aux_set, param_city, param_year, param_team, param
 
         
 
-        if ( param_city != undefined || param_rightfoot != undefined || param_head != undefined || param_penalty != undefined || param_year != undefined) {
+        if ( param_city != undefined || param_team == undefined ||  param_rightfoot != undefined || param_head != undefined || param_penalty != undefined || param_year != undefined) {
 
             for (var j = 0; j < base.length; j++) {
 
