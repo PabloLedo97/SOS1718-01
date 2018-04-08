@@ -231,49 +231,49 @@ var myteams = [
         "city": "madrid",
         "year": 2015,
         "team": "real madrid cf",
-        "ti-maxexp": 31.5,
-        "ti-lessexp": 6,
-        "ti-spa": 12    
+        "timaxexp": 31.5,
+        "tilessexp": 6,
+        "tispa": 12    
     },
     {
         "city": "madrid",
         "year": 2015,
         "team": "atletico madrid",
-        "ti-maxexp": 35,
-        "ti-lessexp": 15,
-        "ti-spa": 0
+        "timaxexp": 35,
+        "tilessexp": 15,
+        "tispa": 0
     },
     {
         "city": "vigo",
         "year": 2015,
         "team": "celta de vigo ",
-        "ti-maxexp": 10,
-        "ti-lessexp": 2,
-        "ti-spa": 17.3
+        "timaxexp": 10,
+        "tilessexp": 2,
+        "tispa": 17.3
     },
     {
         "city": "barcelona",
         "year": 2015,
         "team": "fc barcelona",
-        "ti-maxexp": 34,
-        "ti-lessexp": 17,
-        "ti-spa": 17
+        "timaxexp": 34,
+        "tilessexp": 17,
+        "tispa": 17
     },
     {
         "city": "malaga",
         "year": 2015,
         "team": "malaga cf",
-        "ti-maxexp": 3.5,
-        "ti-lessexp": 3.5,
-        "ti-spa": 0
+        "timaxexp": 3.5,
+        "tilessexp": 3.5,
+        "tispa": 0
     },
     {
         "city": "sevilla",
         "year": 2015,
         "team": "sevilla fc",
-        "ti-maxexp": 9.75,
-        "ti-lessexp": 4,
-        "ti-spa": 0   
+        "timaxexp": 9.75,
+        "tilessexp": 4,
+        "tispa": 0   
     }
     ];
 
