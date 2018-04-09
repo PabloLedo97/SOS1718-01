@@ -163,7 +163,7 @@ tvfeesstatsApi.register = function(app, db) {
     app.post(BASE_API_PATH + "/tvfees-stats", (req, res) => {
         console.log(Date() + " - POST /tvfees-stats");
         var newteam = req.body;
-        /*if(!newteam.city|| !newteam.year || !newteam.team || !newteam["capacity"] || !newteam["at-total"] || !newteam["at-average"] || Object.keys(newteam).length != 6){
+        if(!newteam.city|| !newteam.year || !newteam.team || !newteam["capacity"] || !newteam["at-total"] || !newteam["at-average"] || Object.keys(newteam).length != 6){
               res.sendStatus(400);
               return;
           }*/
