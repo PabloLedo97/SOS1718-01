@@ -51,10 +51,7 @@ goalsApi.register = function (app,db2) {
     
 var buscador = function(base, aux_set, param_city, param_year, param_team, param_rightfoot, param_head, param_penalty) {
 
-        //console.log("Búsqueda con parametros: stadium = " + param_stadium + ", date = " + param_date + ", hit = " + param_hit + ", run = " + param_run + ", error = " + param_error + ".");
-
         
-
         if ( param_city != undefined || param_year != undefined || param_team != undefined ||  param_rightfoot != undefined || param_head != undefined || param_penalty != undefined ) {
 
             for (var j = 0; j < base.length; j++) {
@@ -299,7 +296,7 @@ app.put(BASE_API_PATH+"/goals-stats/:city/:team",(req,res)=>{
 });
 //Busqueda
 app.get(BASE_API_PATH + "/goals-stats", function(request, response) {
-                //if (!checkApiKey(request, response)) return;
+                
 
         console.log("INFO: New GET request to /goals-stats");
 
@@ -335,9 +332,7 @@ app.get(BASE_API_PATH + "/goals-stats", function(request, response) {
                         aux = buscador(filteredTeams, aux, city, year, team , rightfoot, head, penalty);
                         if (aux.length > 0) {
                             aux2 = aux.slice(offset, offset + limit);
-                            //console.log("INFO: Sending results with from and to and limit and offset: " + JSON.stringify(aux, 2, null));
-                            //console.log("INFO: Sending results with from and to and limit and offset: " + JSON.stringify(baseballstats, 2, null));
-                            //console.log("INFO: Sending results with from and to and limit and offset: " + JSON.stringify(aux2, 2, null));
+                            
                             response.send(aux2);
                         }
                         else {
@@ -366,7 +361,7 @@ app.get(BASE_API_PATH + "/goals-stats", function(request, response) {
                         response.send(filteredTeams);
                         return;
                     }
-                    //console.log("INFO: Sending goals-stats: " + JSON.stringify(baseballstats, 2, null));
+                    
                     if ( city || year || team|| rightfoot || head || penalty) {
                         aux = buscador(filteredTeams, aux, city, year, team, rightfoot, head, penalty);
                         if (aux.length > 0) {

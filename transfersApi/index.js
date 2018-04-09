@@ -60,7 +60,7 @@ transfersApi.register = function(app, db3) {
 
     var buscador = function(base, aux_set, param_city, param_year, param_team, param_timaxexp, param_tilessexp, param_tispa) {
 
-        //console.log("Búsqueda con parametros: stadium = " + param_stadium + ", date = " + param_date + ", hit = " + param_hit + ", run = " + param_run + ", error = " + param_error + ".");
+       
 
         if (param_city != undefined || param_year != undefined || param_team != undefined || param_timaxexp != undefined || param_tilessexp != undefined || param_tispa != undefined) {
 
@@ -74,7 +74,7 @@ transfersApi.register = function(app, db3) {
                 var tispa = base[j].tispa;
 
                 // City
-                if (param_city != undefined && param_year == undefined && param_team == undefined && param_timaxexp == undefined && param_tilessexp == undefined && param_tispa == undefined) {
+                if (param_city != undefined /*&& param_year == undefined*/ && param_team == undefined && param_timaxexp == undefined && param_tilessexp == undefined && param_tispa == undefined) {
 
                     if (param_city == city) {
                         aux_set.push(base[j]);
@@ -314,8 +314,7 @@ transfersApi.register = function(app, db3) {
 
     //Búsqueda
     app.get(BASE_API_PATH + "/transferincomes-stats", function(request, response) {
-        //if (!checkApiKey(request, response)) return;
-
+        
         console.log("INFO: New GET request to /transferincomes-stats");
 
         /*PRUEBA DE BÚSQUEDA*/
@@ -349,9 +348,7 @@ transfersApi.register = function(app, db3) {
                         aux = buscador(filteredTeams, aux, city, year, team, timaxexp, tilessexp, tispa);
                         if (aux.length > 0) {
                             aux2 = aux.slice(offset, offset + limit);
-                            //console.log("INFO: Sending results with from and to and limit and offset: " + JSON.stringify(aux, 2, null));
-                            //console.log("INFO: Sending results with from and to and limit and offset: " + JSON.stringify(baseballstats, 2, null));
-                            //console.log("INFO: Sending results with from and to and limit and offset: " + JSON.stringify(aux2, 2, null));
+                            
                             response.send(aux2);
                         }
                         else {
@@ -377,7 +374,7 @@ transfersApi.register = function(app, db3) {
                         response.send(filteredTeams);
                         return;
                     }
-                    //console.log("INFO: Sending transferincomes-stats: " + JSON.stringify(baseballstats, 2, null));
+                    
                     if (city || year || team || timaxexp || tilessexp || tispa) {
                         aux = buscador(filteredTeams, aux, city, year, team, timaxexp, tilessexp, tispa);
                         if (aux.length > 0) {
