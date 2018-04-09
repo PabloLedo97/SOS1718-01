@@ -101,7 +101,7 @@ tvfeesstatsApi.register = function(app, db) {
                 }
                   // Attotal
                 
-                else if (param_city == undefined /*&& param_year == undefined*/ && param_team == undefined && param_capacity == undefined && param_attotal != undefined && param_ataverage == undefined) {
+                else if (param_city == undefined && param_year == undefined && param_team == undefined && param_capacity == undefined && param_attotal != undefined && param_ataverage == undefined) {
 
                     if (param_attotal == attotal) {
                         auxil_set.push(base1[k]);
@@ -109,23 +109,23 @@ tvfeesstatsApi.register = function(app, db) {
 
                     //Ataverage
                 }
-                else if (param_city == undefined /*&& param_year == undefined*/ && param_team == undefined && param_capacity == undefined && param_attotal == undefined && param_ataverage != undefined) {
+                else if (param_city == undefined && param_year == undefined && param_team == undefined && param_capacity == undefined && param_attotal == undefined && param_ataverage != undefined) {
 
                     if (param_ataverage == ataverage) {
                         auxil_set.push(base1[k]);
                     }
 
                   
-                }/* //Year
-                else if (param_city == undefined && param_year != undefined && param_team == undefined && param_rightfoot == undefined && param_head == undefined && param_penalty == undefined) {
+                }//Year
+                else if (param_city == undefined && param_year != undefined && param_team == undefined && param_capacity == undefined && param_attotal == undefined && param_ataverage == undefined) {
 
                     if (param_year == year ) {
-                        aux_set.push(base[j]);
+                        auxil_set.push(base1[k]);
                     }
 
                     // Capacity, attotal, ataverage
-                }*/
-                else if (param_city == undefined /*&& param_year == undefined*/ && param_team == undefined && param_capacity != undefined && param_attotal != undefined && param_ataverage != undefined) {
+                }
+                else if (param_city == undefined && param_year == undefined && param_team == undefined && param_capacity != undefined && param_attotal != undefined && param_ataverage != undefined) {
 
                     if (param_capacity == capacity && param_attotal == attotal && param_ataverage == ataverage) {
                         auxil_set.push(base1[k]);
@@ -312,7 +312,7 @@ tvfeesstatsApi.register = function(app, db) {
         /*PRUEBA DE BUSQUEDA */
         var limit = parseInt(request.query.limit);
         var offset = parseInt(request.query.offset);
-        var year = parseInt(request.query.year);
+        var year = request.query.year;
         var city = request.query.city;
         var team = request.query.team;
         var capacity = request.query.capacity;
