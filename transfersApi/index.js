@@ -74,7 +74,7 @@ transfersApi.register = function(app, db3) {
                 var tispa = base[j].tispa;
 
                 // City
-                if (param_city != undefined && param_year == undefined && param_team == undefined && param_timaxexp == undefined && param_tilessexp == undefined && param_tispa == undefined) {
+                if (param_city != undefined /*&& param_year == undefined*/ && param_team == undefined && param_timaxexp == undefined && param_tilessexp == undefined && param_tispa == undefined) {
 
                     if (param_city == city) {
                         aux_set.push(base[j]);
@@ -82,7 +82,7 @@ transfersApi.register = function(app, db3) {
 
                     //Team
                 }
-                if (param_city == undefined && param_year == undefined && param_team != undefined && param_timaxexp == undefined && param_tilessexp == undefined && param_tispa == undefined ) {
+                if (param_city == undefined /*&& param_year == undefined*/ && param_team != undefined && param_timaxexp == undefined && param_tilessexp == undefined && param_tispa == undefined ) {
 
                     if (param_team == team) {
                         aux_set.push(base[j]);
@@ -91,7 +91,7 @@ transfersApi.register = function(app, db3) {
 
                 }
                 // TiMaxExp
-                else if (param_city == undefined && param_year == undefined && param_team == undefined && param_timaxexp != undefined && param_tilessexp == undefined && param_tispa == undefined) {
+                else if (param_city == undefined /*&& param_year == undefined*/ && param_team == undefined && param_timaxexp != undefined && param_tilessexp == undefined && param_tispa == undefined) {
 
                     if (param_timaxexp == timaxexp) {
                         aux_set.push(base[j]);
@@ -99,7 +99,7 @@ transfersApi.register = function(app, db3) {
                 }
                 // TiLessExp
 
-                else if (param_city == undefined && param_year == undefined && param_team == undefined && param_timaxexp == undefined && param_tilessexp != undefined && param_tispa == undefined) {
+                else if (param_city == undefined /*&& param_year == undefined*/ && param_team == undefined && param_timaxexp == undefined && param_tilessexp != undefined && param_tispa == undefined) {
 
                     if (param_tilessexp == tilessexp) {
                         aux_set.push(base[j]);
@@ -107,7 +107,7 @@ transfersApi.register = function(app, db3) {
 
                     //TiSpa
                 }
-                else if (param_city == undefined && param_year == undefined && param_team == undefined && param_timaxexp == undefined && param_tilessexp == undefined && param_tispa != undefined) {
+                else if (param_city == undefined /*&& param_year == undefined*/ && param_team == undefined && param_timaxexp == undefined && param_tilessexp == undefined && param_tispa != undefined) {
 
                     if (param_tispa == tispa) {
                         aux_set.push(base[j]);
@@ -115,7 +115,7 @@ transfersApi.register = function(app, db3) {
 
 
                 }
-                 //Year
+                /* //Year
                                 else if (param_city == undefined && param_year != undefined && param_team == undefined && param_timaxexp == undefined && param_tilessexp == undefined && param_tispa == undefined) {
 
                                     if (param_year == year ) {
@@ -123,8 +123,8 @@ transfersApi.register = function(app, db3) {
                                     }
 
                                     // TiMaxExp, TiLessExp, TiSpa
-                                }
-                else if (param_city == undefined && param_year == undefined && param_team == undefined && param_timaxexp != undefined && param_tilessexp != undefined && param_tispa != undefined) {
+                                }*/
+                else if (param_city == undefined /*&& param_year == undefined*/ && param_team == undefined && param_timaxexp != undefined && param_tilessexp != undefined && param_tispa != undefined) {
 
                     if (param_timaxexp == timaxexp && param_tilessexp == tilessexp && param_tispa == tispa) {
                         aux_set.push(base[j]);
