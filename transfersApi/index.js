@@ -72,7 +72,7 @@ transfersApi.register = function(app, db3) {
                 var tispa = base[j].tispa;
 
                 // City
-                if (param_city != undefined /*&& param_year == undefined */ && param_team == undefined /*&& param_timaxexp == undefined && param_tilessexp == undefined && param_tispa == undefined*/ ) {
+                if (param_city != undefined && param_year == undefined && param_team == undefined && param_timaxexp == undefined && param_tilessexp == undefined && param_tispa == undefined) {
 
                     if (param_city == city) {
                         aux_set.push(base[j]);
@@ -163,7 +163,7 @@ transfersApi.register = function(app, db3) {
     });
 
     // GET a la ruta base
-    app.get(BASE_API_PATH + "/transferincomes-stats", (req, res) => {
+   /* app.get(BASE_API_PATH + "/transferincomes-stats", (req, res) => {
         console.log(Date() + " - GET /transferincomes-stats");
         //res.send(myteams);
         db3.find({}).toArray((err, teams) => {
@@ -179,7 +179,7 @@ transfersApi.register = function(app, db3) {
             }));
         });
     });
-
+*/
 
 
     //POST a la ruta base
