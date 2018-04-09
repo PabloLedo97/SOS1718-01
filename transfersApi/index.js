@@ -53,7 +53,7 @@ var myteams = [{
     }
 ];
 
-// hola
+// adios
 
 transfersApi.register = function(app, db3) {
     console.log("Registering routes for transfers API...");
