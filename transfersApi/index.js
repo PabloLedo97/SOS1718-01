@@ -72,7 +72,7 @@ transfersApi.register = function(app, db3) {
                 var tispa = base[j].tispa;
 
                 // City
-                if (param_city != undefined && param_year == undefined && param_team == undefined && param_timaxexp == undefined && param_tilessexp == undefined && param_tispa == undefined) {
+                if (param_city != undefined /*&& param_year == undefined*/ && param_team == undefined && param_timaxexp == undefined && param_tilessexp == undefined && param_tispa == undefined) {
 
                     if (param_city == city) {
                         aux_set.push(base[j]);
