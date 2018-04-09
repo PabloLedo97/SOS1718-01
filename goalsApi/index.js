@@ -67,7 +67,7 @@ var buscador = function(base, aux_set, param_city, param_year, param_team, param
                 var penalty = base[j].penalty;
 
                 // City
-                if (param_city != undefined /*&& param_year == undefined */ && param_team == undefined /*&& param_rightfoot == undefined && param_head == undefined && param_penalty == undefined*/ ) {
+                if (param_city != undefined /*&& param_year == undefined */ && param_team == undefined && param_rightfoot == undefined && param_head == undefined && param_penalty == undefined ) {
 
                     if ( param_city == city) {
                         aux_set.push(base[j]);
@@ -75,7 +75,7 @@ var buscador = function(base, aux_set, param_city, param_year, param_team, param
 
                     //Team
                 }
-                if ( param_city == undefined /*&& param_year == undefined*/ && param_team != undefined /*&& param_rightfoot == undefined && param_head == undefined && param_penalty == undefined*/) {
+                if ( param_city == undefined /*&& param_year == undefined*/ && param_team != undefined && param_rightfoot == undefined && param_head == undefined && param_penalty == undefined) {
 
                     if ( param_team == team) {
                         aux_set.push(base[j]);
