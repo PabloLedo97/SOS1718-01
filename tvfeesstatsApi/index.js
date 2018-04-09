@@ -166,7 +166,7 @@ tvfeesstatsApi.register = function(app, db) {
         if(!newteam.city|| !newteam.year || !newteam.team || !newteam["capacity"] || !newteam["at-total"] || !newteam["at-average"] || Object.keys(newteam).length != 6){
               res.sendStatus(400);
               return;
-          }*/
+          }
         db.find({ "city": newteam.city }).toArray((err, filterTeams) => {
             if (err) {
                 console.error("Error accesing DB");
