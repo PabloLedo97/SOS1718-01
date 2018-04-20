@@ -4,7 +4,6 @@ var BASE_API_PATH = "/api/v1";
 module.exports = tvfeesstatsApi;
 
 
-
 //PABLO
 tvfeesstatsApi.register = function(app, db) {
     console.log("Register routes for tvfees-stats API");

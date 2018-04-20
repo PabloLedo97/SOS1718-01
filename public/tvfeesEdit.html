@@ -1,0 +1,29 @@
+<h1>Edit TvFees list</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>city</th>
+            <th>year</th>
+            <th>team</th>
+            <th>capacity</th>
+            <th>attotal</th>
+            <th>ataverage</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input class="form-control" ng-model="updatedTeam.city" /></td>
+            <td>{{updatedTeam.year }}</td>
+            <td><input class="form-control" ng-model="updatedTeam.team" /></td>
+            <td><input class="form-control" ng-model="updatedTeam.capacity" /></td>
+            <td><input class="form-control" ng-model="updatedTeam.attotal" /></td>
+            <td><input class="form-control" ng-model="updatedTeam.ataverage" /></td>
+            <td><button class="button btn-primary" ng-click="updateTeam()">
+                 Update
+             </button></td>
+        </tr>
+    </tbody>
+</table>
+<hr/>
+<h8><i>{{status}}</i></h8>

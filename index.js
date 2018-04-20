@@ -21,6 +21,9 @@ var mdbURL1= "mongodb://db01:db01@ds227459.mlab.com:27459/sos1718-01-tvfees-stat
 
 var app = express();
 app.use("/",express.static(__dirname+"/public"));
+
+
+
 app.use(bodyParser.json());
 
 //PABLO
