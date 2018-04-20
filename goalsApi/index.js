@@ -342,7 +342,10 @@ app.get(BASE_API_PATH + "/goals-stats", function(request, response) {
                         }
                     }
                     else {
-                        response.send(filteredTeams);
+                        response.send(filteredTeams.map((c)=> {
+                            delete c._id;
+                            return c;
+                            }));
                     }
                 }
             });
@@ -373,7 +376,10 @@ app.get(BASE_API_PATH + "/goals-stats", function(request, response) {
                         }
                     }
                     else {
-                        response.send(filteredTeams);
+                        response.send(filteredTeams.map((c)=> {
+                            delete c._id;
+                            return c;
+                         }));
                     }
                 }
             });

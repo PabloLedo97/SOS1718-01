@@ -1,0 +1,30 @@
+<h1>Goals Stadistic</h1>
+<table class = "table">
+    <thead>
+        <tr>
+            <th>city</th>
+            <th>year</th>
+            <th>team</th>
+            <th>rightfoot</th>
+            <th>head</th>
+            <th>penalty</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>{{team.city}}</td>
+            <td><input type="number" class="form-control" ng-model="updatedStat.year"/></td>
+            <td>{{updatedStat.team}}</td>
+            <td><input type="number" class="form-control" ng-model="updatedStat.rightfoot"/></td>
+            <td><input type="number" class="form-control" ng-model="updatedStat.head"/></td>
+            <td><input type="number" class="form-control" ng-model="updatedStat.penalty"/></td>
+            <td><button class="button btn-primary" ng-click="updateStat()">
+                Update
+            </button></td>
+        </tr>
+     </tbody>
+</table>
+<hr/>
+<h8><i>{{status}}</i></h8>
