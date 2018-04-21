@@ -1,21 +1,20 @@
- /*global angular*/
+/*global angular*/
  angular.module("tvfeesManagerApp").controller("tvfeesListCtrl", ["$scope","$http", function($scope,$http) {
             console.log("List Ctrl initialized!");
             var api = "/api/v1/tvfees-stats";
             
             
-            
             $scope.addTvfees= function(){
-                $http.post(api,$scope.newtvFees).then(function (response){
+                $http.post(api,$scope.newteam).then(function (response){
                     $scope.status = "Status: " + response.status;
                     getTvFees();
                 });
-            },function(){
+            /*},function(){
                     if($scope.length!=6){
                     $scope.status="Error 400: debe completar todos los campos";
                     }else{
                     $scope.status="Error 409: la estadistica ya existe";
-                    }
+                    }*/
             };
             
             
@@ -40,7 +39,7 @@
             
             function getTvFees(){
                 $http.get(api).then(function (response){
-                    $scope.tvfeesstats = response.data;
+                    $scope.initialteams = response.data;
                 });
             }
             

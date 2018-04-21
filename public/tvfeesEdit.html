@@ -11,14 +11,16 @@
             <th>Actions</th>
         </tr>
     </thead>
+    
+    
     <tbody>
         <tr>
-            <td><input class="form-control" ng-model="updatedTeam.city" /></td>
+            <td>{{team.city}}</td>
             <td>{{updatedTeam.year }}</td>
-            <td><input class="form-control" ng-model="updatedTeam.team" /></td>
-            <td><input class="form-control" ng-model="updatedTeam.capacity" /></td>
-            <td><input class="form-control" ng-model="updatedTeam.attotal" /></td>
-            <td><input class="form-control" ng-model="updatedTeam.ataverage" /></td>
+            <td><input class="form-control" ng-model="updatedteam.team" /></td>
+            <td><input class="form-control" ng-model="updatedteam.capacity" /></td>
+            <td><input class="form-control" ng-model="updatedteam.attotal" /></td>
+            <td><input class="form-control" ng-model="updatedteam.ataverage" /></td>
             <td><button class="button btn-primary" ng-click="updateTeam()">
                  Update
              </button></td>
