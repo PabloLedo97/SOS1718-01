@@ -1,5 +1,5 @@
-<h1>Edit TvFees list</h1>
-<table class="table">
+<h1>Tvfees Stadistic</h1>
+<table class = "table">
     <thead>
         <tr>
             <th>city</th>
@@ -12,20 +12,19 @@
         </tr>
     </thead>
     
-    
     <tbody>
         <tr>
-            <td>{{team.city}}</td>
-            <td>{{updatedTeam.year }}</td>
-            <td><input class="form-control" ng-model="updatedteam.team" /></td>
-            <td><input class="form-control" ng-model="updatedteam.capacity" /></td>
-            <td><input class="form-control" ng-model="updatedteam.attotal" /></td>
-            <td><input class="form-control" ng-model="updatedteam.ataverage" /></td>
-            <td><button class="button btn-primary" ng-click="updateTeam()">
-                 Update
-             </button></td>
+            <td>{{updatedStat.city}}</td>
+            <td><input type="number" class="form-control" ng-model="updatedStat.year"/></td>
+            <td>{{updatedStat.team}}</td>
+            <td><input type="number" class="form-control" ng-model="updatedStat.capacity"/></td>
+            <td><input type="number" class="form-control" ng-model="updatedStat.attotal"/></td>
+            <td><input type="number" class="form-control" ng-model="updatedStat.ataverage"/></td>
+            <td><button class="button btn-primary" ng-click="updateStat()">
+                Update
+            </button></td>
         </tr>
-    </tbody>
+     </tbody>
 </table>
 <hr/>
 <h8><i>{{status}}</i></h8>

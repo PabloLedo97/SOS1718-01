@@ -80,7 +80,7 @@ tvfeesstatsApi.register = function(app, db) {
 
         });
 
-app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
+app.post(BASE_API_PATH+"/tvfees-stats",(req,res)=>{
     console.log(Date() + " - POST /teams");
     var newteam = req.body;
     if(!newteam.city || !newteam.year || !newteam.team || !newteam.capacity || !newteam.attotal || !newteam.ataverage ||Object.keys(newteam).length != 6){
@@ -182,7 +182,7 @@ app.delete(BASE_API_PATH+"/tvfees-stats/:city",(req,res)=>{
 
 app.post(BASE_API_PATH+"/tvfees-stats/:city/",(req,res)=>{
     var city = req.params.city;
-    console.log(Date() + " - POST /teams/"+city);
+    console.log(Date() + " - POST /teams/"+ city);
     res.sendStatus(405);
 });
 

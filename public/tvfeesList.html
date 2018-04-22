@@ -1,43 +1,43 @@
-<h1>TvFees list</h1>
- <table class="table">
-     <thead>
-     <tr>
-          <th>city</th>
-          <th>year</th>
-          <th>team</th>
-          <th>capacity</th>
-          <th>attotal</th>
-          <th>ataverage</th>
-          <th>Actions</th>
-     </tr>
-     </thead>
-     <tbody>
-         <tr>
-            
-            <td><input class="form-control" ng-model="newteam.city" /></td>
-            <td><input class="form-control" ng-model="newteam.year" /></td>
-            <td><input class="form-control" ng-model="newteam.team" /></td>
-            <td><input class="form-control" ng-model="newteam.capacity" /></td>
-            <td><input class="form-control" ng-model="newteam.attotal" /></td>
-            <td><input class="form-control" ng-model="newteam.ataverage" /></td>
-            <td><button class="button btn-primary" ng-click="addTvfees()">
-                Add 
-           </button></td>
+<h1>Tvfees List</h1>
+<table class = "table">
+    <thead>
+        <tr>
+            <th>city</th>
+            <th>Year</th>
+            <th>team</th>
+            <th>capacity</th>
+            <th>attotal</th>
+            <th>ataverage</th>
+            <th>Actions</th>
         </tr>
-         <tr ng-repeat="team in initialteams">
-             <td><a href="#!/team/{{teams.city}}">{{team.city}}</a></td>
-             <td>{{team.year}}</td>
-             <td>{{team.team}}</td>
-             <td>{{team.capacity}}</td>
-             <td>{{team.attotal}}</td>
-             <td>{{team.ataverage}}</td>
-             <td><button class="button btn-danger" ng-click="deletetvfees(team.city)">Delete</button></td>
-         </tr>
-            <tr>
-            <td><button class="button btn-danger" ng-click="deleteAlltvfees()">Delete All</button></td>
-        </tr> 
-         
-     </tbody>
- </table>
- <hr/>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td><input class="form-control" ng-model="newteam.city"/></td>
+            <td><input type="number" class="form-control" ng-model="newteam.year"/></td>
+            <td><input class="form-control" ng-model="newteam.team"/></td>
+            <td><input type="number" class="form-control" ng-model="newteam.capacity"/></td>
+            <td><input type="number" class="form-control" ng-model="newteam.attotal"/></td>
+            <td><input type="number" class="form-control" ng-model="newteam.ataverage"/></td>
+            <td><button class="button btn-primary" ng-click="addStat()">
+                Add
+            </button></td>
+        </tr>
+        <tr ng-repeat="team in teams">
+            <td><a href="/tvfeesApp.html#!/team/{{team.city}}/{{team.team}}">{{team.city}}</a></td>
+            <td>{{team.year}}</td>
+            <td>{{team.team}}</td>
+            <td>{{team.capacity}}</td>
+            <td>{{team.attotal}}</td>
+            <td>{{team.ataverage}}</td>
+            <td><button class="button btn-danger" ng-click="deleteStat(team.city)">Delete</button></td>
+        </tr>
+        <tr>
+            <td><button class="button btn-danger" ng-click="deleteStats()">Delete All</button></td>
+        </tr>
+    </tbody>
+    
+</table>
+<hr/>
 <h8><i>{{status}}</i></h8>
