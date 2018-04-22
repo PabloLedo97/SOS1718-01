@@ -1,12 +1,12 @@
- /*global angular*/
+/*global angular*/
  angular.module("tvfeesManagerApp")
  .controller("tvfeesEditCtrl", ["$scope","$http","$routeParams","$location" ,function($scope,$http,$routeParams,$location) {
             console.log("Edit Ctrl initialized!");
-            var tvfeesURL = "/api/v1/tvfees-stats/"+ $routeParams.city+ "/" + $routeParams.team;
+            var tvfeesURL = "/api/v1/tvfees-stats/"+ $routeParams.city;
             
              
                 $http.get(tvfeesURL).then(function (response){
-                    $scope.updatedTeam = response.data;
+                    $scope.updatedteam = response.data;
                 });
                 
           
