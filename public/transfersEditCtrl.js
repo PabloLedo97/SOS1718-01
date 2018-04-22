@@ -4,11 +4,12 @@ angular.module("transfersApp")
             console.log("Edit Ctrl initialized!");
             var statUrl = "/api/v1/transferincomes-stats/"+$routeParams.city + "/" + $routeParams.team;
                 $http.get(statUrl).then(function (response){
-                    $scope.updatedStat= response.data;
+                    $scope.updatedStat= response.data[0];
                 });
                 $scope.updateStat= function(){
                 $http.put(statUrl,$scope.updatedStat).then(function (response){
                     $scope.status= "Status: "+ response.status;
+                    $location.path("/");
                     
                 },function(){
                     var i;
