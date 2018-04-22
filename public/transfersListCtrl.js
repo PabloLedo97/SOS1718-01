@@ -37,7 +37,7 @@
             
             function getTeams(){
                 $http.get(api).then(function (response){
-                    $scope.teams = response.data[0];
+                    $scope.teams = response.data;
                 });
             }
             
