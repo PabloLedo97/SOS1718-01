@@ -4,7 +4,7 @@ angular.module("goalsApp")
             console.log("Edit Ctrl initialized!");
             var statUrl = "/api/v1/goals-stats/"+$routeParams.city + "/" + $routeParams.team;
                 $http.get(statUrl).then(function (response){
-                    $scope.updatedStat= response.data;
+                    $scope.updatedStat= response.data[0];
                 });
                 $scope.updateStat= function(){
                 $http.put(statUrl,$scope.updatedStat).then(function (response){
