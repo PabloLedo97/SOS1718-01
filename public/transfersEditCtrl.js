@@ -9,7 +9,7 @@ angular.module("transfersApp")
                 $scope.updateStat= function(){
                 $http.put(statUrl,$scope.updatedStat).then(function (response){
                     $scope.status= "Status: "+ response.status;
-                    $location.path("/");
+                    
                     
                 },function(){
                     var i;
