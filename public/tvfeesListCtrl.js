@@ -7,7 +7,7 @@
             
             $scope.addStat= function(){
                 $http.post(api,$scope.newteam).then(function (response){
-                    $scope.status= "Status: "+ response.status;
+                    $scope.status= "Recurso creado";
                     getTeams();
                 },function(){
                     if($scope.length!=6){
@@ -20,7 +20,7 @@
              $scope.deleteStat= function(city){
                 console.log("Stadistic to be delete :" + city);
                 $http.delete(api+"/"+city).then(function (response){
-                    $scope.status= "Status: "+ response.status;
+                    $scope.status= "Recurso borrado";
                     getTeams();
                 });
                  getTeams();
@@ -29,7 +29,7 @@
             $scope.deleteStats= function(){
                 console.log("all stadistic will be delete" );
                 $http.delete(api+"/").then(function (response){
-                    $scope.status= "Status: "+ response.status;
+                    $scope.status= "No hay recursos";
                     getTeams();
                 });
                  getTeams();
