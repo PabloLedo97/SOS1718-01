@@ -6,10 +6,10 @@ angular.module("transfersApp")
                 $http.get(statUrl).then(function (response){
                     $scope.updatedStat= response.data[0];
                 });
-                $scope.updateStat= function(){
+                $scope.updatedStat= function(){
                 $http.put(statUrl,$scope.updatedStat).then(function (response){
                     $scope.status= "Status: "+ response.status;
-                    $location.path("/");
+                    //$location.path("/");
                     
                 },function(){
                     var i;
