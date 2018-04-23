@@ -8,7 +8,7 @@ angular.module("transfersApp")
                 });
                 $scope.updateStat= function(){
                 $http.put(statUrl,$scope.updatedStat).then(function (response){
-                    $scope.status= "Status: "+ response.status;
+                     $scope.status= "Cambios realizados con éxito";
                     
                     
                 },function(){
