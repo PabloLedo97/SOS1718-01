@@ -1,4 +1,5 @@
 /* global angular */
+/*global Materialize*/
 angular.module("tvfeesManagerApp")
   .controller("tvfeesEditCtrl", ["$scope","$http","$routeParams","$location", function($scope,$http,$routeParams,$location) {
             console.log("Edit Ctrl initialized!");
@@ -14,6 +15,7 @@ angular.module("tvfeesManagerApp")
                 $http.put(statUrl,$scope.updatedStat).then(function (response){
                     $scope.status= "Status: "+ response.status;
                     $location.path("/");
+                    Materialize.toast({html:'Updated correct'});
                     
                 },function(){
                     var i;
