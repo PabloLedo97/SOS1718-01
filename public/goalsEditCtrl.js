@@ -8,8 +8,9 @@ angular.module("goalsApp")
                 });
                 $scope.updateStat= function(){
                 $http.put(statUrl,$scope.updatedStat).then(function (response){
-                    $scope.status= "Cambios realizados con éxito";
-                   
+                    $scope.status= "Status: "+ response.status;
+                    window.alert("OK: estadistica actualizada");
+                    $location.path("/");
                     
                 },function(){
                     var i;
