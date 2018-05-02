@@ -1,6 +1,6 @@
 /* global angular */
  angular
- .module("goalsApp")
+ .module("tvfeesManagerApp")
  .controller("goalsListCtrl", ["$scope","$http", function($scope,$http) {
             console.log("List Ctrl initialized!");
             var api = "/api/v1/goals-stats";

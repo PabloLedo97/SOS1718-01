@@ -1,6 +1,6 @@
 /* global angular */
  angular
- .module("transfersApp")
+ .module("tvfeesManagerApp")
  .controller("transfersListCtrl", ["$scope","$http", function($scope,$http) {
             console.log("List Ctrl initialized!");
             var api = "/api/v1/transferincomes-stats";

@@ -1,5 +1,5 @@
 /* global angular */
-angular.module("transfersApp")
+angular.module("tvfeesManagerApp")
   .controller("transfersEditCtrl", ["$scope","$http","$routeParams","$location", function($scope,$http,$routeParams,$location) {
             console.log("Edit Ctrl initialized!");
             var statUrl = "/api/v1/transferincomes-stats/"+$routeParams.city + "/" + $routeParams.team;
