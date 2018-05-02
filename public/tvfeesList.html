@@ -33,6 +33,29 @@
             <td>{{team.ataverage}}</td>
             <td><button class="button btn-danger" ng-click="deleteStat(team.city)">Delete</button></td>
         </tr>
+         <tr>
+            <td><input  name="limit" class="form-control" type="number" ng-model="limit" ng-init="limit='10'" /></td>
+            <td><input  name="offset" class="form-control" type="number" ng-model="offset" ng-init="offset='0'" /></td>
+            <td><button class="button btn-primary" ng-click="paginacion()">Paginar</button></td>
+            <td><button class="button btn-secondary" ng-click="obtenerpaginaAnterior()">Anterior</button></td>
+            <td><button class="button btn-secondary" ng-click="obtenerpaginaSiguiente()">Siguiente</button></td>
+        </tr>
+        <tr>
+            <td>
+
+                <select class="form-control" ng-model="atributo" ng-init="atributo='city'">
+                                <option value="" disabled selected>Campo Búsqueda</option>
+                                <option value="city">city</option>
+                                <option value="year">year</option>
+                                <option value="team">team</option>
+                                <option value="capacity">capacity</option>
+                                <option value="attotal">attotal</option>
+                                <option value="ataverage">ataverage</option>
+                              </select>
+            </td>
+            <td><input placeholder="valor" name="valor" class="form-control" ng-model="valor" /></td>
+            <td><button class="button btn-primary" ng-click="busqueda()">Search</button></td>
+        </tr>
         <tr>
             <td><button class="button btn-danger" ng-click="deleteStats()">Delete All</button></td>
         </tr>
