@@ -7,20 +7,20 @@
             
             $scope.addStat= function(){
                 $http.post(api,$scope.newteam).then(function (response){
-                    $scope.status= "Status: "+ response.status;
+                    $scope.status= "Equipo creado con éxito";
                     getTeams();
                 },function(){
                     if($scope.length!=6){
-                    $scope.status="Error 400: debe completar todos los campos";
+                    $scope.status="Debe completar todos los campos";
                     }else{
-                    $scope.status="Error 409: la estadistica ya existe";
+                    $scope.status="La estadistica ya existe";
                     }
             });
             };
              $scope.deleteStat= function(city){
                 console.log("Stadistic to be delete :" + city);
                 $http.delete(api+"/"+city).then(function (response){
-                    $scope.status= "Status: "+ response.status;
+                    $scope.status= "Equipo eliminado";
                     getTeams();
                 });
                  getTeams();
@@ -29,7 +29,7 @@
             $scope.deleteStats= function(){
                 console.log("all stadistic will be delete" );
                 $http.delete(api+"/").then(function (response){
-                    $scope.status= "Status: "+ response.status;
+                    $scope.status= "Todas las estadísticas se han borrado con éxito";
                     getTeams();
                 });
                  getTeams();
@@ -53,7 +53,7 @@
                             pag=0;
                             $http.get(api+"?limit="+10+"&offset="+pag).then(function (response){
                             $scope.teams = response.data;
-                            console.log("pagination1")
+                            console.log("pagination1");
                              numero=num;
                              console.log(numero);
                              getTeams();
@@ -62,7 +62,7 @@
                     }else{
                         $http.get(api+"?limit="+10+"&offset="+pag).then(function (response){
                 $scope.teams = response.data;
-                  console.log("pagination2")
+                  console.log("pagination2");
                    numero=num;
                     console.log(numero);
                      getTeams();

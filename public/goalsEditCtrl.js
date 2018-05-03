@@ -16,7 +16,7 @@ angular.module("tvfeesManagerApp")
                     var i;
                     for(i=0;i<$scope.length;i++){
                         if($scope[i]==null){
-                            $scope.status="Error 400: debe completar todos los campos";
+                            $scope.status="Debe completar todos los campos";
                             break;
                         }
                     }
