@@ -21,5 +21,10 @@ angular
                 }).when("/transfers-stats/:city/:team",{
                     templateUrl:"transfersEdit.html",
                     controller: "transfersEditCtrl"
+                }).when("/analytics",{
+                    templateUrl:"analytics.html"
+                }).when("/tvfees-stats/analytics",{
+                    templateUrl:"tvfeesmain.html",
+                    controller: "tvfeesmain-ctrl"
                 });
 });
