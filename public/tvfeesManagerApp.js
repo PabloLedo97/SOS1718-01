@@ -26,5 +26,9 @@ angular
                 }).when("/tvfees-stats/analytics",{
                     templateUrl:"tvfeesmain.html",
                     controller: "tvfeesmain-ctrl"
+                }).when("/goals-stats/analytics",{
+                    templateUrl:"goalsmain.html",
+                    controller: "goalsmain-ctrl"
                 });
+                
 });
