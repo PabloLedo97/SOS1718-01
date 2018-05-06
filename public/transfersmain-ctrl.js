@@ -10,14 +10,14 @@ angular
 
     console.log("main Controller initialized");
     
- $http.get("/api/v1/transfers-stats").then(function(response){ 
+ $http.get("/api/v1/transferincomes-stats").then(function(response){ 
      console.log((response.data));
   
  /*Highcharts*/ 
   
 Highcharts.chart('analytics2', {
     chart: {
-        type: 'bar'
+        type: 'line'
     },
     title: {
         text: 'My Stadistics'
@@ -59,7 +59,7 @@ Highcharts.chart('analytics2', {
   
    
        /*Geocharts*/
- $http.get("/api/v1/transfers-stats").then(function(response) {
+ $http.get("/api/v1/transferincomes-stats").then(function(response) {
             console.log((response.data));
                   google.charts.load('current', {
         'packages':['geochart'],
@@ -95,7 +95,7 @@ Highcharts.chart('analytics2', {
 
  });   
 
-        $http.get("/api/v1/transfers-stats").then(function(response) {
+        $http.get("/api/v1/transferincomes-stats").then(function(response) {
             console.log((response.data));
 
         });
