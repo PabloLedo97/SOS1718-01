@@ -4,7 +4,7 @@ var path = require("path");
 describe('Data is loaded', function(){
     it('should show some teams', function(){
         browser
-        .get('https://sos171801fsr-sos171801fsr.c9users.io/ManagerApp.html#!/goals-stats')
+        .get('https://sos1718-01.herokuapp.com/ManagerApp.html#!/goals-stats')
         .then(function(){
             element.all(by.repeater('team in teams'))
             .then(function(teams){

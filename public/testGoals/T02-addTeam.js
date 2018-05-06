@@ -4,7 +4,7 @@ var path = require("path");
 describe('Add team', function(){
     it('should add a new team', function(){
         browser
-        .get('https://sos171801fsr-sos171801fsr.c9users.io/ManagerApp.html#!/goals-stats')
+        .get('https://sos1718-01.herokuapp.com/ManagerApp.html#!/goals-stats')
         .then(function(){
             element.all(by.repeater('team in teams'))
             .then(function(initialteams2){
@@ -19,7 +19,7 @@ describe('Add team', function(){
                 
                 element(by.buttonText('Add')).click().then(function(){
                     element.all(by.repeater('team in teams')).then(function (teams){
-                        expect(teams.length).toEqual(initialteams2.length+1);
+                        expect(teams.length).toEqual(initialteams2.length + 1);
                     });
                 });
                 browser.takeScreenshot()

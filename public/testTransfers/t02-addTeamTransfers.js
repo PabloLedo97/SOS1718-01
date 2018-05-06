@@ -4,7 +4,7 @@ var path = require("path");
 describe('Add team', function(){
     it('should add a new team', function(){
         browser
-        .get('https://sos171801mls-sandbox-sos171801mls.c9users.io/ManagerApp.html#!/transfers-stats')
+        .get('https://sos1718-01.herokuapp.com/ManagerApp.html#!/transfers-stats')
         .then(function(){
             element.all(by.repeater('team in teams'))
             .then(function(myteams){

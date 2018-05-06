@@ -4,7 +4,7 @@ var path = require("path");
 describe('Add team', function(){
     it('should add a new team', function(){
         browser
-        .get('https://sos1718-01-pla-sos171801pla.c9users.io/ManagerApp.html#!/tvfees-stats')
+        .get('https://sos1718-01.herokuapp.com/ManagerApp.html#!/tvfees-stats')
         .then(function(){
             element.all(by.repeater('team in teams'))
             .then(function(initialteams){
