@@ -96,14 +96,12 @@ Highcharts.chart('analytics2', {
 
  });   
 
-        $http.get("/api/v1/transferincomes-stats").then(function(response) {
-            console.log((response.data));
             
             
             /*EJSChart*/
             
             var chart = new EJSC.Chart("myChart",{
-                show_legend: true
+                show_legend: false
             });
             
             var mySeries = new EJSC.BarSeries(
@@ -123,5 +121,4 @@ Highcharts.chart('analytics2', {
                 
                 chart.addSeries(mySeries);
                 
-        });
   }]); 
