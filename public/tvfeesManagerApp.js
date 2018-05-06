@@ -29,6 +29,9 @@ angular
                 }).when("/goals-stats/analytics",{
                     templateUrl:"goalsmain.html",
                     controller: "goalsmain-ctrl"
+                }).when("/transfers-stats/analytics",{
+                    templateUrl:"transfersmain.html",
+                    controller: "transfersmain-ctrl"
                 });
                 
 });
