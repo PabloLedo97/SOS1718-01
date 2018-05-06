@@ -100,6 +100,9 @@ Highcharts.chart('analytics2', {
             
             /*EJSChart*/
             
+             $http.get("/api/v1/transferincomes-stats").then(function(response){ 
+     console.log((response.data));
+            
             var chart = new EJSC.Chart("myChart",{
                 show_legend: false
             });
@@ -120,5 +123,7 @@ Highcharts.chart('analytics2', {
                 });
                 
                 chart.addSeries(mySeries);
+            
+             });
                 
   }]); 
