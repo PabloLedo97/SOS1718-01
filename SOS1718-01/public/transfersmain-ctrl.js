@@ -98,7 +98,7 @@ Highcharts.chart('analytics2', {
 
             
             
-            /*EJSChart*/
+            /*EJSCharts*/
             
              $http.get("/api/v1/transferincomes-stats").then(function(response){ 
      console.log((response.data));
