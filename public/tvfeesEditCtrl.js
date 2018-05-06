@@ -13,7 +13,8 @@ angular.module("tvfeesManagerApp")
                 $scope.updateStat= function(){
                 $http.put(statUrl,$scope.updatedStat).then(function (response){
                     $scope.status= "Cambios realizados con éxito";
-                    $location.path("/");
+                     window.alert("OK: estadistica actualizada");
+                    $location.path("/tvfees-stats");
                    
                     
                 },function(){
