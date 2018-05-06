@@ -1,6 +1,7 @@
 /*global angular*/
 /*global Highcharts*/
 /*global google*/
+/*global uv*/
 "use strict"
 angular
   .module("tvfeesManagerApp")
@@ -13,7 +14,7 @@ angular
  $http.get("/api/v1/goals-stats").then(function(response){ 
      console.log((response.data));
   
- /*Highcharts*/ 
+ Highcharts
   
 Highcharts.chart('analytics1', {
     chart: {
@@ -58,7 +59,7 @@ Highcharts.chart('analytics1', {
  });
   
    
-       /*Geocharts*/
+       
  $http.get("/api/v1/goals-stats").then(function(response) {
             console.log((response.data));
                   google.charts.load('current', {
@@ -97,7 +98,47 @@ Highcharts.chart('analytics1', {
         $http.get("/api/v1/goals-stats").then(function(response) {
             console.log((response.data));
 
-            /*Graphosurus*/
+    
+var graphdef = {
+  categories : ['Malaga-Fc', 'Sevilla-Fc', 'Real-betis-balompie','Atlethic-club-bilbao','Villareal-cf', 'Realmadrid-fc'],
+  dataset : {
+    'Malaga-Fc' : [
+      { name : 'rightfoot', value: 20},
+      { name : 'head', value: 6},
+      { name : 'penalty', value: 2}
+    ],
+    'Sevilla-Fc' : [
+      { name : 'rightfoot', value: 34},
+      { name : 'head', value: 7},
+      { name : 'penalty', value: 6}
+    ],
+    'Real-betis-balompie' : [
+      { name : 'rightfoot', value: 19},
+      { name : 'head', value: 9},
+      { name : 'penalty', value: 3}
+    ],
+    'Atlethic-club-bilbao' : [
+      { name : 'rightfoot', value: 31},
+      { name : 'head', value: 17},
+      { name : 'penalty', value: 3}
+    ],
+    'Villareal-cf' : [
+      { name : 'rightfoot', value: 28},
+      { name : 'head', value: 1},
+      { name : 'penalty', value: 3}
+    ],
+    'Realmadrid-fc' : [
+      { name : 'rightfoot', value: 25},
+      { name : 'head', value: 17},
+      { name : 'penalty', value: 11}
+    ],
+  }
+};
+
+      var config = {};
+
+      var charObject = uv.chart('Bar', graphdef);
+
 
         });
   }]); 
