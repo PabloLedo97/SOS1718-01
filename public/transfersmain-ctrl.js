@@ -17,7 +17,7 @@ angular
   
 Highcharts.chart('analytics2', {
     chart: {
-        type: 'line'
+        type: 'spline'
     },
     title: {
         text: 'My Stadistics'
