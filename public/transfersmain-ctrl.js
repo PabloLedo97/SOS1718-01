@@ -123,7 +123,5 @@ Highcharts.chart('analytics2', {
                 
                 chart.addSeries(mySeries);
                 
-            
-
         });
   }]); 
