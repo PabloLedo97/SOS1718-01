@@ -1,6 +1,7 @@
 /*global angular*/
 /*global Highcharts*/
 /*global google*/
+/*global EJSC*/
 "use strict"
 angular
   .module("tvfeesManagerApp")
@@ -100,6 +101,28 @@ Highcharts.chart('analytics2', {
             
             
             /*EJSChart*/
+            
+            var chart = new EJSC.Chart("myChart",{
+                show_legend: true
+            });
+            
+            var mySeries = new EJSC.BarSeries(
+                new EJSC.ArrayDataHandler([[31.5, "timaxexp"],[6,"tilessexp"],[12,"tispa"]]),{
+                    orientation: "horizontal",
+                    intervalOffset: .5,
+                    useColorArray: true
+                });
+                
+                mySeries.x_axis_formatter = new EJSC.NumberFormatter({
+                    forced_decimals: 2
+                });
+                
+                mySeries.y_axis_formatter = new EJSC.NumberFormatter({
+                    forced_decimals: 2
+                });
+                
+                chart.addSeries(mySeries);
+                
             
 
         });
