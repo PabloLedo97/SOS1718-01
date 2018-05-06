@@ -1,0 +1,30 @@
+<h1>Tvfees Stadistic</h1>
+<table class = "table">
+    <thead>
+        <tr>
+            <th>city</th>
+            <th>year</th>
+            <th>team</th>
+            <th>capacity</th>
+            <th>attotal</th>
+            <th>ataverage</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>{{updatedStat.city}}</td>
+            <td><input type="number" class="form-control" ng-model="updatedStat.year"/></td>
+            <td>{{updatedStat.team}}</td>
+            <td><input type="number" class="form-control" ng-model="updatedStat.capacity"/></td>
+            <td><input type="number" class="form-control" ng-model="updatedStat.attotal"/></td>
+            <td><input type="number" class="form-control" ng-model="updatedStat.ataverage"/></td>
+            <td><button class="button btn-primary" ng-click="updateStat()">
+                Update
+            </button></td>
+        </tr>
+     </tbody>
+</table>
+<hr/>
+<h8><i>{{status}}</i></h8>
