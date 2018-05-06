@@ -17,7 +17,7 @@ angular
   
 Highcharts.chart('analytics2', {
     chart: {
-        type: 'spline'
+        type: 'bar'
     },
     title: {
         text: 'My Stadistics'
@@ -97,6 +97,10 @@ Highcharts.chart('analytics2', {
 
         $http.get("/api/v1/transferincomes-stats").then(function(response) {
             console.log((response.data));
+            
+            
+            /*EJSChart*/
+            
 
         });
   }]); 
