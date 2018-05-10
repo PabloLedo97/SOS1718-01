@@ -35,6 +35,9 @@ angular
                 }).when("/goals-stats/compartidas",{
                     templateUrl:"apisCompartidasGoals.html",
                     controller: "apisCompartidasGoalsCtrl"
+                }).when("/tvfees-stats/compartidas",{
+                    templateUrl:"apisCompartidasTvfees.html",
+                    controller: "apisCompartidasTvfeesCtrl"
                 });
                 
 });

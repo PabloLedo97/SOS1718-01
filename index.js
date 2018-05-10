@@ -41,6 +41,14 @@ app.use(bodyParser.json());
 
 
 
+
+
+
+    
+    
+   
+
+
 //PABLO
 var initialteams = [{
         "city": "barcelona",
@@ -149,7 +157,11 @@ var apiServerHost = "https://sos1718-04.herokuapp.com";
     console.log('piped: '+req.baseUrl + req.url);
     req.pipe(request(url)).pipe(res);
     });
-
+    app.use("/proxyPablo", function(req, res) {
+    var url = "http://sos1718-07.herokuapp.com" + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });
 
 
 
