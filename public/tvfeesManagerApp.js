@@ -32,6 +32,9 @@ angular
                 }).when("/transfers-stats/analytics",{
                     templateUrl:"transfersmain.html",
                     controller: "transfersmain-ctrl"
+                }).when("/goals-stats/compartidas",{
+                    templateUrl:"apisCompartidasGoals.html",
+                    controller: "apisCompartidasGoalsCtrl"
                 });
                 
 });

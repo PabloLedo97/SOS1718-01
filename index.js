@@ -2,6 +2,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var DataStore = require("nedb");
 var path = require("path");
+var request = require("request");
+var cors = require("cors");
 
 var MongoClient = require("mongodb").MongoClient;
 
@@ -23,6 +25,7 @@ var mdbURL = "mongodb://goals-stats:12345@ds161148.mlab.com:61148/sos1718-fsr-sa
 var app = express();
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
+app.use(cors());
 
 
 var tvfeesstatsApi = require("./tvfeesstatsApi");
@@ -35,6 +38,8 @@ var mdbURL1 = "mongodb://db01:db01@ds227459.mlab.com:27459/sos1718-01-tvfees-sta
 
 
 app.use(bodyParser.json());
+
+
 
 //PABLO
 var initialteams = [{
@@ -135,7 +140,15 @@ MongoClient.connect(mdbURL1, { native_parser: true }, (err, mlabs) => {
 
 
 
+var apiServerHost = "https://sos1718-04.herokuapp.com";
 
+    
+    
+    app.use("/proxyPACO", function(req, res) {
+    var url = apiServerHost + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });
 
 
 
