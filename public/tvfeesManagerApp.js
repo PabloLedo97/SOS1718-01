@@ -38,6 +38,9 @@ angular
                 }).when("/tvfees-stats/compartidas",{
                     templateUrl:"apisCompartidasTvfees.html",
                     controller: "apisCompartidasTvfeesCtrl"
+                }).when("/transfers-stats/sharedAnalytics",{
+                    templateUrl:"sharedApisTransfers.html",
+                    controller: "sharedApisTransfersCtrl"
                 });
                 
 });

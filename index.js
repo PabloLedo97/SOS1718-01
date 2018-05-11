@@ -149,6 +149,7 @@ MongoClient.connect(mdbURL1, { native_parser: true }, (err, mlabs) => {
 
 
 var apiServerHost = "https://sos1718-04.herokuapp.com";
+var apiServerHost2 = "https://sos1718-09.herokuapp.com";
 
     
     
@@ -159,6 +160,12 @@ var apiServerHost = "https://sos1718-04.herokuapp.com";
     });
     app.use("/proxyPablo", function(req, res) {
     var url = "http://sos1718-07.herokuapp.com" + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });
+    
+    app.use("/proxyMANU",function(req,res){
+    var url = apiServerHost2 + req.url;
     console.log('piped: '+req.baseUrl + req.url);
     req.pipe(request(url)).pipe(res);
     });
