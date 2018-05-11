@@ -2,6 +2,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var DataStore = require("nedb");
 var path = require("path");
+var request = require("request");
+var cors = require("cors");
 
 var MongoClient = require("mongodb").MongoClient;
 
@@ -23,6 +25,7 @@ var mdbURL = "mongodb://goals-stats:12345@ds161148.mlab.com:61148/sos1718-fsr-sa
 var app = express();
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
+app.use(cors());
 
 
 var tvfeesstatsApi = require("./tvfeesstatsApi");
