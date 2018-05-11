@@ -10,12 +10,12 @@ describe('Add team', function(){
             .then(function(myteams){
                 browser.driver.sleep(2000);
                 
-                element(by.model('newteam.city')).sendKeys('villareal');
+                element(by.model('newteam.city')).sendKeys('a');
                 element(by.model('newteam.year')).sendKeys('2015');
-                element(by.model('newteam.team')).sendKeys('villareal fc');
+                element(by.model('newteam.team')).sendKeys('a');
                 element(by.model('newteam.timaxexp')).sendKeys('1');
-                element(by.model('newteam.tilessexp')).sendKeys('1');
-                element(by.model('newteam.tispa')).sendKeys('1');
+                element(by.model('newteam.tilessexp')).sendKeys('2');
+                element(by.model('newteam.tispa')).sendKeys('2');
                 
                 element(by.buttonText('Add')).click().then(function(){
                     element.all(by.repeater('team in teams')).then(function (teams){
