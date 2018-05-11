@@ -39,6 +39,16 @@ var mdbURL1 = "mongodb://db01:db01@ds227459.mlab.com:27459/sos1718-01-tvfees-sta
 
 app.use(bodyParser.json());
 
+
+
+
+
+
+    
+    
+   
+
+
 //PABLO
 var initialteams = [{
         "city": "barcelona",
@@ -138,8 +148,20 @@ MongoClient.connect(mdbURL1, { native_parser: true }, (err, mlabs) => {
 
 
 
+var apiServerHost = "https://sos1718-04.herokuapp.com";
 
-
+    
+    
+    app.use("/proxyPACO", function(req, res) {
+    var url = apiServerHost + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });
+    app.use("/proxyPablo", function(req, res) {
+    var url = "http://sos1718-07.herokuapp.com" + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });
 
 
 
