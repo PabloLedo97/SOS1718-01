@@ -8,7 +8,7 @@ angular.module("tvfeesManagerApp")
             console.log("List Ctrl initialized!");
             var apiPropia = "/api/v1/goals-stats"
             var api2 = "proxyPACO/api/v1/unemployment-rates";
-            var api1 = "http://sos1718-02.herokuapp.com/api/v2/employments";
+            var api1 = "https://sos1718-02.herokuapp.com/api/v2/employments";
             
             
             $http.get(api1).then(function(response1){
@@ -56,11 +56,11 @@ angular.module("tvfeesManagerApp")
     },{
         
         name: 'TotalSelf',
-        data: response1.data.map(function(d){return (parseFloat(d.totalself))})
+        data: response1.data.map(function(d){return (parseFloat(d["totalself"]))})
         
     },{
         name: 'TotalSalaried',
-        data: response1.data.map(function(d){return (parseFloat(d.totalsalaried))})
+        data: response1.data.map(function(d){return (parseFloat(d["totalsalaried"]))})
         
        
     }]
