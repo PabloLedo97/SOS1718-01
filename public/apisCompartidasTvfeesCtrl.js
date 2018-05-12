@@ -10,136 +10,72 @@ angular.module("tvfeesManagerApp")
 
         $http.get(apicors).then(function(response10) {
             $http.get(miApi).then(function(response20) {
-                var colors = Highcharts.getOptions().colors;
+               
 Highcharts.chart('graficaApi1', {
-
     chart: {
-        type: 'streamgraph',
-        marginBottom: 30,
-        zoomType: 'x'
+        type: 'bar'
     },
-
-    // Make sure connected countries have similar colors
-    colors: [
-        colors[0],
-        colors[1],
-        colors[2],
-        colors[3],
-        colors[4],
-        
-        Highcharts.color(colors[5]).brighten(0.2).get(),
-        Highcharts.color(colors[5]).brighten(0.1).get(),
-
-        colors[5],
-        colors[6],
-        colors[7],
-        colors[8],
-        colors[9],
-        colors[0],
-        colors[1],
-        colors[3],
-       
-        Highcharts.color(colors[2]).brighten(-0.1).get(),
-        Highcharts.color(colors[2]).brighten(-0.2).get(),
-        Highcharts.color(colors[2]).brighten(-0.3).get()
-    ],
-
     title: {
-        floating: true,
-        align: 'left',
-        text: 'Stadistics'
+        text: 'My Stadistics'
     },
     subtitle: {
-        floating: true,
-        align: 'left',
-        y: 30,
-        
+        text: ''
     },
-
     xAxis: {
-        maxPadding: 0,
-        type: 'category',
-        crosshair: true,
-        categories: [
-            response10.data.map(function(d) { return d["province"] }),
-            response20.data.map(function(d) { return d["team"] })
-              
-            
-        ],
-        labels: {
-            align: 'left',
-            reserveSpace: false,
-            rotation: 270
-        },
-        lineWidth: 0,
-        margin: 20,
-        tickWidth: 0
-    },
-
-    yAxis: {
-        visible: false,
-        startOnTick: false,
-        endOnTick: false
-    },
-
-    legend: {
-        enabled: false
-    },
-
-    annotations: [{
-        labels: [{
-            point: {
-                x: 5.5,
-                xAxis: 0,
-                y: 30,
-                yAxis: 0
-            },
-            text: 'Stadistics'
-        }, {
-            point: {
-                x: 18,
-                xAxis: 0,
-                y: 90,
-                yAxis: 0
-            },
-            text: 'Stadistics'
-        }],
-        labelOptions: {
-            backgroundColor: 'rgba(255,255,255,0.5)',
-            borderColor: 'silver'
+        categories: response10.data.map(function(d) { return d["province"] }),
+        title: {
+            text: null
         }
-    }],
-
+    },
+    yAxis: {
+        min: 0.5,
+        title: {
+            text: 'Stadistics',
+            align: 'high'
+        },
+        labels: {
+            overflow: 'justify'
+        }
+    },
+    tooltip: {
+        valueSuffix: ' millions'
+    },
     plotOptions: {
-        series: {
-            label: {
-                minFontSize: 5,
-                maxFontSize: 15,
-                style: {
-                    color: 'rgba(255,255,255,0.75)'
-                }
+        bar: {
+            dataLabels: {
+                enabled: true
             }
         }
     },
-
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -40,
+        y: 80,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+        shadow: true
+    },
+    credits: {
+        enabled: false
+    },
     series: [{
-        "name": response10.data.map(function(d) { return d["province"] }),
-        "data": [
-           response10.data.map(function(d) { return d["capacity"] }),
-           response10.data.map(function(d) { return d["attotal"] }),
-           response10.data.map(function(d) { return d["team"] }),
-           response10.data.map(function(d) { return d["onecrime"] }),
-           response10.data.map(function(d) { return d["twocrime"] }),
-           response10.data.map(function(d) { return d["threecrime"] })
-        ]
-    }],
-
-    exporting: {
-        sourceWidth: 800,
-        sourceHeight: 600
-    }
-
+        name: 'Capacity',
+        data: response20.data.map(function(d) { return d["capacity"] })
+    }, {
+        name: 'Attotal',
+        data: response20.data.map(function(d) { return d["attotal"] })
+    }, {
+        name: 'OneCrime',
+        data: [21000,25000,30000,34000,12000]
+    }, {
+        name: 'twoCrime',
+        data: [15000,15000,22000,24000,10000]
+    }]
 });
+
 
                
             });
