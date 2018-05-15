@@ -386,7 +386,10 @@ transfersApi.register = function(app, db3) {
                         }
                     }
                     else {
-                        response.send(filteredTeams);
+                        response.send(filteredTeams.map((c)=>{
+                            delete c._id;
+                            return c;
+                        }));
                     }
                 }
             });
