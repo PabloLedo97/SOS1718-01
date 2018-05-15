@@ -365,8 +365,11 @@ app.put(BASE_API_PATH+"/tvfees-stats/:city/:team",(req,res)=>{
                             return;
                         }
                     }
-                    else {
-                        response.send(filterTeams);
+                   else {
+                        response.send(filterTeams.map((c)=> {
+                            delete c._id;
+                            return c;
+                         }));
                     }
                 }
             });
