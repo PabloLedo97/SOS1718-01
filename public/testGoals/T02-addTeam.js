@@ -24,7 +24,7 @@ describe('Add team', function(){
                 });
                 browser.takeScreenshot()
                 .then(function(png){
-                    var stream = fs.createWriteStream(path.join(process.cwd(),'testGoals','output','T02.png'));
+                    var stream = fs.createWriteStream(path.join(process.cwd(),'public/testGoals','output','T02.png'));
                     stream.write(new Buffer(png,'base64'));
                     stream.end();
                 });
