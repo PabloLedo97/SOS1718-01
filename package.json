@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "public/testGoals/runPhantomjs.sh",
+    "test": "protractor public/testGoals/config.js",
+    "posttest": "killall phantomjs"
   },
   "repository": {
     "type": "git",
