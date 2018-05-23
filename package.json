@@ -4,7 +4,7 @@
   "description": "my first module in NodeJS",
   "main": "index.js",
   "scripts": {
-     "start": "node index.js",
+    "start": "node index.js",
     "pretest": "public/testGoals/runPhantomjs.sh;public/testTvfees/runPhantomjs.sh",
     "test": "protractor public/testGoals/config.js; protractor public/testTvfees/config.js",
     "posttest": "killall phantomjs"
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/gti-sos/SOS1718-01#readme",
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.18.3",
     "canvasjs": "^1.8.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",
