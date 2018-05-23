@@ -24,7 +24,7 @@ describe('Add team', function(){
                 });
                 browser.takeScreenshot()
                 .then(function(png){
-                    var stream = fs.createWriteStream(path.join(process.cwd(),'testTvfees','output','Img02.png'));
+                    var stream = fs.createWriteStream(path.join(process.cwd(),'public/testTvfees','output','Img02.png'));
                     stream.write(new Buffer(png,'base64'));
                     stream.end();
                 });

@@ -4,9 +4,9 @@
   "description": "my first module in NodeJS",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "pretest": "public/testGoals/runPhantomjs.sh",
-    "test": "protractor public/testGoals/config.js",
+     "start": "node index.js",
+    "pretest": "public/testGoals/runPhantomjs.sh;public/testTvfees/runPhantomjs.sh",
+    "test": "protractor public/testGoals/config.js; protractor public/testTvfees/config.js",
     "posttest": "killall phantomjs"
   },
   "repository": {
