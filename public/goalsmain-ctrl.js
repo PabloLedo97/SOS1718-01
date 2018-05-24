@@ -72,13 +72,13 @@ Highcharts.chart('analytics1', {
 
       function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable([
-          ['City','PassRate'],
-          ['Malaga','malaga-fc'],
-          ['Sevilla','sevilla-fc'],
-          ['Sevilla2','real-betis-balompie'],
-          ['Bilbao','athletic-club-bilbao'],
-          ['Villareal','villareal-cf'],
-          ['Madrid','realmadrid-fc']
+          ['City','Team'],
+         [response.data[0].city, response.data[0].team],
+         [response.data[1].city, response.data[1].team],
+         [response.data[2].city, response.data[2].team],
+         [response.data[3].city, response.data[3].team],
+         [response.data[4].city, response.data[4].team],
+         [response.data[5].city, response.data[5].team]
         ]);
 
         var options = {
