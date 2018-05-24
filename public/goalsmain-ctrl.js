@@ -103,34 +103,34 @@ var graphdef = {
   categories : ['Malaga-Fc', 'Sevilla-Fc', 'Real-betis-balompie','Atlethic-club-bilbao','Villareal-cf', 'Realmadrid-fc'],
   dataset : {
     'Malaga-Fc' : [
-      { name : 'rightfoot', value: 20},
-      { name : 'head', value: 6},
-      { name : 'penalty', value: 2}
+      { name : 'rightfoot', value: response.data[0].rightfoot},
+      { name : 'head', value: response.data[0].head},
+      { name : 'penalty', value: response.data[0].penalty}
     ],
     'Sevilla-Fc' : [
-      { name : 'rightfoot', value: 34},
-      { name : 'head', value: 7},
-      { name : 'penalty', value: 6}
+      { name : 'rightfoot', value: response.data[1].rightfoot},
+      { name : 'head', value: response.data[1].head},
+      { name : 'penalty', value: response.data[1].penalty}
     ],
     'Real-betis-balompie' : [
-      { name : 'rightfoot', value: 19},
-      { name : 'head', value: 9},
-      { name : 'penalty', value: 3}
+     { name : 'rightfoot', value: response.data[2].rightfoot},
+      { name : 'head', value: response.data[2].head},
+      { name : 'penalty', value: response.data[2].penalty}
     ],
     'Atlethic-club-bilbao' : [
-      { name : 'rightfoot', value: 31},
-      { name : 'head', value: 17},
-      { name : 'penalty', value: 3}
+      { name : 'rightfoot', value: response.data[3].rightfoot},
+      { name : 'head', value: response.data[3].head},
+      { name : 'penalty', value: response.data[3].penalty}
     ],
     'Villareal-cf' : [
-      { name : 'rightfoot', value: 28},
-      { name : 'head', value: 1},
-      { name : 'penalty', value: 3}
+      { name : 'rightfoot', value: response.data[4].rightfoot},
+      { name : 'head', value: response.data[4].head},
+      { name : 'penalty', value: response.data[4].penalty}
     ],
     'Realmadrid-fc' : [
-      { name : 'rightfoot', value: 25},
-      { name : 'head', value: 17},
-      { name : 'penalty', value: 11}
+      { name : 'rightfoot', value: response.data[5].rightfoot},
+      { name : 'head', value: response.data[5].head},
+      { name : 'penalty', value: response.data[5].penalty}
     ],
   }
 };
