@@ -5,7 +5,7 @@ var config = require("./config");
 describe('Add team', function(){
     it('should add a new team', function(){
         browser
-        .get(config.getAppUrl())
+        .get('https://sos1718-01.herokuapp.com/ManagerApp.html#!/tvfees-stats')
         .then(function(){
             element.all(by.repeater('team in teams'))
             .then(function(initialteams){

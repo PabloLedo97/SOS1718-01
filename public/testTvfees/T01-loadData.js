@@ -4,7 +4,7 @@ var config = require("./config");
 describe('Data is loaded', function(){
     it('should show some teams', function(){
         browser
-        .get(config.getAppUrl())
+        .get('https://sos1718-01.herokuapp.com/ManagerApp.html#!/tvfees-stats')
         .then(function(){
             element.all(by.repeater('team in teams'))
             .then(function(teams){
