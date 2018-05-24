@@ -8,9 +8,11 @@ exports.config = {
         host:'localhost',
         port:'8080',
         nombreapi: "/ManagerApp.html#!/tvfees-stats"
+       
     }
 };
 
 exports.getAppUrl = function(){
-  return "http://" + browser.params.host + ":" + browser.params.port + browser.params.nombreapi;  
-};
+  console.log("https://" + browser.params.host +browser.params.nombreapi);
+    return "https://" + browser.params.host + browser.params.nombreapi;
+}
