@@ -13,6 +13,5 @@ exports.config = {
 };
 
 exports.getAppUrl = function(){
-  console.log("https://" + browser.params.host +browser.params.nombreapi);
-    return "https://" + browser.params.host + browser.params.nombreapi;
+  return "http://" + browser.params.host + ":" + browser.params.port + browser.params.nombreapi;  
 };
