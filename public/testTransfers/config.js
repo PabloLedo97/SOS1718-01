@@ -3,5 +3,6 @@ exports.config = {
     specs: ['t01-loadDataTransfers.js','t02-addTeamTransfers.js'],
     capabilities:{
         'browserName': 'phantomjs'
-    }
+    },
+    
 }
