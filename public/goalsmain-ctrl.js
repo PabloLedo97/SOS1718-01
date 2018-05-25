@@ -14,7 +14,7 @@ angular
  $http.get("/api/v1/goals-stats").then(function(response){ 
      console.log((response.data));
   
- Highcharts
+
   
 Highcharts.chart('analytics1', {
     chart: {
@@ -78,7 +78,7 @@ Highcharts.chart('analytics1', {
          [response.data[2].city, response.data[2].team],
          [response.data[3].city, response.data[3].team],
          [response.data[4].city, response.data[4].team],
-         [response.data[5].city, response.data[5].team]
+         
         ]);
 
         var options = {
@@ -100,7 +100,7 @@ Highcharts.chart('analytics1', {
 
     
 var graphdef = {
-  categories : ['Malaga-Fc', 'Sevilla-Fc', 'Real-betis-balompie','Atlethic-club-bilbao','Villareal-cf', 'Realmadrid-fc'],
+  categories : ['Malaga-Fc', 'Sevilla-Fc', 'Real-betis-balompie','Atlethic-club-bilbao','Villareal-cf'],
   dataset : {
     'Malaga-Fc' : [
       { name : 'rightfoot', value: response.data[0].rightfoot},
@@ -126,12 +126,8 @@ var graphdef = {
       { name : 'rightfoot', value: response.data[4].rightfoot},
       { name : 'head', value: response.data[4].head},
       { name : 'penalty', value: response.data[4].penalty}
-    ],
-    'Realmadrid-fc' : [
-      { name : 'rightfoot', value: response.data[5].rightfoot},
-      { name : 'head', value: response.data[5].head},
-      { name : 'penalty', value: response.data[5].penalty}
-    ],
+    ]
+    
   }
 };
 
@@ -141,7 +137,7 @@ var graphdef = {
 
 
         });
-        
+      
     function getTiempo (ciudad){
       
       var url = 'https://openweathermap.org/data/2.5/weather?q=';
@@ -156,7 +152,7 @@ var graphdef = {
       
       
       return res;
-      browser.driver.sleep(2000);
+      
  
 }
 
