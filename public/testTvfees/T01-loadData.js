@@ -11,6 +11,7 @@ describe('Data is loaded', function(){
         .then(function(){
             element.all(by.repeater('team in teams'))
             .then(function(teams){
+
                 browser.takeScreenshot()
                 .then(function(png){
                     var stream = fs.createWriteStream(path.join(process.cwd(),'public/testTvfees','output','Img01.png'));

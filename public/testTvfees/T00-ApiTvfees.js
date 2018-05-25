@@ -6,7 +6,7 @@ var path = require('path');
 
 describe('API should works', function() {
 	newman.run({
-		collection:require(path.join(process.cwd(),"testTvfees","sos1718-01-tvfees-stats.postman_collection.json")),
+		collection:require(path.join(process.cwd(),"testTvfees")),
 		reporters: "cli"
 	},function(err){
 		if(err)
