@@ -1,6 +1,6 @@
 exports.config = {
     seleniumAddress: 'http://localhost:8910',
-    specs: ['T01-loadData.js','T02-addTvfees.js'],
+    specs: ['T00-ApiTvfees.js','T01-loadData.js','T02-addTvfees.js'],
     capabalities: {
         'browserName' : 'phantomjs'
     },
@@ -15,4 +15,4 @@ exports.config = {
 exports.getAppUrl = function(){
   console.log("https://" + browser.params.host +browser.params.nombreapi);
     return "https://" + browser.params.host + browser.params.nombreapi;
-}
+};
