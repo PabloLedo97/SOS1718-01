@@ -1,11 +1,12 @@
 var fs = require("fs");
 var path = require("path");
+var config = require('./config');
 
 
 describe('Data is loaded', function(){
     it('should show some contacts', function(){
         browser
-            .get('https://sos1718-01.herokuapp.com/ManagerApp.html#!/transfers-stats')
+            .get(config.getAppUrl())
             .then(function (){
                 element.all(by.repeater('team in teams'))
                 .then(function(teams){
