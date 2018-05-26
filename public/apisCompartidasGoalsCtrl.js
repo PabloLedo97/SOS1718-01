@@ -167,7 +167,7 @@ angular.module("tvfeesManagerApp")
 };
  var config = {};
 
-      var charObject = uv.chart('PercentBar', graphdef);
+      var charObject = uv.chart('Bar', graphdef);
         
       });
       });

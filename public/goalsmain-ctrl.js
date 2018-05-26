@@ -100,40 +100,20 @@ Highcharts.chart('analytics1', {
 
     
 var graphdef = {
-  categories : ['Malaga-Fc', 'Sevilla-Fc', 'Real-betis-balompie','Atlethic-club-bilbao','Villareal-cf'],
+  categories : ['Goles'],
   dataset : {
-    'Malaga-Fc' : [
-      { name : 'rightfoot', value: response.data[0].rightfoot},
-      { name : 'head', value: response.data[0].head},
-      { name : 'penalty', value: response.data[0].penalty}
+    'Goles' : [
+      { name : 'rightfoot', value: response.data.map(function(d){return d["rightfoot"]}).reduce(function(a,n){return a+n})},
+      { name : 'head', value: response.data.map(function(d){return d["head"]}).reduce(function(a,n){return a+n})},
+      { name : 'penalty', value: response.data.map(function(d){return d["penalty"]}).reduce(function(a,n){return a+n})}
     ],
-    'Sevilla-Fc' : [
-      { name : 'rightfoot', value: response.data[1].rightfoot},
-      { name : 'head', value: response.data[1].head},
-      { name : 'penalty', value: response.data[1].penalty}
-    ],
-    'Real-betis-balompie' : [
-     { name : 'rightfoot', value: response.data[2].rightfoot},
-      { name : 'head', value: response.data[2].head},
-      { name : 'penalty', value: response.data[2].penalty}
-    ],
-    'Atlethic-club-bilbao' : [
-      { name : 'rightfoot', value: response.data[3].rightfoot},
-      { name : 'head', value: response.data[3].head},
-      { name : 'penalty', value: response.data[3].penalty}
-    ],
-    'Villareal-cf' : [
-      { name : 'rightfoot', value: response.data[4].rightfoot},
-      { name : 'head', value: response.data[4].head},
-      { name : 'penalty', value: response.data[4].penalty}
-    ]
     
   }
 };
 
       var config = {};
 
-      var charObject = uv.chart('Bar', graphdef);
+      var charObject = uv.chart('donut', graphdef);
 
 
         });
