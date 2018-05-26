@@ -75,7 +75,7 @@ angular.module("tvfeesManagerApp")
                 $http.get(apiPropia).then(function(response2){
               Highcharts.chart('GraficoProxy', {
     chart: {
-        type: 'bar'
+        type: 'area'
     },
     title: {
         text: 'GraficoProxy'
