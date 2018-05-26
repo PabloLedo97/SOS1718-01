@@ -8,7 +8,7 @@ exports.config = {
     params: {
         host: 'localhost',
         port: '8080',
-        nombreapi: "/ManagerApp.html#!/transfer-stats"
+        nombreapi: "/ManagerApp.html#!/transfers-stats"
     }
 };
 
