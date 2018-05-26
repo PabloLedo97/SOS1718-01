@@ -7,7 +7,7 @@ angular
   .module("tvfeesManagerApp")
   .controller("goalsmain-ctrl", ["$scope", "$http", function($scope, $http) {
       
-        var apiPropia = "/api/v1/goals-stats"
+        
 
     console.log("main Controller initialized");
     
@@ -174,42 +174,5 @@ var graphdef = {
 
         */
   
-  var url = 'https://openweathermap.org/data/2.5/weather?q=';
-      var id = '&appid=b6907d289e10d714a6e88b30761fae22';
-      
-      
-      $http.get(url + 'Malaga' + ',ES' + id).then(function(response) {
-          $http.get(url + 'Sevilla' + ',ES' + id).then(function(response1) {
-              $http.get(url + 'Bilbao' + ',ES' + id).then(function(response3) {
-          $http.get(apiPropia).then(function(response2){
-            console.log((response.data));
-        
-        
-        
-        var graphdef = {
-  categories : ['Malaga','Sevilla','Bilbao'],
-  dataset : {
-    'Malaga' : [
-      { name : 'temperatura', value:response.data['main']['temp'] },
-      { name : 'goles de penalty', value:response2.data[0].penalty }
-    ],
-    'Sevilla' : [
-      { name : 'temperatura', value: response1.data['main']['temp'] },
-      { name : 'goles de penalty', value:response2.data[1].penalty + response2.data[2].penalty }
-    ],
-    'Bilbao' : [
-      { name : 'temperatura', value:response3.data['main']['temp'] },
-      { name : 'goles de penalty', value:response2.data[3].penalty }
-    ]
-  }
-};
- var config = {};
-
-      var charObject = uv.chart('Bar', graphdef);
-        
-      });
-      });
-      });
-      });
-      
+  
   }]); 
