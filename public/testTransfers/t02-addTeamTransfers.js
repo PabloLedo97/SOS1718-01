@@ -1,5 +1,6 @@
 var fs = require("fs");
 var path = require("path");
+var config = require("./config");
 
 describe('Add team', function(){
     it('should add a new team', function(){
@@ -24,7 +25,7 @@ describe('Add team', function(){
                 });
                 browser.takeScreenshot()
                 .then(function(png){
-                    var stream = fs.createWriteStream(path.join(process.cwd(),'testTransfers','output','t02.png'));
+                    var stream = fs.createWriteStream(path.join(process.cwd(),'public/testTransfers','output','t02.png'));
                     stream.write(new Buffer(png,'base64'));
                     stream.end();
                 });
