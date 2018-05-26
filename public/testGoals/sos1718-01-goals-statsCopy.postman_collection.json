@@ -1,0 +1,97 @@
+{
+	"info": {
+		"name": "sos1718-01-goals-statsCopy",
+		"_postman_id": "038f56b8-9a10-4836-8168-f4c71b3b2ccc",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/malaga",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "490027da-1c50-4b3d-9f08-848df800de6e",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Array debe ser mayor o igual a 1\"] = (jsonData.length >= 1);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n            \"city\" : \"sevilla\",\n            \"year\" : 2015,\n            \"team\" : \"real betis balompie\",\n            \"goals rightfoot\": 19,\n            \"goals head\" : 9,\n            \"goals penalty\": 3\n        }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/malaga",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/malaga",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b05ceb68-c1f0-4dbc-95cc-7b2d451f5f3a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n            \"city\" : \"sevilla\",\n            \"year\" : 2015,\n            \"team\" : \"real betis balompie\",\n            \"goals rightfoot\": 19,\n            \"goals head\" : 9,\n            \"goals penalty\": 3\n        }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/malaga",
+				"description": ""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1034e34f-f171-4318-b0ce-1aff830694d1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9fe98e1c-8b64-4452-b6d9-3c0b35e37702",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
