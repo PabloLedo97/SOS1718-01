@@ -75,7 +75,7 @@ angular.module("tvfeesManagerApp")
                 $http.get(apiPropia).then(function(response2){
               Highcharts.chart('GraficoProxy', {
     chart: {
-        type: 'bar'
+        type: 'area'
     },
     title: {
         text: 'GraficoProxy'
@@ -153,15 +153,15 @@ angular.module("tvfeesManagerApp")
   dataset : {
     'Malaga' : [
       { name : 'temperatura', value:response.data['main']['temp'] },
-      { name : 'goles de penalty', value:response2.data[0].penalty }
+      { name : 'goles de penalty', value: response2.data.filter(d=>d.city=="malaga").map(function(d){return d["penalty"]}).reduce(function(a,n){return a+n}) }
     ],
     'Sevilla' : [
       { name : 'temperatura', value: response1.data['main']['temp'] },
-      { name : 'goles de penalty', value:response2.data[1].penalty + response2.data[2].penalty }
+      { name : 'goles de penalty', value: response2.data.filter(d=>d.city=="sevilla").map(function(d){return d["penalty"]}).reduce(function(a,n){return a+n}) }
     ],
     'Bilbao' : [
       { name : 'temperatura', value:response3.data['main']['temp'] },
-      { name : 'goles de penalty', value:response2.data[3].penalty }
+      { name : 'goles de penalty', value: response2.data.filter(d=>d.city=="bilbao").map(function(d){return d["penalty"]}).reduce(function(a,n){return a+n}) }
     ]
   }
 };

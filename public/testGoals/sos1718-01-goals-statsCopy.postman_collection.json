@@ -1,0 +1,394 @@
+{
+	"info": {
+		"name": "sos1718-01-goals-statsCopy",
+		"_postman_id": "2076beb2-5e91-41bb-bf84-f59f52d0a079",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/malaga",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "490027da-1c50-4b3d-9f08-848df800de6e",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Array debe ser mayor o igual a 1\"] = (jsonData.length >= 1);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n            \"city\" : \"sevilla\",\n            \"year\" : 2015,\n            \"team\" : \"real betis balompie\",\n            \"goals rightfoot\": 19,\n            \"goals head\" : 9,\n            \"goals penalty\": 3\n        }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/malaga",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/malaga",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b05ceb68-c1f0-4dbc-95cc-7b2d451f5f3a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n            \"city\" : \"sevilla\",\n            \"year\" : 2015,\n            \"team\" : \"real betis balompie\",\n            \"goals rightfoot\": 19,\n            \"goals head\" : 9,\n            \"goals penalty\": 3\n        }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/malaga",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/sevilla",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "88125257-72d4-43dd-9211-b91e46ad483b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n            \"city\" : \"sevilla\",\n            \"year\" : 2015,\n            \"team\" : \"real betis balompie\",\n            \"rightfoot\": 31,\n            \"head\" : 10,\n            \"penalty\": 0\n        }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/sevilla",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7c734790-5466-4040-bf7f-7b93647c4568",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n            \"city\" : \"sevilla\",\n            \"year\" : 2015,\n            \"team\" : \"real betis balompie\",\n            \"goals rightfoot\": 31,\n            \"goals head\" : 10,\n            \"goals penalty\": 0\n        }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/sevilla/sevilla",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a3adac67-b640-4872-b183-7cedb0f20193",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n            \"city\" : \"sevilla\",\n            \"year\" : 2015,\n            \"team\" : \"sevilla-fc\",\n            \"goals rightfoot\": 0,\n            \"goals head\" : 0,\n            \"goals penalty\": 0\n        }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/sevilla/sevilla-fc",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b2dbaa6-9c19-4fae-aafa-7b5eb5da9d64",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"city\": \"pais-vasco\",\n        \"year\": 2015,\n        \"team\": \"sd-eibar\",\n        \"rightfoot\": 32,\n        \"head\": 7,\n        \"penalty\": 6\n    }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/sevilla/sevilla-fc",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2feecfd4-2119-40c7-8bd9-661a46ef508d",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n            \"city\" : \"sevilla\",\n            \"year\" : 2015,\n            \"team\" : \"real betis balompie\",\n            \"goals rightfoot\": 31,\n            \"goals head\" : 10,\n            \"goals penalty\": 0\n        }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/sevilla/sevilla-fc",
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "22aab8a6-5e69-422e-b365-5f75377efa0c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n        \"city\": \"pais-vasco\",\n        \"year\": 2015,\n        \"team\": \"sd-eibar\",\n        \"rightfoot\": 32,\n        \"head\": 7,\n        \"penalty\": 6\n        }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/",
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/sevilla/se",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dd622215-f4a8-4445-aa8b-6142ab51a6e3",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n            \"city\" : \"sevilla\",\n            \"year\" : 2015,\n            \"team\" : \"sevilla-fc\",\n            \"goals rightfoot\": 31,\n            \"goals head\" : 10,\n            \"goals penalty\": 0\n        }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/sevilla/se",
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/sevilla/se",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03187295-c4d3-414d-bebe-59c215dbe67a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n            \"city\" : \"sevilla\",\n            \"year\" : 2015,\n            \"team\" : \"sevilla-fc\",\n            \"goals rightfoot\": 31,\n            \"goals head\" : 10,\n            \"goals penalty\": 0\n        }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/sevilla/se",
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c6325467-b918-4a83-b506-860762407f7b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n        \"city\": \"pais-vasco\",\n        \"year\": 2015,\n        \"team\": \"sd-eibar\",\n       \n        \"head\": 7,\n        \"penalty\": 6\n        }"
+				},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/goals-stats/",
+				"description": ""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1034e34f-f171-4318-b0ce-1aff830694d1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9fe98e1c-8b64-4452-b6d9-3c0b35e37702",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
