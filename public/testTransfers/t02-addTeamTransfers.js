@@ -1,5 +1,6 @@
 var fs = require("fs");
 var path = require("path");
+var config = require("./config");
 
 describe('Add team', function(){
     it('should add a new team', function(){
