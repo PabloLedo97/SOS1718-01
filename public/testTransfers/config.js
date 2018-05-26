@@ -7,10 +7,11 @@ exports.config = {
     
     params: {
         host: 'localhost',
-        port: '8080'
+        port: '8080',
+        nombreapi: "/ManagerApp.html#!/transfer-stats"
     }
 };
 
 exports.getAppUrl = function(){
     return "http://"+browser.params.host+":"+browser.params.port; 
-}
+};
