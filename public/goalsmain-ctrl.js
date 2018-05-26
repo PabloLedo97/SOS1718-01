@@ -143,7 +143,7 @@ var graphdef = {
       var url = 'https://openweathermap.org/data/2.5/weather?q=';
       var id = '&appid=b6907d289e10d714a6e88b30761fae22';
       var res = null;
-      var api = false;
+      
       $http.get(url + ciudad + ',ES' + id).then(function(response) {
             console.log((response.data));
         res = response.data['main']['temp'];
@@ -161,7 +161,7 @@ var graphdef = {
   categories : ['Madrid'],
   dataset : {
     'Madrid' : [
-      { name : 'rightfoot', value: getTiempo('Madrid')},
+      { name : 'rightfoot', value: getTiempo('Madrid')}
       
     ]
   }
