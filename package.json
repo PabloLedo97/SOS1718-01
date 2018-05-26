@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "pretest": "public/testGoals/runPhantomjs.sh;public/testTransfers/runPhantomjs.sh",
-    "test": "protractor public/testGoals/config.js; protractor public/testTransfers/config.js",
+    "pretest": "public/testGoals/runPhantomjs.sh;public/testTransfers/runPhantomjs.sh;public/testTvfees/runPhantomjs.sh",
+    "test": "protractor public/testGoals/config.js;protractor public/testTransfers/config.js;protractor public/testTvfees/config.js",
     "posttest": "killall phantomjs"
     
   },
