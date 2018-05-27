@@ -1,3 +1,6 @@
+/*global element*/
+/*global by*/
+
 var newman = require("newman");
 var path = require("path");
 
