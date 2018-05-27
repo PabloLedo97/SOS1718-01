@@ -4,13 +4,13 @@ var path = require("path");
 
 describe('API should work', function(){
     newman.run({
-        //collection: require(path.join(process.cwd(),"test"))
+        collection: require(path.join(process.cwd(),"public/testTransfers","Pruebas D03.postman_collection.json")),
         reporters: "cli"
     },function(err){
         if(err)
             throw err;
         else
-            console.log("Collection run complete!")
+            console.log("Collection run complete!");
     }); 
     
 });

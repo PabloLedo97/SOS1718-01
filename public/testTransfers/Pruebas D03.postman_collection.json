@@ -1,0 +1,295 @@
+{
+	"info": {
+		"_postman_id": "9ada3f7c-7287-47fd-a3a5-e875c0f8e398",
+		"name": "Pruebas D03",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET ruta base",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Team list should have more than 3 teams\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 3);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://sos1718-01.herokuapp.com/api/v1/transferincomes-stats"
+			},
+			"response": []
+		},
+		{
+			"name": "POST ruta base",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"city\": \"villareal\",\n\t\"year\": 2015,\n\t\"team\": \"villareal-cf\",\n\t\"timaxexp\": 17.5,\n\t\"tilessexp\": 2.5,\n\t\"tispa\": 17.5\n}"
+				},
+				"url": "http://sos1718-01.herokuapp.com/api/v1/transferincomes-stats"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT recurso det",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"city\": \"villareal\",\n\t\"year\": 2015,\n\t\"team\": \"villareal-cf\",\n\t\"timaxexp\": 17.5,\n\t\"tilessexp\": 2.5,\n\t\"tispa\": 0\n}"
+				},
+				"url": "http://sos1718-01.herokuapp.com/api/v1/transferincomes-stats/villareal/villareal-cf"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT ruta base (error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://sos1718-01.herokuapp.com/api/v1/transferincomes-stats"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE recurso det",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://sos1718-01.herokuapp.com/api/v1/transferincomes-stats/villareal"
+			},
+			"response": []
+		},
+		{
+			"name": "POST recurso det (error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://sos1718-01.herokuapp.com/api/v1/transferincomes-stats/vigo"
+			},
+			"response": []
+		},
+		{
+			"name": "GET recurso det",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Team list should have 1 team\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length === 1);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://sos1718-01.herokuapp.com/api/v1/transferincomes-stats/vigo"
+			},
+			"response": []
+		},
+		{
+			"name": "GET recurso inexistente (error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://sos1718-01.herokuapp.com/api/v1/transferincomes-stats/canarias"
+			},
+			"response": []
+		},
+		{
+			"name": "POST recurso existe (error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"city\": \"madrid\",\n        \"year\": 2015,\n        \"team\": \"real madrid cf\",\n        \"timaxexp\": 31.5,\n        \"tilessexp\": 6,\n        \"tispa\": 12\n    }"
+				},
+				"url": "http://sos1718-01.herokuapp.com/api/v1/transferincomes-stats"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE todo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "74729d70-a492-4d50-b8c9-29e039763cb0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": "http://sos1718-01.herokuapp.com/api/v1/transferincomes-stats"
+			},
+			"response": []
+		}
+	]
+}
