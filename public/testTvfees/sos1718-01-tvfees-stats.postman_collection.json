@@ -1,73 +1,22 @@
 {
 	"info": {
-		"_postman_id": "c4f461b5-4b2c-4fac-bb8a-17456bb9f1bd",
+		"_postman_id": "77b16f86-46e6-49f3-9713-bf11ab3a986a",
 		"name": "sos1718-01-tvfees-stats",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/loadInitialData",
+			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
-				"url": {
-					"raw": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/loadInitialData",
-					"protocol": "https",
-					"host": [
-						"sos1718-01",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"tvfees-stats",
-						"loadInitialData"
-					]
-				}
+				"url": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats"
 			},
 			"response": []
 		},
 		{
 			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "90464ea0-efdf-454b-b8a6-23d6b3bccd29",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats",
-					"protocol": "https",
-					"host": [
-						"sos1718-01",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"tvfees-stats"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -78,57 +27,19 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"city\": \"granada\",\n        \"year\": 2015,\n        \"team\": \"granada cf\",\n        \"capacity\": 40000,\n        \"attotal\": 303895,\n        \"ataverage\": 37987\n    }"
+					"raw": "{\n        \"city\": \"granada\",\n        \"year\": 2015,\n        \"team\": \"granada-cf\",\n        \"capacity\": 45000,\n        \"attotal\": 70000,\n        \"ataverage\": 15000\n    }"
 				},
-				"url": {
-					"raw": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/",
-					"protocol": "https",
-					"host": [
-						"sos1718-01",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"tvfees-stats",
-						""
-					]
-				}
+				"url": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats"
 			},
 			"response": []
 		},
 		{
 			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/granada",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/granada",
-					"protocol": "https",
-					"host": [
-						"sos1718-01",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"tvfees-stats",
-						"granada"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/valencia",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "c51709ac-2085-41aa-867f-9235c52712b9",
+						"id": "a152b5fb-95d5-4279-a08c-f1986409c088",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
@@ -139,46 +50,24 @@
 				}
 			],
 			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"city\": \"valencia\",\n        \"year\": 2015,\n        \"team\": \"valencia cf\",\n        \"capacity\": 60000,\n        \"attotal\": 303895,\n        \"ataverage\": 37987\n    }"
-				},
-				"url": {
-					"raw": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/valencia",
-					"protocol": "https",
-					"host": [
-						"sos1718-01",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"tvfees-stats",
-						"valencia"
-					]
-				}
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/granada"
 			},
 			"response": []
 		},
 		{
-			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/valencia",
+			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "9487091e-afc0-423c-aa36-97df34d19061",
+						"id": "e7e0ebde-ac05-4f31-af02-c7f2ce93869e",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 405\", function () {",
-							"    pm.response.to.have.status(405);",
+							"pm.test(\"Este recurso ya existe\", function () {",
+							"    pm.response.to.have.status(409);",
 							"});"
 						]
 					}
@@ -194,23 +83,33 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n        \"city\": \"granada\",\n        \"year\": 2015,\n        \"team\": \"granada-cf\",\n        \"capacity\": 45000,\n        \"attotal\": 70000,\n        \"ataverage\": 15000\n    }"
 				},
-				"url": {
-					"raw": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/valencia",
-					"protocol": "https",
-					"host": [
-						"sos1718-01",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"tvfees-stats",
-						"valencia"
-					]
+				"url": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats"
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/granada",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "325c7864-bbfd-40fd-babe-077d1d72efae",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
 				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/granada"
 			},
 			"response": []
 		},
@@ -220,10 +119,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "46097761-1716-4a2d-9337-84458b3d12b5",
+						"id": "69899000-3b78-4570-bea1-cb5190dd7c52",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 405\", function () {",
+							"pm.test(\"Status code is 405 metodo no permitido\", function () {",
 							"    pm.response.to.have.status(405);",
 							"});"
 						]
@@ -234,20 +133,7 @@
 				"method": "PUT",
 				"header": [],
 				"body": {},
-				"url": {
-					"raw": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats",
-					"protocol": "https",
-					"host": [
-						"sos1718-01",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"tvfees-stats"
-					]
-				}
+				"url": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats"
 			},
 			"response": []
 		},
@@ -257,56 +143,34 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cac72df7-1ef5-40a7-bc41-91f7e66a01ab",
+						"id": "6c5efd47-dad1-4c24-aa46-4a2ad2a80a13",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 409\", function () {",
-							"    pm.response.to.have.status(409);",
+							"pm.test(\"Status code is 405 metodo no permitido\", function () {",
+							"    pm.response.to.have.status(405);",
 							"});"
 						]
 					}
 				}
 			],
 			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"city\": \"granada\",\n        \"year\": 2015,\n        \"team\": \"granada cf\",\n        \"capacity\": 40000,\n        \"attotal\": 303895,\n        \"ataverage\": 37987\n    }"
-				},
-				"url": {
-					"raw": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/barcelona",
-					"protocol": "https",
-					"host": [
-						"sos1718-01",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"tvfees-stats",
-						"barcelona"
-					]
-				}
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/barcelona"
 			},
 			"response": []
 		},
 		{
-			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/brasil",
+			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/vigo",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "c67cd001-410a-4d1d-a218-2c6029132997",
+						"id": "1a8bc5d1-4037-4d39-a719-0d40631d02bc",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 404 not found\", function () {",
+							"pm.test(\"Status code is 404 este recurso no existe\", function () {",
 							"    pm.response.to.have.status(404);",
 							"});"
 						]
@@ -317,126 +181,20 @@
 				"method": "GET",
 				"header": [],
 				"body": {},
-				"url": {
-					"raw": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/brasil",
-					"protocol": "https",
-					"host": [
-						"sos1718-01",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"tvfees-stats",
-						"brasil"
-					]
-				}
+				"url": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/vigo"
 			},
 			"response": []
 		},
 		{
-			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats",
+			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "a791ec06-690f-4112-b884-0156152ed007",
+						"id": "1aaadf66-4476-4b00-a841-5ca965ed8ad1",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"city\": \"granada\",\n        \"year\": 2015,\n        \"team\": \"granada cf\",\n        \"capacity\": 40000\n        \n    }"
-				},
-				"url": {
-					"raw": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats",
-					"protocol": "https",
-					"host": [
-						"sos1718-01",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"tvfees-stats"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/granada/sev",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "673533b2-6263-4f51-8725-79c697c250bf",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t    \"id\":\"abcedpslaplp\"\n        \"city\": \"granada\",\n        \"year\": 2015,\n        \"team\": \"granada cf\",\n        \"capacity\": 40000,\n        \"attotal\": 303895,\n        \"ataverage\": 37987\n    }"
-				},
-				"url": {
-					"raw": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/granada/sev",
-					"protocol": "https",
-					"host": [
-						"sos1718-01",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"tvfees-stats",
-						"granada",
-						"sev"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "6d8ad57f-a2c6-4ca4-9649-7fb863682881",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
+							"pm.test(\"Status code is 200 Todos los recursos borrados\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});"
 						]
@@ -447,20 +205,7 @@
 				"method": "DELETE",
 				"header": [],
 				"body": {},
-				"url": {
-					"raw": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats",
-					"protocol": "https",
-					"host": [
-						"sos1718-01",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"tvfees-stats"
-					]
-				}
+				"url": "https://sos1718-01.herokuapp.com/api/v1/tvfees-stats/"
 			},
 			"response": []
 		}
