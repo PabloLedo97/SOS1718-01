@@ -178,7 +178,7 @@ app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
     if(!newteam.city || !newteam.year || !newteam.team || !newteam.rightfoot || !newteam.head || !newteam.penalty ||Object.keys(newteam).length != 6){
         console.log("Warning : new GET request ");
         res.sendStatus(400);
-    } 
+    } else {
    
     
      
@@ -196,6 +196,7 @@ app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
         }
     
     });
+    }
 });
 
 app.put(BASE_API_PATH+"/goals-stats",(req,res)=>{
