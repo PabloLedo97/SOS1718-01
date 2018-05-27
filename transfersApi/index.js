@@ -189,6 +189,7 @@ transfersApi.register = function(app, db3) {
         console.log(Date() + " - POST /transferincomes-stats");
         var newteam = req.body;
         if (!newteam.city || !newteam.year || !newteam.team || !newteam.timaxexp || !newteam.tilessexp || !newteam.tispa || Object.keys(newteam).length != 6) {
+            console.log("Warning : new GET request ");
             res.sendStatus(400);
         }
         db3.find({ "city": newteam.city }).toArray((err, filteredTeams) => {
