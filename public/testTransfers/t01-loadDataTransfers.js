@@ -2,14 +2,13 @@ var fs = require("fs");
 var path = require("path");
 var config = require('./config');
 
-
 describe('Data is loaded', function(){
-    it('should show some contacts', function(){
+    it('should show some teams', function(){
         browser
-            .get(config.getAppUrl())
-            .then(function (){
-                element.all(by.repeater('team in teams'))
-                .then(function(teams){
+        .get(config.getAppUrl())
+        .then(function(){
+            element.all(by.repeater('team in teams'))
+            .then(function(teams){
                 browser.takeScreenshot()
                 .then(function(png){
                     var stream = fs.createWriteStream(path.join(process.cwd(),'public/testTransfers','output','t01.png'));
