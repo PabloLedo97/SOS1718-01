@@ -11,6 +11,13 @@ angular.module("tvfeesManagerApp")
             var api2 = "proxyPACO/api/v1/unemployment-rates";
             var api1 = "https://sos1718-02.herokuapp.com/api/v2/employments";
             
+            var mashapeMarch = {
+            method: 'GET',
+            url: "https://community-march-madness-v1.p.mashape.com/games",
+            headers: {
+                "X-Mashape-Key": "zZRDXYaRzImsher3Auyq9KGGeUUmp1bONedjsnLtL2XyhpTlsL", 
+                "Accept": "application/json"
+            }};
             
             $http.get(api1).then(function(response1){
                 $http.get(apiPropia).then(function(response2){
@@ -75,7 +82,7 @@ angular.module("tvfeesManagerApp")
                 $http.get(apiPropia).then(function(response2){
               Highcharts.chart('GraficoProxy', {
     chart: {
-        type: 'area'
+        type: 'pie'
     },
     title: {
         text: 'GraficoProxy'
@@ -173,5 +180,10 @@ angular.module("tvfeesManagerApp")
       });
       });
       });
+      
+      $http(mashapeMarch).then(function(response){
+          console.log(response.data);
+
+      })
           
 }]);
