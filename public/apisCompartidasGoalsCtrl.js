@@ -87,8 +87,26 @@ angular.module("tvfeesManagerApp")
         
          $http.get(api2).then(function(response1){
                 $http.get(apiPropia).then(function(response2){
-              
-              
+                    
+                    anychart.onDocumentReady(function () {
+      
+    // create data
+    var data = [
+      ["Goles pierna derecha", response2.data.map(function(d){return d["rightfoot"]}).reduce(function(a,n){return a+n})],
+      ["Goles de cabeza", response2.data.map(function(d){return d["head"]}).reduce(function(a,n){return a+n})],
+      ["illiterate", response1.data.map(function(d){return d["illiterate"]}).reduce(function(a,n){return a+n})],
+      ["First-Grade", response1.data.map(function(d){return d["first-grade"]}).reduce(function(a,n){return a+n})]
+    ];
+
+    var chart = anychart.funnel(data);
+
+    // set the container id
+    chart.container("GraficoProxy");
+
+    // initiate drawing the chart
+    chart.draw();
+                    });       
+              /*
               Highcharts.chart('GraficoProxy', {
                   
     chart: {
@@ -149,7 +167,7 @@ angular.module("tvfeesManagerApp")
         data: response1.data.map(function(d){return (parseInt(d["first-grade"]))})
         
     }]
-});
+}); */
         });
         });
         
