@@ -87,9 +87,12 @@ angular.module("tvfeesManagerApp")
         
          $http.get(api2).then(function(response1){
                 $http.get(apiPropia).then(function(response2){
+              
+              
               Highcharts.chart('GraficoProxy', {
+                  
     chart: {
-        type: 'pie'
+        type: 'column'
     },
     title: {
         text: 'GraficoProxy'
@@ -194,8 +197,8 @@ angular.module("tvfeesManagerApp")
           console.log(response.data);
           console.log(response2.data);
           var data = [
-                            {name: 'Numero de franjas horarias ESPAÑA', value: response.data.timezones.length},
-                            {name: 'Numero de franjas horarias RUSIA', value: response2.data.timezones.length},
+                            {name: 'numero de fronteras ESPAÑA', value: response.data.borders.length},
+                            {name: 'Numero de fronteras RUSIA', value: response2.data.borders.length},
 
                             {name: 'Goles de penalty', value: response3.data.map(function(d){return d["penalty"]}).reduce(function(a,n){return a+n}) },
                      
