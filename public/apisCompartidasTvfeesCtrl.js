@@ -13,7 +13,7 @@ angular.module("tvfeesManagerApp")
                
 Highcharts.chart('graficaApi1', {
     chart: {
-        type: 'bar'
+        type: 'column'
     },
     title: {
         text: 'My Stadistics'
@@ -85,7 +85,7 @@ Highcharts.chart('graficaApi1', {
                 
 Highcharts.chart('graficaApi2', {
     chart: {
-        type: 'area'
+        type: 'bar'
     },
     title: {
         text: 'Stadistics '
