@@ -11,11 +11,18 @@ angular.module("tvfeesManagerApp")
             var api2 = "proxyPACO/api/v1/unemployment-rates";
             var api1 = "https://sos1718-02.herokuapp.com/api/v2/employments";
             
-            var mashapeMarch = {
+            var mashapeES = {
             method: 'GET',
-            url: "https://community-march-madness-v1.p.mashape.com/games",
+            url: "https://restcountries-v1.p.mashape.com/alpha/es",
             headers: {
                 "X-Mashape-Key": "zZRDXYaRzImsher3Auyq9KGGeUUmp1bONedjsnLtL2XyhpTlsL", 
+                "Accept": "application/json"
+            }};
+            var mashapeRu = {
+            method: 'GET',
+            url: "https://restcountries-v1.p.mashape.com/alpha/ru",
+            headers: {
+                "X-Mashape-Key": "AcgEvL97rJmshaCOKvsl1gQsAywip1HIPLejsnt0pcuMEW5zzk", 
                 "Accept": "application/json"
             }};
             
@@ -181,9 +188,52 @@ angular.module("tvfeesManagerApp")
       });
       });
       
-      $http(mashapeMarch).then(function(response){
+      $http(mashapeES).then(function(response){
+          $http(mashapeRu).then(function(response2){
+              $http.get(apiPropia).then(function(response3){
           console.log(response.data);
+          console.log(response2.data);
+          var data = [
+                            {name: 'Numero de franjas horarias ESPAÑA', value: response.data.timezones.length},
+                            {name: 'Numero de franjas horarias RUSIA', value: response2.data.timezones.length},
 
-      })
+                            {name: 'Goles de penalty', value: response3.data.map(function(d){return d["penalty"]}).reduce(function(a,n){return a+n}) },
+                     
+                        ];
+                    
+                        // create funnel chart
+                        var chart = anychart.pyramid(data);
+                    
+                        // set chart margin
+                        chart.margin(10, '20%', 10, '20%');
+                    
+                        // set chart legend settings
+                        chart.legend()
+                                .enabled(true)
+                                .position('outside-right')
+                                .itemsLayout('vertical')
+                                .align('top');
+                    
+                        // set chart title
+                        // set chart base width settings
+                        chart.baseWidth('70%');
+                    
+                        // set chart labels settings
+                        chart.labels()
+                                .position('outside-right')
+                                .format('{%Value}');
+                    
+                        // set container id for the chart
+                        chart.container('sharedStadistics1');
+                    
+                        // initiate chart drawing
+                        chart.draw();
+                   
+                    
+       
+
+      });
+      });
+  });
           
 }]);
