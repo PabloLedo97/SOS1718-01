@@ -32,7 +32,7 @@ angular
                 }).when("/transfers-stats/analytics",{
                     templateUrl:"transfersmain.html",
                     controller: "transfersmain-ctrl"
-                }).when("/goals-stats/compartidas",{
+                }).when("/goals-stats/integrations",{
                     templateUrl:"apisCompartidasGoals.html",
                     controller: "apisCompartidasGoalsCtrl"
                 }).when("/tvfees-stats/compartidas",{
