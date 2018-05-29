@@ -315,7 +315,7 @@ app.get(BASE_API_PATH + "/goals-stats", function(request, response) {
         var aux3 = [];
 
 
-        if (limit || offset >= 0) {
+        if (limit >= 0 || offset >= 0) {
             db2.find({}).skip(offset).limit(limit).toArray(function(err, filteredTeams) {
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
