@@ -3,15 +3,19 @@
 /*global google*/
 /*global Morris*/
 /*global FusionCharts*/
+/*global anychart*/
 
 "use strict"
 angular.module("tvfeesManagerApp")
     .controller("sharedApisTransfersCtrl", ["$scope", "$http", function($scope, $http) {
         console.log("List Ctrl initialized!");
-        var apiPropia = "/api/v1/transferincomes-stats"
+        var apiPropia = "/api/v1/transferincomes-stats";
+
+        //==============APIs SOS============================
         var api2 = "proxyMANU/api/v1/span-univ-stats";
         var api1 = "https://sos1718-04.herokuapp.com/api/v2/graduation-rates";
 
+        //==============APIs Externas========================
         var mashapeCartas = {
             method: 'GET',
             url: "https://omgvamp-hearthstone-v1.p.mashape.com/cards",
@@ -21,22 +25,51 @@ angular.module("tvfeesManagerApp")
 
             }
         };
-        
-        var mashapeDeezerMusic = {
+
+        var mashapeSpain = {
             method: 'GET',
-            url: "https://deezerdevs-deezer.p.mashape.com/search?q=eminem",
-            headers:{
-                "X-Mashape-Key": ""
-                }
+            url: "https://restcountries-v1.p.mashape.com/alpha/es",
+            headers: {
+                "X-Mashape-Key": "AcgEvL97rJmshaCOKvsl1gQsAywip1HIPLejsnt0pcuMEW5zzk",
+                "Accept": "application/json"
+            }
         };
+
+
+        $http(mashapeSpain).then(function(response1) {
+            console.log(response1);
+            $http.get(apiPropia).then(function(response2) {
+                anychart.onDocumentReady(function() {
+                    var chart = anychart.pie([
+                        ['Población española', response1.data.population / 5000000],
+                        ['Traspasos más baratos del Málaga CF', response2.data.filter(d => d.team == "malaga cf").map(function(d) { return d["tilessexp"] })],
+                        ['Traspasos más baratos del Real Madrid CF', response2.data.filter(d => d.team == "real madrid cf").map(function(d) { return d["tilessexp"] })]
+                    ]);
+
+                    chart.title('Población española vs Traspasos más baratos de la temporada 2015/16')
+                        //set chart radius
+                        .radius('43%')
+                        // create empty area in pie chart
+                        .innerRadius('30%');
+
+                    // set container id for the chart
+                    chart.container("ApiExterna2");
+                    // initiate chart drawing
+                    chart.draw();
+
+
+                });
+            });
+        });
+
 
         $http(mashapeCartas).then(function(response1) {
             console.log(response1);
             $http.get(apiPropia).then(function(response2) {
                 FusionCharts.ready(function() {
                     var revenueChart = new FusionCharts({
-                            type: 'doughnut2d',
-                            renderAt: 'chart-container',
+                            type: 'funnel',
+                            renderAt: 'ApiExterna1',
                             width: '450',
                             height: '450',
                             dataFormat: 'json',
@@ -77,15 +110,11 @@ angular.module("tvfeesManagerApp")
                                     },
                                     {
                                         "label": " FC Barcelona ",
-                                        "value": response2.data.filter(d=>d.team=="fc barcelona").map(function(d){return d["timaxexp"]})
-                                    },
-                                    {
-                                        "label": "Malaga CF",
-                                        "value": response2.data.filter(d=>d.team=="malaga cf").map(function(d){return d["timaxexp"]})
+                                        "value": response2.data.filter(d => d.team == "fc barcelona").map(function(d) { return d["timaxexp"] })
                                     },
                                     {
                                         "label": "Sevilla FC",
-                                        "value": response2.data.filter(d=>d.team=="sevilla fc").map(function(d){return d["timaxexp"]})
+                                        "value": response2.data.filter(d => d.team == "sevilla fc").map(function(d) { return d["timaxexp"] })
                                     }
                                 ]
                             }
