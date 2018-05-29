@@ -22,7 +22,8 @@ angular
                     templateUrl:"transfersEdit.html",
                     controller: "transfersEditCtrl"
                 }).when("/analytics",{
-                    templateUrl:"analytics.html"
+                    templateUrl:"analytics.html",
+                    controller: "analytics-ctrl"
                 }).when("/tvfees-stats/analytics",{
                     templateUrl:"tvfeesmain.html",
                     controller: "tvfeesmain-ctrl"
