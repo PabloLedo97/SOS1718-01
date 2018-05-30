@@ -5,108 +5,130 @@
 /*global uv*/
 "use strict"
 angular.module("tvfeesManagerApp")
-  .controller("apisCompartidasGoalsCtrl", ["$scope","$http", function($scope,$http) {
-            console.log("List Ctrl initialized!");
-            var apiPropia = "/api/v1/goals-stats"
-            var api2 = "proxyPACO/api/v1/unemployment-rates";
-            var api1 = "https://sos1718-02.herokuapp.com/api/v2/employments";
-            
-            var mashapeES = {
+    .controller("apisCompartidasGoalsCtrl", ["$scope", "$http", function($scope, $http) {
+        console.log("List Ctrl initialized!");
+        var apiPropia = "/api/v1/goals-stats"
+        var api2 = "proxyPACO/api/v1/unemployment-rates";
+        var api1 = "https://sos1718-02.herokuapp.com/api/v2/employments";
+
+        var mashapeES = {
             method: 'GET',
             url: "https://restcountries-v1.p.mashape.com/alpha/es",
             headers: {
-                "X-Mashape-Key": "zZRDXYaRzImsher3Auyq9KGGeUUmp1bONedjsnLtL2XyhpTlsL", 
+                "X-Mashape-Key": "zZRDXYaRzImsher3Auyq9KGGeUUmp1bONedjsnLtL2XyhpTlsL",
                 "Accept": "application/json"
-            }};
-            var mashapeRu = {
+            }
+        };
+        var mashapeRu = {
             method: 'GET',
             url: "https://restcountries-v1.p.mashape.com/alpha/ru",
             headers: {
-                "X-Mashape-Key": "AcgEvL97rJmshaCOKvsl1gQsAywip1HIPLejsnt0pcuMEW5zzk", 
+                "X-Mashape-Key": "zZRDXYaRzImsher3Auyq9KGGeUUmp1bONedjsnLtL2XyhpTlsL",
                 "Accept": "application/json"
-            }};
-            
-            $http.get(api1).then(function(response1){
-                $http.get(apiPropia).then(function(response2){
-              Highcharts.chart('GraficoNormal', {
-    chart: {
-        type: 'line'
-    },
-    title: {
-        text: ' GraficoNormal '
-    },
-    
-    xAxis: {
-        categories: response2.data.map(function(d){return (parseInt(d.year))})
-    },
-    yAxis: {
-        title: {
-            text: 'Stats1'
-        },
-        labels: {
-            formatter: function () {
-                return this.value ;
             }
-        }
-    },
-    tooltip: {
-        crosshairs: true,
-        shared: true
-    },
-    plotOptions: {
-        spline: {
-            marker: {
-                radius: 4,
-                lineColor: '#666666',
-                lineWidth: 1
+        };
+
+        var mashapeEbola = {
+            method: 'GET',
+            url: "https://ebola-outbreak.p.mashape.com/cases",
+            headers: {
+                "X-Mashape-Key": "zZRDXYaRzImsher3Auyq9KGGeUUmp1bONedjsnLtL2XyhpTlsL",
+                "Accept": "application/json"
             }
-        }
-    },
-    series: [{
-         name: 'Rightfoot',
-        data: response2.data.map(function(d){return d["rightfoot"]})
-    },{
-        name: 'Head',
-        data: response2.data.map(function(d){return d["head"]})
-    },{
+        };
         
-        name: 'TotalSelf',
-        data: response1.data.map(function(d){return (parseFloat(d["totalself"]))})
+         var mashapeCOD = {
+            method: 'GET',
+            url: "https://ahmedakhan-game-review-information-v1.p.mashape.com/api/v1/information?console=xbox+360&game_name=call+of+duty+black+ops",
+            headers: {
+                "X-Mashape-Key": "zZRDXYaRzImsher3Auyq9KGGeUUmp1bONedjsnLtL2XyhpTlsL",
+                "Accept": "application/json"
+            }
+        };
         
-    },{
-        name: 'TotalSalaried',
-        data: response1.data.map(function(d){return (parseFloat(d["totalsalaried"]))})
         
-       
-    }]
-});
-});
+
+        $http.get(api1).then(function(response1) {
+            $http.get(apiPropia).then(function(response2) {
+                Highcharts.chart('GraficoNormal', {
+                    chart: {
+                        type: 'line'
+                    },
+                    title: {
+                        text: ' GraficoNormal '
+                    },
+
+                    xAxis: {
+                        categories: response2.data.map(function(d) { return (parseInt(d.year)) })
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Stats1'
+                        },
+                        labels: {
+                            formatter: function() {
+                                return this.value;
+                            }
+                        }
+                    },
+                    tooltip: {
+                        crosshairs: true,
+                        shared: true
+                    },
+                    plotOptions: {
+                        spline: {
+                            marker: {
+                                radius: 4,
+                                lineColor: '#666666',
+                                lineWidth: 1
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Rightfoot',
+                        data: response2.data.map(function(d) { return d["rightfoot"] })
+                    }, {
+                        name: 'Head',
+                        data: response2.data.map(function(d) { return d["head"] })
+                    }, {
+
+                        name: 'TotalSelf',
+                        data: response1.data.map(function(d) { return (parseFloat(d["totalself"])) })
+
+                    }, {
+                        name: 'TotalSalaried',
+                        data: response1.data.map(function(d) { return (parseFloat(d["totalsalaried"])) })
+
+
+                    }]
+                });
+            });
         });
-        
-       
-        
-         $http.get(api2).then(function(response1){
-                $http.get(apiPropia).then(function(response2){
-                    
-                    anychart.onDocumentReady(function () {
-      
-    // create data
-    var data = [
-      ["Goles pierna derecha", response2.data.map(function(d){return d["rightfoot"]}).reduce(function(a,n){return a+n})],
-      ["Goles de cabeza", response2.data.map(function(d){return d["head"]}).reduce(function(a,n){return a+n})],
-      ["illiterate", response1.data.map(function(d){return d["illiterate"]}).reduce(function(a,n){return a+n})],
-      ["First-Grade", response1.data.map(function(d){return d["first-grade"]}).reduce(function(a,n){return a+n})]
-    ];
 
-    var chart = anychart.funnel(data);
 
-    // set the container id
-    chart.container("GraficoProxy");
 
-    // initiate drawing the chart
-    chart.draw();
-                    });       
-              /*
+        $http.get(api2).then(function(response1) {
+            $http.get(apiPropia).then(function(response2) {
+
+                anychart.onDocumentReady(function() {
+
+                    // create data
+                    var data = [
+                        ["Goles pierna derecha", response2.data.map(function(d) { return d["rightfoot"] }).reduce(function(a, n) { return a + n })],
+                        ["Goles de cabeza", response2.data.map(function(d) { return d["head"] }).reduce(function(a, n) { return a + n })],
+                        ["illiterate", response1.data.map(function(d) { return d["illiterate"] }).reduce(function(a, n) { return a + n })],
+                        ["First-Grade", response1.data.map(function(d) { return d["first-grade"] }).reduce(function(a, n) { return a + n })]
+                    ];
+
+                    var chart = anychart.funnel(data);
+
+                    // set the container id
+                    chart.container("GraficoProxy");
+
+                    // initiate drawing the chart
+                    chart.draw();
+                });
+                /*
               Highcharts.chart('GraficoProxy', {
                   
     chart: {
@@ -168,93 +190,172 @@ angular.module("tvfeesManagerApp")
         
     }]
 }); */
+            });
         });
+
+        var url = 'https://openweathermap.org/data/2.5/weather?q=';
+        var id = '&appid=b6907d289e10d714a6e88b30761fae22';
+
+
+        $http.get(url + 'Malaga' + ',ES' + id).then(function(response) {
+            $http.get(url + 'Sevilla' + ',ES' + id).then(function(response1) {
+                $http.get(url + 'Bilbao' + ',ES' + id).then(function(response3) {
+                    $http.get(apiPropia).then(function(response2) {
+                        console.log((response.data));
+
+
+
+                        var graphdef = {
+                            categories: ['Malaga', 'Sevilla', 'Bilbao'],
+                            dataset: {
+                                'Malaga': [
+                                    { name: 'temperatura', value: response.data['main']['temp'] },
+                                    { name: 'goles de penalty', value: response2.data.filter(d => d.city == "malaga").map(function(d) { return d["penalty"] }).reduce(function(a, n) { return a + n }) }
+                                ],
+                                'Sevilla': [
+                                    { name: 'temperatura', value: response1.data['main']['temp'] },
+                                    { name: 'goles de penalty', value: response2.data.filter(d => d.city == "sevilla").map(function(d) { return d["penalty"] }).reduce(function(a, n) { return a + n }) }
+                                ],
+                                'Bilbao': [
+                                    { name: 'temperatura', value: response3.data['main']['temp'] },
+                                    { name: 'goles de penalty', value: response2.data.filter(d => d.city == "bilbao").map(function(d) { return d["penalty"] }).reduce(function(a, n) { return a + n }) }
+                                ]
+                            }
+                        };
+                        var config = {};
+
+                        var charObject = uv.chart('Bar', graphdef);
+
+                    });
+                });
+            });
+        });
+
+        $http(mashapeES).then(function(response) {
+            $http(mashapeRu).then(function(response2) {
+                $http.get(apiPropia).then(function(response3) {
+                    console.log(response.data);
+                    console.log(response2.data);
+                    var data = [
+                        { name: 'numero de fronteras ESPAÑA', value: response.data.borders.length },
+                        { name: 'Numero de fronteras RUSIA', value: response2.data.borders.length },
+
+                        { name: 'Goles de penalty', value: response3.data.map(function(d) { return d["penalty"] }).reduce(function(a, n) { return a + n }) },
+
+                    ];
+
+                    // create funnel chart
+                    var chart = anychart.pyramid(data);
+
+                    // set chart margin
+                    chart.margin(10, '20%', 10, '20%');
+
+                    // set chart legend settings
+                    chart.legend()
+                        .enabled(true)
+                        .position('outside-right')
+                        .itemsLayout('vertical')
+                        .align('top');
+
+                    // set chart title
+                    // set chart base width settings
+                    chart.baseWidth('70%');
+
+                    // set chart labels settings
+                    chart.labels()
+                        .position('outside-right')
+                        .format('{%Value}');
+
+                    // set container id for the chart
+                    chart.container('sharedStadistics1');
+
+                    // initiate chart drawing
+                    chart.draw();
+
+
+
+
+                });
+            });
+        });
+
+
+        $http(mashapeEbola).then(function(response) {
+            $http.get(apiPropia).then(function(response2) {
+                console.log(response.data);
+                console.log(response2.data);
+
+                FusionCharts.ready(function() {
+                    var salesChart = new FusionCharts({
+                            type: 'area2d',
+                            renderAt: 'ApiExterna3',
+                            width: '400',
+                            height: '300',
+                            dataFormat: 'json',
+                            dataSource: {
+                                "chart": {
+                                    "caption": "Estadisticas del ébola y goles",
+                                    "xAxisName": "Estadisticas",
+                                    "yAxisName": "Unidades",
+                                    "paletteColors": "#0075c2",
+                                    "bgColor": "#ffffff",
+                                    "showBorder": "0",
+                                    "showCanvasBorder": "0",
+                                    "plotBorderAlpha": "10",
+                                    "usePlotGradientColor": "0",
+                                    "plotFillAlpha": "50",
+                                    "showXAxisLine": "1",
+                                    "axisLineAlpha": "25",
+                                    "divLineAlpha": "10",
+                                    "showValues": "1",
+                                    "showAlternateHGridColor": "0",
+                                    "captionFontSize": "14",
+                                    "subcaptionFontSize": "14",
+                                    "subcaptionFontBold": "0",
+                                    "toolTipColor": "#ffffff",
+                                    "toolTipBorderThickness": "0",
+                                    "toolTipBgColor": "#000000",
+                                    "toolTipBgAlpha": "80",
+                                    "toolTipBorderRadius": "2",
+                                    "toolTipPadding": "5"
+                                },
+
+                                "data": [{
+                                        "label": "Muertes ebola Marzo-2014",
+                                        "value": response.data.map(function(d) { return d["deaths"] })[0]
+                                    },
+                                    {
+                                        "label": "Muertes ebola Abril-2014",
+                                        "value": response.data.map(function(d) { return d["deaths"] })[4]
+                                    },
+                                    {
+                                        "label": "Muertes ebola Mayo-2014",
+                                        "value": response.data.map(function(d) { return d["deaths"] })[9]
+                                    },
+                                    {
+                                        "label": "Goles pierna derecha",
+                                        "value": response2.data.map(function(d) { return d["rightfoot"] }).reduce(function(a, n) { return a + n })
+                                    },
+                                    {
+                                        "label": "Goles de cabeza",
+                                        "value": response2.data.map(function(d) { return d["head"] }).reduce(function(a, n) { return a + n })
+                                    }
+                                ]
+                            }
+                        })
+                        .render();
+                });
+            });
         });
         
-       var url = 'https://openweathermap.org/data/2.5/weather?q=';
-      var id = '&appid=b6907d289e10d714a6e88b30761fae22';
-      
-      
-      $http.get(url + 'Malaga' + ',ES' + id).then(function(response) {
-          $http.get(url + 'Sevilla' + ',ES' + id).then(function(response1) {
-              $http.get(url + 'Bilbao' + ',ES' + id).then(function(response3) {
-          $http.get(apiPropia).then(function(response2){
-            console.log((response.data));
         
-        
-        
-        var graphdef = {
-  categories : ['Malaga','Sevilla','Bilbao'],
-  dataset : {
-    'Malaga' : [
-      { name : 'temperatura', value:response.data['main']['temp'] },
-      { name : 'goles de penalty', value: response2.data.filter(d=>d.city=="malaga").map(function(d){return d["penalty"]}).reduce(function(a,n){return a+n}) }
-    ],
-    'Sevilla' : [
-      { name : 'temperatura', value: response1.data['main']['temp'] },
-      { name : 'goles de penalty', value: response2.data.filter(d=>d.city=="sevilla").map(function(d){return d["penalty"]}).reduce(function(a,n){return a+n}) }
-    ],
-    'Bilbao' : [
-      { name : 'temperatura', value:response3.data['main']['temp'] },
-      { name : 'goles de penalty', value: response2.data.filter(d=>d.city=="bilbao").map(function(d){return d["penalty"]}).reduce(function(a,n){return a+n}) }
-    ]
-  }
-};
- var config = {};
+        $http(mashapeCOD).then(function(response) {
+            $http.get(apiPropia).then(function(response2) {
+                console.log(response.data);
+                console.log(response2.data);
 
-      var charObject = uv.chart('Bar', graphdef);
+            });
+        });
         
-      });
-      });
-      });
-      });
-      
-      $http(mashapeES).then(function(response){
-          $http(mashapeRu).then(function(response2){
-              $http.get(apiPropia).then(function(response3){
-          console.log(response.data);
-          console.log(response2.data);
-          var data = [
-                            {name: 'numero de fronteras ESPAÑA', value: response.data.borders.length},
-                            {name: 'Numero de fronteras RUSIA', value: response2.data.borders.length},
 
-                            {name: 'Goles de penalty', value: response3.data.map(function(d){return d["penalty"]}).reduce(function(a,n){return a+n}) },
-                     
-                        ];
-                    
-                        // create funnel chart
-                        var chart = anychart.pyramid(data);
-                    
-                        // set chart margin
-                        chart.margin(10, '20%', 10, '20%');
-                    
-                        // set chart legend settings
-                        chart.legend()
-                                .enabled(true)
-                                .position('outside-right')
-                                .itemsLayout('vertical')
-                                .align('top');
-                    
-                        // set chart title
-                        // set chart base width settings
-                        chart.baseWidth('70%');
-                    
-                        // set chart labels settings
-                        chart.labels()
-                                .position('outside-right')
-                                .format('{%Value}');
-                    
-                        // set container id for the chart
-                        chart.container('sharedStadistics1');
-                    
-                        // initiate chart drawing
-                        chart.draw();
-                   
-                    
-       
-
-      });
-      });
-  });
-          
-}]);
+    }]);
