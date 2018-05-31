@@ -10,6 +10,7 @@ angular.module("tvfeesManagerApp")
         var apiPropia = "/api/v1/goals-stats"
         var api2 = "proxyPACO/api/v1/unemployment-rates";
         var api1 = "https://sos1718-02.herokuapp.com/api/v2/employments";
+        var api3 = "https://sos1718-08.herokuapp.com/api/v2/students-an";
 
         var mashapeES = {
             method: 'GET',
@@ -33,20 +34,20 @@ angular.module("tvfeesManagerApp")
             url: "https://ebola-outbreak.p.mashape.com/cases",
             headers: {
                 "X-Mashape-Key": "zZRDXYaRzImsher3Auyq9KGGeUUmp1bONedjsnLtL2XyhpTlsL",
-                "Accept": "application/json"
+                "Accept": "application/jsosn"
             }
         };
-        
-         var mashapeCOD = {
+
+        var mashapeCOD = {
             method: 'GET',
-            url: "https://ahmedakhan-game-review-information-v1.p.mashape.com/api/v1/information?console=xbox+360&game_name=call+of+duty+black+ops",
+            url: "https://iatacodes-iatacodes-v1.p.mashape.com/api/v5/airlines",
             headers: {
                 "X-Mashape-Key": "zZRDXYaRzImsher3Auyq9KGGeUUmp1bONedjsnLtL2XyhpTlsL",
                 "Accept": "application/json"
             }
         };
-        
-        
+
+
 
         $http.get(api1).then(function(response1) {
             $http.get(apiPropia).then(function(response2) {
@@ -347,15 +348,75 @@ angular.module("tvfeesManagerApp")
                 });
             });
         });
-        
-        
-        $http(mashapeCOD).then(function(response) {
+
+
+        $http.get(api3).then(function(response) {
             $http.get(apiPropia).then(function(response2) {
                 console.log(response.data);
                 console.log(response2.data);
 
+                FusionCharts.ready(function() {
+                    var ageGroupChart = new FusionCharts({
+                        type: 'pie2d',
+                        renderAt: 'ApiExterna4',
+                        width: '450',
+                        height: '300',
+                        dataFormat: 'json',
+                        dataSource: {
+                            "chart": {
+                                "caption": "Split of Visitors by Age Group",
+                                "subCaption": "Last year",
+                                "paletteColors": "#0075c2,#1aaf5d,#f2c500,#f45b00,#8e0000",
+                                "bgColor": "#ffffff",
+                                "showBorder": "0",
+                                "use3DLighting": "0",
+                                "showShadow": "0",
+                                "enableSmartLabels": "0",
+                                "startingAngle": "0",
+                                "showPercentValues": "1",
+                                "showPercentInTooltip": "0",
+                                "decimals": "1",
+                                "captionFontSize": "14",
+                                "subcaptionFontSize": "14",
+                                "subcaptionFontBold": "0",
+                                "toolTipColor": "#ffffff",
+                                "toolTipBorderThickness": "0",
+                                "toolTipBgColor": "#000000",
+                                "toolTipBgAlpha": "80",
+                                "toolTipBorderRadius": "2",
+                                "toolTipPadding": "5",
+                                "showHoverEffect": "1",
+                                "showLegend": "1",
+                                "legendBgColor": "#ffffff",
+                                "legendBorderAlpha": '0',
+                                "legendShadow": '0',
+                                "legendItemFontSize": '10',
+                                "legendItemFontColor": '#666666'
+                            },
+                            "data": [{
+                                    "label": "Goles pierna derecha provincia Sevilla",
+                                    "value": response2.data.filter(d => d.city == "sevilla").map(function(d) { return d["rightfoot"] }).reduce(function(a, n) { return a + n })
+                                },
+                                {
+                                    "label": "Goles cabeza provincia Sevilla",
+                                    "value": response2.data.filter(d => d.city == "sevilla").map(function(d) { return d["head"] }).reduce(function(a, n) { return a + n })
+                                },
+                                {
+                                    "label": "Analfabetos Sevilla",
+                                    "value": response.data.filter(d => d.province == "sevilla").map(function(d) { return d["popilliterate"] }).reduce(function(a, n) { return a + n })
+                                },
+                                {
+                                    "label": "Alta educación Sevilla",
+                                    "value": response.data.filter(d => d.province == "sevilla").map(function(d) { return d["pophigheducation"] }).reduce(function(a, n) { return a + n })
+                                }
+                            ]
+                        }
+                    }).render();
+                });
+
+
             });
         });
-        
+
 
     }]);
