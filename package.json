@@ -8,7 +8,6 @@
     "pretest": "public/testGoals/runPhantomjs.sh;public/testTransfers/runPhantomjs.sh;public/testTvfees/runPhantomjs.sh",
     "test": "protractor public/testGoals/config.js;protractor public/testTransfers/config.js;protractor public/testTvfees/config.js",
     "posttest": "killall phantomjs"
-    
   },
   "repository": {
     "type": "git",

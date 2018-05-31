@@ -52,156 +52,160 @@ var initialteams = [{
     }
 ];
 tvfeesstatsApi.register = function(app, db) {
-        console.log("Register routes for tvfees-stats API");
+    console.log("Register routes for tvfees-stats API");
 
-        app.get(BASE_API_PATH + "/tvfees-stats/docs", (req, res) => {
-            res.redirect("https://documenter.getpostman.com/view/3897700/sos1718-01-tvfees-stats/RVu1Gq87");
-        });
-
-        app.get(BASE_API_PATH + "/tvfees-stats/loadInitialData", (req, res) => {
-            console.log(Date() + " - GET /tvfees-stats/loadInitialData" + initialteams);
-
-            db.find({}, (err, teams) => {
-                if (err) {
-                    console.log("Error acccesing DB");
-                    process.exit(1);
-                    return;
-                }
-                if (teams.length == 0) {
-                    console.log("Empty DB");
-                    db.insert(initialteams);
-                }
-
-                res.send(teams.map((c) => {
-                    delete c._id;
-                    return c;
-                }));
-            });
-
-        });
-
-app.post(BASE_API_PATH+"/tvfees-stats",(req,res)=>{
-    console.log(Date() + " - POST /teams");
-    var newteam = req.body;
-    if(!newteam.city || !newteam.year || !newteam.team || !newteam.capacity || !newteam.attotal || !newteam.ataverage ||Object.keys(newteam).length != 6){
-        console.log("Warning : new GET request ");
-        res.sendStatus(400);
-    } 
-   
-    
-     
-    db.find({ "city" : newteam.city}).toArray((err,filterTeams)=>{
-    if(err){
-        console.error("Error accesing DB");
-        res.sendStatus(500);
-    }
-    if(filterTeams.length>0){
-            console.log("WARNING");
-            res.sendStatus(409); //conflict
-        }else{
-            db.insert(newteam);
-            res.sendStatus(201);
-        }
-    
+    app.get(BASE_API_PATH + "/tvfees-stats/docs", (req, res) => {
+        res.redirect("https://documenter.getpostman.com/view/3897700/sos1718-01-tvfees-stats/RVu1Gq87");
     });
-});
 
-app.put(BASE_API_PATH+"/tvfees-stats",(req,res)=>{
-    console.log(Date() + " - PUT /teams");
-    res.sendStatus(405);
-});
+    app.get(BASE_API_PATH + "/tvfees-stats/loadInitialData", (req, res) => {
+        console.log(Date() + " - GET /tvfees-stats/loadInitialData" + initialteams);
 
-app.delete(BASE_API_PATH+"/tvfees-stats",(req,res)=>{
-    console.log(Date() + " - DELETE /teams");
-    db.remove({});
-    res.sendStatus(200);
-    
-});
+        db.find({}, (err, teams) => {
+            if (err) {
+                console.log("Error acccesing DB");
+                process.exit(1);
+                return;
+            }
+            if (teams.length == 0) {
+                console.log("Empty DB");
+                db.insert(initialteams);
+            }
 
-
-app.get(BASE_API_PATH+"/tvfees-stats/:city",(req,res)=>{
-    var city = req.params.city;
-    console.log(Date() + " - GET /teams/"+city);
-    if(!city){
-        console.log("Warning : new GET request ");
-        res.sendStatus(400);
-    }
-    db.find({ "city" : city}).toArray((err,filterTeams)=>{
-    if(err){
-        console.error("Error accesing DB");
-        res.sendStatus(500);
-    }else {
-    if(filterTeams.length>0){
-            res.send(filterTeams.map((c)=> {
+            res.send(teams.map((c) => {
                 delete c._id;
                 return c;
             }));
-        }else{
-            console.log("WARNING");
-            res.sendStatus(404);
-        }
-        }
+        });
+
     });
-});
 
-app.get(BASE_API_PATH+"/tvfees-stats/:city/:team",(req,res)=>{
-    var city = req.params.city;
-    var team = req.params.team;
-    //var year = parseInt(req.params.year);
-    console.log(Date() + " - GET /teams/"+city+ "/" + team);
-    if(!city || !team){
-        console.log("Warning : new GET request ");
-        res.sendStatus(400);
-    }
-    db.find({ "city" : city, "team" : team}).toArray((err,filterTeams)=>{
-    if(err){
-        console.error("Error accesing DB");
-        res.sendStatus(500);
-    }else{
-       
-        if(filterTeams.length>0){
-            res.send(filterTeams.map((c)=> {
-                delete c._id;
-                return c;
-            }));
-        }else{
-            console.log("WARNING");
-            res.sendStatus(404);
+    app.post(BASE_API_PATH + "/tvfees-stats", (req, res) => {
+        console.log(Date() + " - POST /teams");
+        var newteam = req.body;
+        if (!newteam.city || !newteam.year || !newteam.team || !newteam.capacity || !newteam.attotal || !newteam.ataverage || Object.keys(newteam).length != 6) {
+            console.log("Warning : new GET request ");
+            res.sendStatus(400);
         }
-    }
+
+
+
+        db.find({ "city": newteam.city }).toArray((err, filterTeams) => {
+            if (err) {
+                console.error("Error accesing DB");
+                res.sendStatus(500);
+            }
+            if (filterTeams.length > 0) {
+                console.log("WARNING");
+                res.sendStatus(409); //conflict
+            }
+            else {
+                db.insert(newteam);
+                res.sendStatus(201);
+            }
+
+        });
     });
-});
 
-app.delete(BASE_API_PATH+"/tvfees-stats/:city",(req,res)=>{
-    var city = req.params.city;
-    console.log(Date() + " - DELETE /teams/"+city);
-    
-    db.remove({"city" : city});
-    res.sendStatus(200);
-});
+    app.put(BASE_API_PATH + "/tvfees-stats", (req, res) => {
+        console.log(Date() + " - PUT /teams");
+        res.sendStatus(405);
+    });
 
-app.post(BASE_API_PATH+"/tvfees-stats/:city/",(req,res)=>{
-    var city = req.params.city;
-    console.log(Date() + " - POST /teams/"+ city);
-    res.sendStatus(405);
-});
+    app.delete(BASE_API_PATH + "/tvfees-stats", (req, res) => {
+        console.log(Date() + " - DELETE /teams");
+        db.remove({});
+        res.sendStatus(200);
 
-app.put(BASE_API_PATH+"/tvfees-stats/:city/:team",(req,res)=>{
-    var city = req.params.city;
-    var equipo = req.params.team;
-    var team = req.body;
-    
-    console.log(Date() + " - PUT /teams/"+city);
-    
-    if(city != team.city || equipo != team.team){
-        res.sendStatus(400);
-        console.warn(Date()+" - Hacking attempt!");
-        return;
-    }
-   
-    db.update({"city" : team.city, "team" : team.team},team);
-    res.sendStatus(200);
-});
+    });
+
+
+    app.get(BASE_API_PATH + "/tvfees-stats/:city", (req, res) => {
+        var city = req.params.city;
+        console.log(Date() + " - GET /teams/" + city);
+        if (!city) {
+            console.log("Warning : new GET request ");
+            res.sendStatus(400);
+        }
+        db.find({ "city": city }).toArray((err, filterTeams) => {
+            if (err) {
+                console.error("Error accesing DB");
+                res.sendStatus(500);
+            }
+            else {
+                if (filterTeams.length > 0) {
+                    res.send(filterTeams.map((c) => {
+                        delete c._id;
+                        return c;
+                    }));
+                }
+                else {
+                    console.log("WARNING");
+                    res.sendStatus(404);
+                }
+            }
+        });
+    });
+
+    app.get(BASE_API_PATH + "/tvfees-stats/:city/:team", (req, res) => {
+        var city = req.params.city;
+        var team = req.params.team;
+        //var year = parseInt(req.params.year);
+        console.log(Date() + " - GET /teams/" + city + "/" + team);
+        if (!city || !team) {
+            console.log("Warning : new GET request ");
+            res.sendStatus(400);
+        }
+        db.find({ "city": city, "team": team }).toArray((err, filterTeams) => {
+            if (err) {
+                console.error("Error accesing DB");
+                res.sendStatus(500);
+            }
+            else {
+                if (filterTeams.length > 0) {
+                    res.send(filterTeams.map((c) => {
+                        delete c._id;
+                        return c;
+                    }));
+                }
+                else {
+                    console.log("WARNING");
+                    res.sendStatus(404);
+                }
+            }
+        });
+    });
+
+    app.delete(BASE_API_PATH + "/tvfees-stats/:city", (req, res) => {
+        var city = req.params.city;
+        console.log(Date() + " - DELETE /teams/" + city);
+
+        db.remove({ "city": city });
+        res.sendStatus(200);
+    });
+
+    app.post(BASE_API_PATH + "/tvfees-stats/:city/", (req, res) => {
+        var city = req.params.city;
+        console.log(Date() + " - POST /teams/" + city);
+        res.sendStatus(405);
+    });
+
+    app.put(BASE_API_PATH + "/tvfees-stats/:city/:team", (req, res) => {
+        var city = req.params.city;
+        var equipo = req.params.team;
+        var team = req.body;
+
+        console.log(Date() + " - PUT /teams/" + city);
+
+        if (city != team.city || equipo != team.team) {
+            res.sendStatus(400);
+            console.warn(Date() + " - Hacking attempt!");
+            return;
+        }
+
+        db.update({ "city": team.city, "team": team.team }, team);
+        res.sendStatus(200);
+    });
 
 
 
@@ -217,83 +221,83 @@ app.put(BASE_API_PATH+"/tvfees-stats/:city/:team",(req,res)=>{
 
 
 
-            if (param_city != undefined || param_year != undefined || param_team != undefined || param_capacity != undefined || param_attotal != undefined || param_ataverage != undefined) {
+        if (param_city != undefined || param_year != undefined || param_team != undefined || param_capacity != undefined || param_attotal != undefined || param_ataverage != undefined) {
 
-                for (var k = 0; k < base1.length; k++) {
+            for (var k = 0; k < base1.length; k++) {
 
-                    var year = parseInt(base1[k].year);
-                    var city = base1[k].city;
-                    var team = base1[k].team;
-                    var capacity = base1[k].capacity;
-                    var attotal = base1[k].attotal;
-                    var ataverage = base1[k].ataverage;
+                var year = parseInt(base1[k].year);
+                var city = base1[k].city;
+                var team = base1[k].team;
+                var capacity = base1[k].capacity;
+                var attotal = base1[k].attotal;
+                var ataverage = base1[k].ataverage;
 
-                    // City
-                    if (param_city != undefined) {
+                // City
+                if (param_city != undefined) {
 
-                        if (param_city == city) {
-                            auxil_set.push(base1[k]);
-                        }
-
-                        //Team
+                    if (param_city == city) {
+                        auxil_set.push(base1[k]);
                     }
-                    if (param_city == undefined && param_team != undefined) {
 
-                        if (param_team == team) {
-                            auxil_set.push(base1[k]);
-                        }
+                    //Team
+                }
+                if (param_city == undefined && param_team != undefined) {
 
-
+                    if (param_team == team) {
+                        auxil_set.push(base1[k]);
                     }
-                    // Capacity
-                    else if (param_city == undefined && param_team == undefined && param_capacity != undefined && param_attotal == undefined && param_ataverage == undefined) {
-
-                        if (param_capacity == capacity) {
-                            auxil_set.push(base1[k]);
-                        }
-                    }
-                    // Attotal
-
-                    else if (param_city == undefined && param_year == undefined && param_team == undefined && param_capacity == undefined && param_attotal != undefined && param_ataverage == undefined) {
-
-                        if (param_attotal == attotal) {
-                            auxil_set.push(base1[k]);
-                        }
-
-                        //Ataverage
-                    }
-                    else if (param_city == undefined && param_year == undefined && param_team == undefined && param_capacity == undefined && param_attotal == undefined && param_ataverage != undefined) {
-
-                        if (param_ataverage == ataverage) {
-                            auxil_set.push(base1[k]);
-                        }
 
 
-                    } //Year
-                    else if (param_city == undefined && param_year != undefined && param_team == undefined && param_capacity == undefined && param_attotal == undefined && param_ataverage == undefined) {
+                }
+                // Capacity
+                else if (param_city == undefined && param_team == undefined && param_capacity != undefined && param_attotal == undefined && param_ataverage == undefined) {
 
-                        if (param_year == year) {
-                            auxil_set.push(base1[k]);
-                        }
-
-                        // Capacity, attotal, ataverage
-                    }
-                    else if (param_city == undefined && param_year == undefined && param_team == undefined && param_capacity != undefined && param_attotal != undefined && param_ataverage != undefined) {
-
-                        if (param_capacity == capacity && param_attotal == attotal && param_ataverage == ataverage) {
-                            auxil_set.push(base1[k]);
-                        }
-
+                    if (param_capacity == capacity) {
+                        auxil_set.push(base1[k]);
                     }
                 }
+                // Attotal
 
+                else if (param_city == undefined && param_year == undefined && param_team == undefined && param_capacity == undefined && param_attotal != undefined && param_ataverage == undefined) {
+
+                    if (param_attotal == attotal) {
+                        auxil_set.push(base1[k]);
+                    }
+
+                    //Ataverage
+                }
+                else if (param_city == undefined && param_year == undefined && param_team == undefined && param_capacity == undefined && param_attotal == undefined && param_ataverage != undefined) {
+
+                    if (param_ataverage == ataverage) {
+                        auxil_set.push(base1[k]);
+                    }
+
+
+                } //Year
+                else if (param_city == undefined && param_year != undefined && param_team == undefined && param_capacity == undefined && param_attotal == undefined && param_ataverage == undefined) {
+
+                    if (param_year == year) {
+                        auxil_set.push(base1[k]);
+                    }
+
+                    // Capacity, attotal, ataverage
+                }
+                else if (param_city == undefined && param_year == undefined && param_team == undefined && param_capacity != undefined && param_attotal != undefined && param_ataverage != undefined) {
+
+                    if (param_capacity == capacity && param_attotal == attotal && param_ataverage == ataverage) {
+                        auxil_set.push(base1[k]);
+                    }
+
+                }
             }
 
+        }
 
-            return auxil_set;
 
-        };
-           //Busqueda de recursos
+        return auxil_set;
+
+    };
+    //Busqueda de recursos
     app.get(BASE_API_PATH + "/tvfees-stats", function(request, response) {
         console.log("New Request to /tvfees-stats");
         /*PRUEBA DE BUSQUEDA */
@@ -365,11 +369,11 @@ app.put(BASE_API_PATH+"/tvfees-stats/:city/:team",(req,res)=>{
                             return;
                         }
                     }
-                   else {
-                        response.send(filterTeams.map((c)=> {
+                    else {
+                        response.send(filterTeams.map((c) => {
                             delete c._id;
                             return c;
-                         }));
+                        }));
                     }
                 }
             });
@@ -377,4 +381,3 @@ app.put(BASE_API_PATH+"/tvfees-stats/:city/:team",(req,res)=>{
 
     });
 };
-
