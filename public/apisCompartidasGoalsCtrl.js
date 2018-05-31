@@ -364,8 +364,7 @@ angular.module("tvfeesManagerApp")
                         dataFormat: 'json',
                         dataSource: {
                             "chart": {
-                                "caption": "Split of Visitors by Age Group",
-                                "subCaption": "Last year",
+                                "caption": "Educación y goles en Sevilla",
                                 "paletteColors": "#0075c2,#1aaf5d,#f2c500,#f45b00,#8e0000",
                                 "bgColor": "#ffffff",
                                 "showBorder": "0",
