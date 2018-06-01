@@ -34,7 +34,7 @@ angular.module("tvfeesManagerApp")
                 "Accept": "application/json"
             }
         };
-        
+
         var mashapeDic2 = {
             method: 'GET',
             url: "https://mashape-community-urban-dictionary.p.mashape.com/define?term=beach",
@@ -44,38 +44,47 @@ angular.module("tvfeesManagerApp")
             }
         };
 
+        var mashapeInsultoDiario = {
+            method: 'GET',
+            url: "https://lakerolmaker-insult-generator-v1.p.mashape.com/?mode=daily",
+            headers: {
+                "X-Mashape_Key": "6v7fEc2RZUmshCAdwaRjB82Foz4ip15TH3PjsnAsDhGhw5PtPa",
+                "Accept": "application/json"
+            }
+        };
+
 
         $http(mashapeDic1).then(function(response1) {
             console.log(response1);
             $http.get(apiPropia).then(function(response2) {
-                $http(mashapeDic2).then(function(response3){
-                    
-                anychart.onDocumentReady(function() {
-                    var chart = anychart.pie([
-                        ['Número de palabras relacionadas con "What"', response1.data.list.length],
-                        ['Número de palabras relacionadas con "Beach"', response3.data.list.length],
-                        ['Traspasos más baratos del Málaga CF', response2.data.filter(d => d.team == "malaga cf").map(function(d) { return d["tilessexp"] })],
-                        ['Traspasos más baratos del Real Madrid CF', response2.data.filter(d => d.team == "real madrid cf").map(function(d) { return d["tilessexp"] })]
-                    ]);
+                $http(mashapeDic2).then(function(response3) {
 
-                    chart.title('Palabras relacionadas vs Traspasos más baratos')
-                        //set chart radius
-                        .radius('43%')
-                        // create empty area in pie chart
-                        .innerRadius('30%');
+                    anychart.onDocumentReady(function() {
+                        var chart = anychart.pie([
+                            ['Número de palabras relacionadas con "What"', response1.data.list.length],
+                            ['Número de palabras relacionadas con "Beach"', response3.data.list.length],
+                            ['Traspasos más baratos del Málaga CF', response2.data.filter(d => d.team == "malaga cf").map(function(d) { return d["tilessexp"] })],
+                            ['Traspasos más baratos del Real Madrid CF', response2.data.filter(d => d.team == "real madrid cf").map(function(d) { return d["tilessexp"] })]
+                        ]);
 
-                    // set container id for the chart
-                    chart.container("ApiExterna2");
-                    // initiate chart drawing
-                    chart.draw();
+                        chart.title('Palabras relacionadas vs Traspasos más baratos')
+                            //set chart radius
+                            .radius('43%')
+                            // create empty area in pie chart
+                            .innerRadius('30%');
+
+                        // set container id for the chart
+                        chart.container("ApiExterna2");
+                        // initiate chart drawing
+                        chart.draw();
+
+
+                    });
 
 
                 });
-
-
             });
         });
-    });
 
 
         $http(mashapeCartas).then(function(response1) {
@@ -273,23 +282,3 @@ angular.module("tvfeesManagerApp")
 
     }]);
 
-/*anychart.onDocumentReady(function() {
-                var chart = anychart.pie([
-                    ['Población española', response1.data.population / 5000000],
-                    ['Traspasos más baratos del Málaga CF', response2.data.filter(d => d.team == "malaga cf").map(function(d) { return d["tilessexp"] })],
-                    ['Traspasos más baratos del Real Madrid CF', response2.data.filter(d => d.team == "real madrid cf").map(function(d) { return d["tilessexp"] })]
-                ]);
-
-                chart.title('Población española vs Traspasos más baratos de la temporada 2015/16')
-                    //set chart radius
-                    .radius('43%')
-                    // create empty area in pie chart
-                    .innerRadius('30%');
-
-                // set container id for the chart
-                chart.container("ApiExterna2");
-                // initiate chart drawing
-                chart.draw();
-
-
-            }); */
