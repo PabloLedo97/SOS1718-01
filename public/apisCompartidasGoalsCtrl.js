@@ -38,9 +38,17 @@ angular.module("tvfeesManagerApp")
             }
         };
 
-        var mashapeCOD = {
+        var mashapeHello = {
             method: 'GET',
-            url: "https://iatacodes-iatacodes-v1.p.mashape.com/api/v5/airlines",
+            url: "https://mashape-community-urban-dictionary.p.mashape.com/define?term=hello",
+            headers: {
+                "X-Mashape-Key": "zZRDXYaRzImsher3Auyq9KGGeUUmp1bONedjsnLtL2XyhpTlsL",
+                "Accept": "application/json"
+            }
+        };
+        var mashapeBye = {
+            method: 'GET',
+            url: "https://mashape-community-urban-dictionary.p.mashape.com/define?term=bye",
             headers: {
                 "X-Mashape-Key": "zZRDXYaRzImsher3Auyq9KGGeUUmp1bONedjsnLtL2XyhpTlsL",
                 "Accept": "application/json"
@@ -417,5 +425,17 @@ angular.module("tvfeesManagerApp")
             });
         });
 
+        $http(mashapeHello).then(function(response) {
+            $http.get(apiPropia).then(function(response2) {
+                $http(mashapeBye).then(function(response3) {
+                    console.log(response.data);
+                     console.log(response3.data);
+                    console.log(response2.data);
+                    
+                    
+                });
+            });
+
+        });
 
     }]);
