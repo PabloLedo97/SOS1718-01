@@ -2,7 +2,7 @@
 /*global angular*/
 /*global Highcharts*/
 /*global zingchart*/
-/*global anychart*/
+/*global AmCharts*/
 angular.module("tvfeesManagerApp")
     .controller("apisCompartidasTvfeesCtrl", ["$scope", "$http", function($scope, $http) {
         console.log("List Ctrl initialized!");
@@ -15,7 +15,7 @@ angular.module("tvfeesManagerApp")
 
                 Highcharts.chart('graficaApi1', {
                     chart: {
-                        type: 'areaspline'
+                        type: 'scatter'
                     },
                     title: {
                         text: 'My Stadistics'
@@ -180,7 +180,7 @@ var goals = {
             ];
 
                         var myChart = {
-  "type": "line",
+  "type": "area",
   "title": {
     "text": "Stadistics Api Externa Nº1"
   },
@@ -211,7 +211,18 @@ var goals = {
   "series": [
     {
       "values": 
-      [response1.data[0].capacity,
+      [response1.data[0].minute,
+            response1.data[1].minute,
+            response1.data[2].minute,
+            response1.data[3].minute,
+            response1.data[4].minute,
+           ],
+     "text": "team_id"
+           
+    },
+    {
+      "values": 
+      [response1.data[0].team_id,
             response1.data[1].team_id,
             response1.data[2].team_id,
             response1.data[3].team_id,
@@ -334,4 +345,169 @@ zingchart.render({
     
 });
 
+//Api externa nº3 Uso  widget Integrado con Api 
+
+          
+        
+  $http.get("https://swapi.co/api/vehicles/").then(function(response) {
+  $http.get(miApi).then(function(response3) {
+      console.log(response.data);
+       var datos = response.data.results;
+     var result=[];
+    console.log(datos[0].cargo_capacity);
+    console.log(response3.data[0].ataverage);
+    
+    datos.map(function(d){
+      result.push({
+     "name":d.name,
+     "value":  d.cargo_capacity,
+    
+    });
+    });
+  FusionCharts.ready(function() {
+                    var salesChart = new FusionCharts({
+                            type: 'line',
+                            renderAt: 'chart-container',
+                            width: '400',
+                            height: '300',
+                            dataFormat: 'json',
+                            dataSource: {
+                                "chart": {
+                                    "caption": " Api Externa Nº3: Estadisticas de la asistencia media  al estadio y la capacidad de vehiculos de Star wars",
+                                    "xAxisName": "Estadisticas",
+                                    "yAxisName": "Unidades",
+                                    "paletteColors": "#0075c2",
+                                    "bgColor": "#ffffff",
+                                    "showBorder": "0",
+                                    "showCanvasBorder": "0",
+                                    "plotBorderAlpha": "10",
+                                    "usePlotGradientColor": "0",
+                                    "plotFillAlpha": "50",
+                                    "showXAxisLine": "1",
+                                    "axisLineAlpha": "25",
+                                    "divLineAlpha": "10",
+                                    "showValues": "1",
+                                    "showAlternateHGridColor": "0",
+                                    "captionFontSize": "14",
+                                    "subcaptionFontSize": "14",
+                                    "subcaptionFontBold": "0",
+                                    "toolTipColor": "#ffffff",
+                                    "toolTipBorderThickness": "0",
+                                    "toolTipBgColor": "#000000",
+                                    "toolTipBgAlpha": "80",
+                                    "toolTipBorderRadius": "2",
+                                    "toolTipPadding": "5"
+                                },
+
+                                "data": [{
+                                        "label": "Capacidad Vehiculo 1",
+                                        "value":datos[0].cargo_capacity
+                                    },
+                                    {
+                                        "label": "Capacidad Vehiculo 2",
+                                        "value":datos[1].cargo_capacity
+                                    },
+                                    {
+                                        "label": "Asistencia media Camp Nou",
+                                        "value": response3.data[0].ataverage
+                                    },
+                                    {
+                                        "label": "Asistencia media San Mames",
+                                        "value": response3.data[1].ataverage
+                                    },
+                                    {
+                                        "label": "Asistencia media Santiago Bernabeu",
+                                        "value": response3.data[2].ataverage
+                                    }
+                                ]
+                            }
+                        })
+                        .render();  
+  
+});
+    });
+    
+});
+//Api externa nº4 Uso  widget Integrado con Api 
+       
+  $http.get("https://swapi.co/api/species/").then(function(response) {
+  $http.get(miApi).then(function(response3) {
+      console.log(response.data);
+       var datos = response.data.results;
+     var result1=[];
+    console.log(datos[0].average_lifespan);
+    console.log(response3.data[0].ataverage);
+    
+    datos.map(function(d){
+      result1.push({
+     "name":d.name,
+     "value":  d.average_lifespan,
+    
+    });
+    });
+  FusionCharts.ready(function() {
+                    var salesChart = new FusionCharts({
+                            type: 'pyramid',
+                            renderAt: 'chart-container2',
+                            width: '400',
+                            height: '300',
+                            dataFormat: 'json',
+                            dataSource: {
+                                "chart": {
+                                    "caption": " Api Externa Nº3: Estadisticas de la asistencia media  al estadio y la Esperanza de vida de Especies de  Star wars",
+                                    "xAxisName": "Estadisticas",
+                                    "yAxisName": "Unidades",
+                                    "paletteColors": "#0075c2",
+                                    "bgColor": "#ffffff",
+                                    "showBorder": "0",
+                                    "showCanvasBorder": "0",
+                                    "plotBorderAlpha": "10",
+                                    "usePlotGradientColor": "0",
+                                    "plotFillAlpha": "50",
+                                    "showXAxisLine": "1",
+                                    "axisLineAlpha": "25",
+                                    "divLineAlpha": "10",
+                                    "showValues": "1",
+                                    "showAlternateHGridColor": "0",
+                                    "captionFontSize": "14",
+                                    "subcaptionFontSize": "14",
+                                    "subcaptionFontBold": "0",
+                                    "toolTipColor": "#ffffff",
+                                    "toolTipBorderThickness": "0",
+                                    "toolTipBgColor": "#000000",
+                                    "toolTipBgAlpha": "80",
+                                    "toolTipBorderRadius": "2",
+                                    "toolTipPadding": "5"
+                                },
+
+                                "data": [{
+                                        "label": "Esperanza de vida especie 1",
+                                        "value":datos[0].average_lifespan
+                                    },
+                                    {
+                                        "label": "Esperanza de vida especie 2",
+                                        "value":datos[1].average_lifespan
+                                    },
+                                    {
+                                        "label": "Asistencia media Camp Nou",
+                                        "value": response3.data[0].ataverage
+                                    },
+                                    {
+                                        "label": "Asistencia media San Mames",
+                                        "value": response3.data[1].ataverage
+                                    },
+                                    {
+                                        "label": "Asistencia media Santiago Bernabeu",
+                                        "value": response3.data[2].ataverage
+                                    }
+                                ]
+                            }
+                        })
+                        .render();  
+  
+});
+    });
+    
+});    
+   
     }]);
