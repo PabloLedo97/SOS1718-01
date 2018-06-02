@@ -9,10 +9,10 @@
                 $http.post(api,$scope.newteam).then(function (response){
                     $scope.status= "Recurso creado";
                     getTeams();
-                },function(){
+                },function(response){
                     if($scope.length!=6){
                     $scope.status="Error 400: debe completar todos los campos";
-                    }else{
+                    }if(response.status == 409){
                     $scope.status="Error 409: la estadistica ya existe";
                     }
             });

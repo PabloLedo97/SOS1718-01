@@ -84,20 +84,21 @@ tvfeesstatsApi.register = function(app, db) {
     app.post(BASE_API_PATH + "/tvfees-stats", (req, res) => {
         console.log(Date() + " - POST /teams");
         var newteam = req.body;
-        if (!newteam.city || !newteam.year || !newteam.team || !newteam.capacity || !newteam.attotal || !newteam.ataverage || Object.keys(newteam).length != 6) {
-            console.log("Warning : new GET request ");
-            res.sendStatus(400);
-        }
+       
 
 
 
         db.find({ "city": newteam.city }).toArray((err, filterTeams) => {
+             if (!newteam.city || !newteam.year || !newteam.team || !newteam.capacity || !newteam.attotal || !newteam.ataverage || Object.keys(newteam).length !== 6) {
+            console.log("Warning : new GET request ");
+            res.sendStatus(400);
+        }
             if (err) {
                 console.error("Error accesing DB");
                 res.sendStatus(500);
             }
-            if (filterTeams.length > 0) {
-                console.log("WARNING");
+            if (filterTeams.length !== 0) {
+                console.log("WARNING esta estadistica ya existe");
                 res.sendStatus(409); //conflict
             }
             else {
