@@ -39,7 +39,7 @@ angular
                 }).when("/tvfees-stats/compartidas",{
                     templateUrl:"apisCompartidasTvfees.html",
                     controller: "apisCompartidasTvfeesCtrl"
-                }).when("/transfers-stats/sharedAnalytics",{
+                }).when("/transfers-stats/integrations",{
                     templateUrl:"sharedApisTransfers.html",
                     controller: "sharedApisTransfersCtrl"
                 });
