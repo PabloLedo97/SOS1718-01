@@ -429,10 +429,62 @@ angular.module("tvfeesManagerApp")
             $http.get(apiPropia).then(function(response2) {
                 $http(mashapeBye).then(function(response3) {
                     console.log(response.data);
-                     console.log(response3.data);
+                    console.log(response3.data);
                     console.log(response2.data);
-                    
-                    
+
+
+                    AmCharts.makeChart("chartdiv", {
+                        "type": "serial",
+                        "categoryField": "category",
+                        "autoMarginOffset": 40,
+                        "marginRight": 60,
+                        "marginTop": 60,
+                        "startDuration": 1,
+                        "fontSize": 13,
+                        "theme": "patterns",
+                        "categoryAxis": {
+                            "gridPosition": "start"
+                        },
+                        "trendLines": [],
+                        "graphs": [{
+                            "balloonText": "[[title]] of [[category]]:[[value]]",
+                            "bullet": "round",
+                            "bulletSize": 10,
+                            "id": "AmGraph-1",
+                            "lineAlpha": 1,
+                            "lineThickness": 3,
+                            "type": "smoothedLine",
+                            "valueField": "column-1"
+                        }],
+                        "guides": [],
+                        "valueAxes": [{
+                            "id": "ValueAxis-1",
+                            "title": ""
+                        }],
+                        "allLabels": [],
+                        "balloon": {},
+                        "titles": [],
+                        "dataProvider": [{
+                                "category": "Formas Hello",
+                                "column-1": response.data.tags.length
+
+                            },
+                            {
+                                "category": "Formas Bye",
+                                "column-1": response3.data.tags.length
+                            },
+                            {
+                                "category": "Goles de cabeza Sevilla FC",
+                                "column-1": response2.data.filter(d => d.team == "sevilla-fc").map(function(d) { return d["penalty"] }).reduce(function(a, n) { return a + n })
+                                
+                            },
+                            {
+                                "category": "Goles de cabeza Malaga CF",
+                                "column-1": response2.data.filter(d => d.team == "malaga-fc").map(function(d) { return d["penalty"] }).reduce(function(a, n) { return a + n })
+                            }
+                        ]
+                    });
+
                 });
             });
 
