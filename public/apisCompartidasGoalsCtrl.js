@@ -474,12 +474,12 @@ angular.module("tvfeesManagerApp")
                                 "column-1": response3.data.tags.length
                             },
                             {
-                                "category": "Goles de cabeza Sevilla FC",
+                                "category": "Goles de penalty Sevilla FC",
                                 "column-1": response2.data.filter(d => d.team == "sevilla-fc").map(function(d) { return d["penalty"] }).reduce(function(a, n) { return a + n })
                                 
                             },
                             {
-                                "category": "Goles de cabeza Malaga CF",
+                                "category": "Goles de penalty Malaga CF",
                                 "column-1": response2.data.filter(d => d.team == "malaga-fc").map(function(d) { return d["penalty"] }).reduce(function(a, n) { return a + n })
                             }
                         ]
