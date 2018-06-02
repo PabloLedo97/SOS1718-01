@@ -36,7 +36,7 @@ angular
                 }).when("/goals-stats/integrations",{
                     templateUrl:"apisCompartidasGoals.html",
                     controller: "apisCompartidasGoalsCtrl"
-                }).when("/tvfees-stats/compartidas",{
+                }).when("/tvfees-stats/integrations",{
                     templateUrl:"apisCompartidasTvfees.html",
                     controller: "apisCompartidasTvfeesCtrl"
                 }).when("/transfers-stats/integrations",{
