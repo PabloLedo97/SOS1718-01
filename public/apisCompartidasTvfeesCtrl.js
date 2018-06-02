@@ -217,7 +217,7 @@ var goals = {
             response1.data[3].minute,
             response1.data[4].minute,
            ],
-     "text": "team_id"
+     "text": "minutos"
            
     },
     {
