@@ -58,12 +58,14 @@ tvfeesstatsApi.register = function(app, db) {
         res.redirect("https://documenter.getpostman.com/view/3897700/sos1718-01-tvfees-stats/RVu1Gq87");
     });
 
+   //GET de LoadInitialData
     app.get(BASE_API_PATH + "/tvfees-stats/loadInitialData", (req, res) => {
         console.log(Date() + " - GET /tvfees-stats/loadInitialData" + initialteams);
 
-        db.find({}, (err, teams) => {
+        
+        db.find({}).toArray((err, teams) => {
             if (err) {
-                console.log("Error acccesing DB");
+                console.error("Error accesing DB");
                 process.exit(1);
                 return;
             }
@@ -71,14 +73,13 @@ tvfeesstatsApi.register = function(app, db) {
                 console.log("Empty DB");
                 db.insert(initialteams);
             }
-
             res.send(teams.map((c) => {
                 delete c._id;
                 return c;
             }));
         });
-
     });
+
 
     app.post(BASE_API_PATH + "/tvfees-stats", (req, res) => {
         console.log(Date() + " - POST /teams");
