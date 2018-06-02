@@ -42,6 +42,9 @@ angular
                 }).when("/transfers-stats/integrations",{
                     templateUrl:"sharedApisTransfers.html",
                     controller: "sharedApisTransfersCtrl"
+                }).when("/integrations",{
+                    templateUrl:"integrations.html",
+                   
                 });
                 
 });
