@@ -5,18 +5,19 @@
             console.log("List Ctrl initialized!");
             var api = "/api/v1/goals-stats";
             
-            $scope.addStat= function(){
+             $scope.addStat= function(){
                 $http.post(api,$scope.newteam).then(function (response){
                     $scope.status= "Equipo creado con éxito";
                     getTeams();
-                },function(){
+                },function(response){
                     if($scope.length!=6){
-                    $scope.status="Debe completar todos los campos";
-                    }else{
-                    $scope.status="La estadistica ya existe";
+                    $scope.status="Error 400: debe completar todos los campos";
+                    }if(response.status == 409){
+                    $scope.status="Error 409: la estadistica ya existe";
                     }
             });
             };
+            
              $scope.deleteStat= function(city){
                 console.log("Stadistic to be delete :" + city);
                 $http.delete(api+"/"+city).then(function (response){
