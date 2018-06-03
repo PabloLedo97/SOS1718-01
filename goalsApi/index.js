@@ -182,7 +182,7 @@ app.post(BASE_API_PATH+"/goals-stats",(req,res)=>{
    
     
      
-    db2.find({ "city" : newteam.city}).toArray((err,filteredTeams)=>{
+    db2.find({ "team" : newteam.team}).toArray((err,filteredTeams)=>{
     if(err){
         console.error("Error accesing DB");
         res.sendStatus(500);
