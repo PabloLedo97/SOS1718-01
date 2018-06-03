@@ -9,10 +9,10 @@
                 $http.post(api,$scope.newteam).then(function (response){
                     $scope.status= "Equipo creado con éxito";
                     getTeams();
-                },function(){
+                },function(response){
                     if($scope.length!=6){
                     $scope.status="Debe completar todos los campos";
-                    }else{
+                    }if(response.status == 409){
                     $scope.status="La estadistica ya existe";
                     }
             });

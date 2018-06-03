@@ -6,7 +6,7 @@ module.exports = transfersApi;
 var myteams = [{
         "city": "madrid",
         "year": 2015,
-        "team": "real madrid cf",
+        "team": "real-madrid-cf",
         "timaxexp": 31.5,
         "tilessexp": 6,
         "tispa": 12
@@ -14,7 +14,7 @@ var myteams = [{
     {
         "city": "madrid",
         "year": 2015,
-        "team": "atletico madrid",
+        "team": "atletico-madrid",
         "timaxexp": 35,
         "tilessexp": 15,
         "tispa": 0
@@ -22,7 +22,7 @@ var myteams = [{
     {
         "city": "vigo",
         "year": 2015,
-        "team": "celta de vigo ",
+        "team": "celta-de-vigo ",
         "timaxexp": 10,
         "tilessexp": 2,
         "tispa": 17.3
@@ -30,7 +30,7 @@ var myteams = [{
     {
         "city": "barcelona",
         "year": 2015,
-        "team": "fc barcelona",
+        "team": "fc-barcelona",
         "timaxexp": 34,
         "tilessexp": 17,
         "tispa": 17
@@ -38,7 +38,7 @@ var myteams = [{
     {
         "city": "malaga",
         "year": 2015,
-        "team": "malaga cf",
+        "team": "malaga-cf",
         "timaxexp": 3.5,
         "tilessexp": 3.5,
         "tispa": 0
@@ -46,7 +46,7 @@ var myteams = [{
     {
         "city": "sevilla",
         "year": 2015,
-        "team": "sevilla fc",
+        "team": "sevilla-fc",
         "timaxexp": 9.75,
         "tilessexp": 4,
         "tispa": 0
