@@ -453,11 +453,11 @@ FusionCharts.ready(function() {
                                 },
 
                                 "data": [{
-                                        "label": "Esperanza de vida especie 1",
+                                        "label": "Capacidad bus  1",
                                         "value":response.data[0].transportedTraveler
                                     },
                                     {
-                                        "label": "Esperanza de vida especie 2",
+                                        "label": "Capcidad bus  2",
                                         "value":response.data[1].transportedTraveler
                                     },
                                     {
