@@ -265,11 +265,13 @@ app.get(BASE_API_PATH+"/goals-stats/:city/:team",(req,res)=>{
     });
 });
 
-app.delete(BASE_API_PATH+"/goals-stats/:city",(req,res)=>{
+app.delete(BASE_API_PATH+"/goals-stats/:city/:team",(req,res)=>{
     var city = req.params.city;
+    var team = req.params.team;
+    
     console.log(Date() + " - DELETE /teams/"+city);
     
-    db2.remove({"city" : city});
+    db2.remove({"city" : city , "team" : team});
     res.sendStatus(200);
 });
 

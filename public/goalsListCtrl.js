@@ -18,13 +18,13 @@
             });
             };
             
-             $scope.deleteStat= function(city){
+             $scope.deleteStat= function(city,team){
                 console.log("Stadistic to be delete :" + city);
-                $http.delete(api+"/"+city).then(function (response){
+                $http.delete(api+"/"+city+"/"+team).then(function (response){
                     $scope.status= "Equipo eliminado";
                     getTeams();
                 });
-                 getTeams();
+               
             };
             
             $scope.deleteStats= function(){
