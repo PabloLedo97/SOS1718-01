@@ -80,7 +80,8 @@ angular
           ['Madrid','club-atletico-de-madrid'],
           ['Madrid2','real-madrid-cf'],
           ['Valencia','valencia-cf'],
-          ['Sevilla','real-betis']
+          ['Sevilla','real-betis'],
+         
         ]);
 
         var options = {

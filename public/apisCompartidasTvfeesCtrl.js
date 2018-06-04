@@ -3,6 +3,9 @@
 /*global Highcharts*/
 /*global zingchart*/
 /*global AmCharts*/
+/*global FusionCharts*/
+
+//A
 angular.module("tvfeesManagerApp")
     .controller("apisCompartidasTvfeesCtrl", ["$scope", "$http", function($scope, $http) {
         console.log("List Ctrl initialized!");
@@ -12,7 +15,7 @@ angular.module("tvfeesManagerApp")
 
         $http.get(apicors).then(function(response10) {
             $http.get(miApi).then(function(response20) {
-
+               console.log(response10.data);
                 Highcharts.chart('graficaApi1', {
                     chart: {
                         type: 'scatter'
@@ -82,9 +85,14 @@ angular.module("tvfeesManagerApp")
 
             });
         });
+        
+        
+//B
         $http.get(apiprox).then(function(response10) {
+//C
             $http.get(miApi).then(function(response20) {
-
+//D
+                console.log(response10.data);
                 Highcharts.chart('graficaApi2', {
                     chart: {
                         type: 'bar'
@@ -146,11 +154,14 @@ angular.module("tvfeesManagerApp")
                 });
 
 
-
+//E
             });
+//F
         });
+//G
+
  //==============APIs Externas========================
-//Api externa nº1 Integracion 
+//Api externa nº1 Integracion con Api propia
 var goals = {
             method: 'GET',
             url:"https://montanaflynn-fifa-world-cup.p.mashape.com/goals",
@@ -345,26 +356,11 @@ zingchart.render({
     
 });
 
-//Api externa nº3 Uso  widget Integrado con Api 
+ $http.get("https://sos1718-05.herokuapp.com/api/v1/country-stats").then(function(response1) {
+ $http.get(miApi).then(function(response3) {
+ console.log(response1.data);
 
-          
-        
-  $http.get("https://swapi.co/api/vehicles/").then(function(response) {
-  $http.get(miApi).then(function(response3) {
-      console.log(response.data);
-       var datos = response.data.results;
-     var result=[];
-    console.log(datos[0].cargo_capacity);
-    console.log(response3.data[0].ataverage);
-    
-    datos.map(function(d){
-      result.push({
-     "name":d.name,
-     "value":  d.cargo_capacity,
-    
-    });
-    });
-  FusionCharts.ready(function() {
+FusionCharts.ready(function() {
                     var salesChart = new FusionCharts({
                             type: 'line',
                             renderAt: 'chart-container',
@@ -373,7 +369,7 @@ zingchart.render({
                             dataFormat: 'json',
                             dataSource: {
                                 "chart": {
-                                    "caption": " Api Externa Nº3: Estadisticas de la asistencia media  al estadio y la capacidad de vehiculos de Star wars",
+                                    "caption": " Integracion: Estadisticas de la asistencia media  al estadio y Los años",
                                     "xAxisName": "Estadisticas",
                                     "yAxisName": "Unidades",
                                     "paletteColors": "#0075c2",
@@ -400,12 +396,12 @@ zingchart.render({
                                 },
 
                                 "data": [{
-                                        "label": "Capacidad Vehiculo 1",
-                                        "value":datos[0].cargo_capacity
+                                        "label": "Año 1",
+                                        "value":response1.data[0].year
                                     },
                                     {
-                                        "label": "Capacidad Vehiculo 2",
-                                        "value":datos[1].cargo_capacity
+                                        "label": "Año 2",
+                                        "value":response1.data[1].year
                                     },
                                     {
                                         "label": "Asistencia media Camp Nou",
@@ -425,27 +421,14 @@ zingchart.render({
                         .render();  
   
 });
-    });
     
-});
-//Api externa nº4 Uso  widget Integrado con Api 
-       
-  $http.get("https://swapi.co/api/species/").then(function(response) {
+ });
+ });
+      
+  $http.get("https://sos1718-10.herokuapp.com/api/v1/buses").then(function(response) {
   $http.get(miApi).then(function(response3) {
       console.log(response.data);
-       var datos = response.data.results;
-     var result1=[];
-    console.log(datos[0].average_lifespan);
-    console.log(response3.data[0].ataverage);
-    
-    datos.map(function(d){
-      result1.push({
-     "name":d.name,
-     "value":  d.average_lifespan,
-    
-    });
-    });
-  FusionCharts.ready(function() {
+       FusionCharts.ready(function() {
                     var salesChart = new FusionCharts({
                             type: 'pyramid',
                             renderAt: 'chart-container2',
@@ -454,7 +437,7 @@ zingchart.render({
                             dataFormat: 'json',
                             dataSource: {
                                 "chart": {
-                                    "caption": " Api Externa Nº3: Estadisticas de la asistencia media  al estadio y la Esperanza de vida de Especies de  Star wars",
+                                    "caption": " Integracion: Estadisticas de la asistencia media  al estadio y El transporte de personas en autobus",
                                     "xAxisName": "Estadisticas",
                                     "yAxisName": "Unidades",
                                     "paletteColors": "#0075c2",
@@ -481,12 +464,12 @@ zingchart.render({
                                 },
 
                                 "data": [{
-                                        "label": "Esperanza de vida especie 1",
-                                        "value":datos[0].average_lifespan
+                                        "label": "Capacidad bus  1",
+                                        "value":response.data[0].transportedTraveler
                                     },
                                     {
-                                        "label": "Esperanza de vida especie 2",
-                                        "value":datos[1].average_lifespan
+                                        "label": "Capcidad bus  2",
+                                        "value":response.data[1].transportedTraveler
                                     },
                                     {
                                         "label": "Asistencia media Camp Nou",

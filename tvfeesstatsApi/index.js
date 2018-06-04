@@ -191,12 +191,12 @@ tvfeesstatsApi.register = function(app, db) {
         console.log(Date() + " - POST /teams/" + city);
         res.sendStatus(405);
     });
-
+console.log("A");
     app.put(BASE_API_PATH + "/tvfees-stats/:city/:team", (req, res) => {
         var city = req.params.city;
         var equipo = req.params.team;
         var team = req.body;
-
+console.log("B");
         console.log(Date() + " - PUT /teams/" + city);
 
         if (city != team.city || equipo != team.team) {
@@ -204,11 +204,13 @@ tvfeesstatsApi.register = function(app, db) {
             console.warn(Date() + " - Hacking attempt!");
             return;
         }
-
+console.log("C");
         db.update({ "city": team.city, "team": team.team }, team);
+console.log("D");
         res.sendStatus(200);
+console.log("E");
     });
-
+console.log("F");
 
 
 
