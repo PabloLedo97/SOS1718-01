@@ -81,7 +81,7 @@ angular
           ['Madrid2','real-madrid-cf'],
           ['Valencia','valencia-cf'],
           ['Sevilla','real-betis'],
-          ['Galicia','deportivo']
+         
         ]);
 
         var options = {
