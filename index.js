@@ -6,7 +6,6 @@ var request = require("request");
 var cors = require("cors");
 
 //holaaa
-
 var MongoClient = require("mongodb").MongoClient;
 
 var goalsApi = require("./goalsApi");

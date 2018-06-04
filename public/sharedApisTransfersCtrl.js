@@ -4,13 +4,11 @@
 /*global Morris*/
 /*global FusionCharts*/
 /*global anychart*/
-
 "use strict"
 angular.module("tvfeesManagerApp")
     .controller("sharedApisTransfersCtrl", ["$scope", "$http", function($scope, $http) {
         console.log("List Ctrl initialized!");
         var apiPropia = "/api/v1/transferincomes-stats";
-
         //==============APIs SOS============================
         var api2 = "proxyMANU/api/v1/span-univ-stats";
         var api1 = "https://sos1718-04.herokuapp.com/api/v2/graduation-rates";
@@ -58,13 +56,12 @@ angular.module("tvfeesManagerApp")
             console.log(response1);
             $http.get(apiPropia).then(function(response2) {
                 $http(mashapeDic2).then(function(response3) {
-
                     anychart.onDocumentReady(function() {
                         var chart = anychart.pie([
                             ['Número de palabras relacionadas con "What"', response1.data.list.length],
                             ['Número de palabras relacionadas con "Beach"', response3.data.list.length],
-                            ['Traspasos más baratos del Málaga CF', response2.data.filter(d => d.team == "malaga cf").map(function(d) { return d["tilessexp"] })],
-                            ['Traspasos más baratos del Real Madrid CF', response2.data.filter(d => d.team == "real madrid cf").map(function(d) { return d["tilessexp"] })]
+                            ['Traspasos más baratos del Málaga CF', response2.data.filter(d => d.team == "malaga-cf").map(function(d) { return d["tilessexp"] })],
+                            ['Traspasos más baratos del Real Madrid CF', response2.data.filter(d => d.team == "real-madrid cf").map(function(d) { return d["tilessexp"] })]
                         ]);
 
                         chart.title('Palabras relacionadas vs Traspasos más baratos')
@@ -134,11 +131,11 @@ angular.module("tvfeesManagerApp")
                                     },
                                     {
                                         "label": " FC Barcelona ",
-                                        "value": response2.data.filter(d => d.team == "fc barcelona").map(function(d) { return d["timaxexp"] })
+                                        "value": response2.data.filter(d => d.team == "fc-barcelona").map(function(d) { return d["timaxexp"] })
                                     },
                                     {
                                         "label": "Sevilla FC",
-                                        "value": response2.data.filter(d => d.team == "sevilla fc").map(function(d) { return d["timaxexp"] })
+                                        "value": response2.data.filter(d => d.team == "sevilla-fc").map(function(d) { return d["timaxexp"] })
                                     }
                                 ]
                             }
@@ -279,6 +276,4 @@ angular.module("tvfeesManagerApp")
                 });
             });
         });
-
     }]);
-

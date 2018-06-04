@@ -183,7 +183,6 @@ transfersApi.register = function(app, db3) {
     });
 */
 
-
     //POST a la ruta base
     app.post(BASE_API_PATH + "/transferincomes-stats", (req, res) => {
         console.log(Date() + " - POST /transferincomes-stats");
