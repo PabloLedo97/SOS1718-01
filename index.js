@@ -355,15 +355,9 @@ MongoClient.connect(mdbURL2, { native_parser: true }, (err, mlabs) => {
 
     transfersApi.register(app, db3);
 });
-console.log("X");
 app.listen(port, () => {
     console.log("Y");
     console.log("Server ready on port " + port + "!");
 }).on("error", (e) => {
     console.log("Server NOT READY:" + e);
-<<<<<<< HEAD
 });
-=======
-});
-console.log("Z");
->>>>>>> 08a7c74f93e8cf551e40c040b5a021e5c5ac368c
