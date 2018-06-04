@@ -151,7 +151,7 @@ angular.module("tvfeesManagerApp")
             });
         });
  //==============APIs Externas========================
-//Api externa nº1 Integracion 
+//Api externa nº1 Integracion con Api propia
 var goals = {
             method: 'GET',
             url:"https://montanaflynn-fifa-world-cup.p.mashape.com/goals",
