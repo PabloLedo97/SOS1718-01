@@ -4,6 +4,8 @@
 /*global zingchart*/
 /*global AmCharts*/
 /*global FusionCharts*/
+
+//A
 angular.module("tvfeesManagerApp")
     .controller("apisCompartidasTvfeesCtrl", ["$scope", "$http", function($scope, $http) {
         console.log("List Ctrl initialized!");
@@ -13,7 +15,7 @@ angular.module("tvfeesManagerApp")
 
         $http.get(apicors).then(function(response10) {
             $http.get(miApi).then(function(response20) {
-
+               console.log(response10.data);
                 Highcharts.chart('graficaApi1', {
                     chart: {
                         type: 'scatter'
@@ -83,9 +85,14 @@ angular.module("tvfeesManagerApp")
 
             });
         });
+        
+        
+//B
         $http.get(apiprox).then(function(response10) {
+//C
             $http.get(miApi).then(function(response20) {
-
+//D
+                console.log(response10.data);
                 Highcharts.chart('graficaApi2', {
                     chart: {
                         type: 'bar'
@@ -147,9 +154,12 @@ angular.module("tvfeesManagerApp")
                 });
 
 
-
+//E
             });
+//F
         });
+//G
+
  //==============APIs Externas========================
 //Api externa nº1 Integracion con Api propia
 var goals = {
@@ -346,9 +356,9 @@ zingchart.render({
     
 });
 
- $http.get("https://sos1718-08.herokuapp.com/api/v2/crimes-an").then(function(response1) {
+ $http.get("https://sos1718-05.herokuapp.com/api/v1/country-stats").then(function(response1) {
  $http.get(miApi).then(function(response3) {
-
+ console.log(response1.data);
 
 FusionCharts.ready(function() {
                     var salesChart = new FusionCharts({
@@ -417,6 +427,7 @@ FusionCharts.ready(function() {
       
   $http.get("https://sos1718-10.herokuapp.com/api/v1/buses").then(function(response) {
   $http.get(miApi).then(function(response3) {
+      console.log(response.data);
        FusionCharts.ready(function() {
                     var salesChart = new FusionCharts({
                             type: 'pyramid',
