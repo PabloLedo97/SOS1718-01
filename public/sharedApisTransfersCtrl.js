@@ -60,8 +60,8 @@ angular.module("tvfeesManagerApp")
                         var chart = anychart.pie([
                             ['Número de palabras relacionadas con "What"', response1.data.list.length],
                             ['Número de palabras relacionadas con "Beach"', response3.data.list.length],
-                            ['Traspasos más baratos del Málaga CF', response2.data.filter(d => d.team == "malaga-cf").map(function(d) { return d["tilessexp"] })],
-                            ['Traspasos más baratos del Real Madrid CF', response2.data.filter(d => d.team == "real-madrid-cf").map(function(d) { return d["tilessexp"] })]
+                            ['Traspasos más baratos del Málaga CF', response2.data.filter(d => d.team == "malaga cf").map(function(d) { return d["tilessexp"] })],
+                            ['Traspasos más baratos del Real Madrid CF', response2.data.filter(d => d.team == "real madrid cf").map(function(d) { return d["tilessexp"] })]
                         ]);
 
                         chart.title('Palabras relacionadas vs Traspasos más baratos')
@@ -131,11 +131,11 @@ angular.module("tvfeesManagerApp")
                                     },
                                     {
                                         "label": " FC Barcelona ",
-                                        "value": response2.data.filter(d => d.team == "fc-barcelona").map(function(d) { return d["timaxexp"] })
+                                        "value": response2.data.filter(d => d.team == "fc barcelona").map(function(d) { return d["timaxexp"] })
                                     },
                                     {
                                         "label": "Sevilla FC",
-                                        "value": response2.data.filter(d => d.team == "sevilla-fc").map(function(d) { return d["timaxexp"] })
+                                        "value": response2.data.filter(d => d.team == "sevilla fc").map(function(d) { return d["timaxexp"] })
                                     }
                                 ]
                             }
